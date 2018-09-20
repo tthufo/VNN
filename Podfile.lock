@@ -1,0 +1,60 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - AllPod (0.1.7):
+    - AFNetworking (~> 3.1)
+    - AVHexColor (~> 2.0)
+    - JSONKit-NoWarning (~> 1.2)
+    - Reachability (~> 3.2)
+    - SDWebImage (~> 4.4)
+    - SVProgressHUD
+    - Toast (~> 4.0.0)
+  - AVHexColor (2.0.0)
+  - JSONKit-NoWarning (1.2)
+  - Reachability (3.2)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
+  - SVProgressHUD (2.2.5)
+  - Toast (4.0.0)
+
+DEPENDENCIES:
+  - AllPod
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - AllPod
+    - AVHexColor
+    - JSONKit-NoWarning
+    - Reachability
+    - SDWebImage
+    - SVProgressHUD
+    - Toast
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AllPod: 08a52146ec4bce448167f887c2b2c6162179b096
+  AVHexColor: 33e5e102f3b6f3acd002779183ee226e21870c28
+  JSONKit-NoWarning: 3d27e6f9e6846ecf741e8c64dcadd7d5aa7193cb
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+
+PODFILE CHECKSUM: 48bab476328b45bfb22d7cf554d507f6d9b0d207
+
+COCOAPODS: 1.5.3
