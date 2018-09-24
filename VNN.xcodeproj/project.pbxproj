@@ -10,6 +10,12 @@
 		0FCF0DAC5B0BA9FAE5EDFA3E /* Pods_VNN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF881B1890A2CD1286C6E73E /* Pods_VNN.framework */; };
 		69291F5EDDA1966A73D0F2EB /* Pods_VNNUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72B96C11B0F2C79903543B03 /* Pods_VNNUITests.framework */; };
 		DC90DB8284BC1C72677FD25B /* Pods_VNNTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 569D96C4D0888B04AF4FF308 /* Pods_VNNTests.framework */; };
+		FC2CED58215942B900E332A8 /* QL_Group_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC2CED57215942B900E332A8 /* QL_Group_Cell.xib */; };
+		FC2CED5A2159430400E332A8 /* QL_Image_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC2CED592159430400E332A8 /* QL_Image_Cell.xib */; };
+		FC2CED5C215948AF00E332A8 /* format.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC2CED5B215948AF00E332A8 /* format.plist */; };
+		FC2CED5E215948BB00E332A8 /* TG_Drop_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC2CED5D215948BB00E332A8 /* TG_Drop_Cell.xib */; };
+		FC2CED62215957A600E332A8 /* VN_Report_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2CED60215957A600E332A8 /* VN_Report_ViewController.swift */; };
+		FC2CED63215957A600E332A8 /* VN_Report_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC2CED61215957A600E332A8 /* VN_Report_ViewController.xib */; };
 		FC2E6F96215410660024DAAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2E6F95215410660024DAAA /* AppDelegate.swift */; };
 		FC2E6F98215410660024DAAA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2E6F97215410660024DAAA /* ViewController.swift */; };
 		FC2E6F9B215410660024DAAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC2E6F99215410660024DAAA /* Main.storyboard */; };
@@ -17,6 +23,20 @@
 		FC2E6FA02154106B0024DAAA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC2E6F9E2154106B0024DAAA /* LaunchScreen.storyboard */; };
 		FC2E6FAB2154106B0024DAAA /* VNNTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2E6FAA2154106B0024DAAA /* VNNTests.swift */; };
 		FC2E6FB62154106B0024DAAA /* VNNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2E6FB52154106B0024DAAA /* VNNUITests.swift */; };
+		FC4393F221555FC700A5848E /* QL_LogIn_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC4393F021555FC700A5848E /* QL_LogIn_ViewController.xib */; };
+		FC4393F321555FC700A5848E /* QL_LogIn_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393F121555FC700A5848E /* QL_LogIn_ViewController.swift */; };
+		FC4393F5215560C900A5848E /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393F4215560C900A5848E /* Macro.swift */; };
+		FC4393F9215560DC00A5848E /* UIViewController+ViewCat.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4393F8215560DC00A5848E /* UIViewController+ViewCat.m */; };
+		FC4393FB2155612700A5848E /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393FA2155612600A5848E /* Information.swift */; };
+		FC4393FF2155616C00A5848E /* VN_Home_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393FD2155616C00A5848E /* VN_Home_ViewController.swift */; };
+		FC4394002155616C00A5848E /* VN_Home_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC4393FE2155616C00A5848E /* VN_Home_ViewController.xib */; };
+		FC439403215562C000A5848E /* TL_ChangeHost_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC439401215562BE00A5848E /* TL_ChangeHost_ViewController.xib */; };
+		FC439404215562C000A5848E /* TL_ChangeHost_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC439402215562BF00A5848E /* TL_ChangeHost_ViewController.swift */; };
+		FC4394062155657F00A5848E /* TG_Image_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC4394052155657F00A5848E /* TG_Image_Cell.xib */; };
+		FC43940A2155687300A5848E /* VN_Picture_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4394082155687300A5848E /* VN_Picture_ViewController.swift */; };
+		FC43940B2155687300A5848E /* VN_Picture_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC4394092155687300A5848E /* VN_Picture_ViewController.xib */; };
+		FC43940E21556B0A00A5848E /* QL_Drop_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC43940C21556B0900A5848E /* QL_Drop_Cell.xib */; };
+		FC43940F21556B0A00A5848E /* QL_Input_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC43940D21556B0A00A5848E /* QL_Input_Cell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +66,12 @@
 		BF881B1890A2CD1286C6E73E /* Pods_VNN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VNN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAAA01D4F009565FF5BC8EFF /* Pods-VNNUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VNNUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VNNUITests/Pods-VNNUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DCD73AB288B7AB25ABC1A58A /* Pods-VNNTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VNNTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VNNTests/Pods-VNNTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FC2CED57215942B900E332A8 /* QL_Group_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QL_Group_Cell.xib; sourceTree = "<group>"; };
+		FC2CED592159430400E332A8 /* QL_Image_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QL_Image_Cell.xib; sourceTree = "<group>"; };
+		FC2CED5B215948AF00E332A8 /* format.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = format.plist; sourceTree = "<group>"; };
+		FC2CED5D215948BB00E332A8 /* TG_Drop_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TG_Drop_Cell.xib; sourceTree = "<group>"; };
+		FC2CED60215957A600E332A8 /* VN_Report_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VN_Report_ViewController.swift; sourceTree = "<group>"; };
+		FC2CED61215957A600E332A8 /* VN_Report_ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VN_Report_ViewController.xib; sourceTree = "<group>"; };
 		FC2E6F92215410660024DAAA /* VNN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VNN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC2E6F95215410660024DAAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC2E6F97215410660024DAAA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +85,22 @@
 		FC2E6FB12154106B0024DAAA /* VNNUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VNNUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC2E6FB52154106B0024DAAA /* VNNUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VNNUITests.swift; sourceTree = "<group>"; };
 		FC2E6FB72154106B0024DAAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC4393F021555FC700A5848E /* QL_LogIn_ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QL_LogIn_ViewController.xib; sourceTree = "<group>"; };
+		FC4393F121555FC700A5848E /* QL_LogIn_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QL_LogIn_ViewController.swift; sourceTree = "<group>"; };
+		FC4393F4215560C900A5848E /* Macro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
+		FC4393F6215560DA00A5848E /* VNN-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VNN-Bridging-Header.h"; sourceTree = "<group>"; };
+		FC4393F7215560DC00A5848E /* UIViewController+ViewCat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ViewCat.h"; sourceTree = "<group>"; };
+		FC4393F8215560DC00A5848E /* UIViewController+ViewCat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ViewCat.m"; sourceTree = "<group>"; };
+		FC4393FA2155612600A5848E /* Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
+		FC4393FD2155616C00A5848E /* VN_Home_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VN_Home_ViewController.swift; sourceTree = "<group>"; };
+		FC4393FE2155616C00A5848E /* VN_Home_ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VN_Home_ViewController.xib; sourceTree = "<group>"; };
+		FC439401215562BE00A5848E /* TL_ChangeHost_ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TL_ChangeHost_ViewController.xib; sourceTree = "<group>"; };
+		FC439402215562BF00A5848E /* TL_ChangeHost_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TL_ChangeHost_ViewController.swift; sourceTree = "<group>"; };
+		FC4394052155657F00A5848E /* TG_Image_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TG_Image_Cell.xib; sourceTree = "<group>"; };
+		FC4394082155687300A5848E /* VN_Picture_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VN_Picture_ViewController.swift; sourceTree = "<group>"; };
+		FC4394092155687300A5848E /* VN_Picture_ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VN_Picture_ViewController.xib; sourceTree = "<group>"; };
+		FC43940C21556B0900A5848E /* QL_Drop_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QL_Drop_Cell.xib; sourceTree = "<group>"; };
+		FC43940D21556B0A00A5848E /* QL_Input_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QL_Input_Cell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +154,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FC2CED5F2159578A00E332A8 /* REPORT */ = {
+			isa = PBXGroup;
+			children = (
+				FC2CED60215957A600E332A8 /* VN_Report_ViewController.swift */,
+				FC2CED61215957A600E332A8 /* VN_Report_ViewController.xib */,
+			);
+			path = REPORT;
+			sourceTree = "<group>";
+		};
 		FC2E6F89215410660024DAAA = {
 			isa = PBXGroup;
 			children = (
@@ -137,12 +188,21 @@
 		FC2E6F94215410660024DAAA /* VNN */ = {
 			isa = PBXGroup;
 			children = (
+				FC2CED5F2159578A00E332A8 /* REPORT */,
+				FC4394072155684D00A5848E /* DETAIL */,
+				FC4393FC2155615400A5848E /* MAIN */,
+				FC4393EF21555F8700A5848E /* INIT */,
 				FC2E6F95215410660024DAAA /* AppDelegate.swift */,
 				FC2E6F97215410660024DAAA /* ViewController.swift */,
 				FC2E6F99215410660024DAAA /* Main.storyboard */,
 				FC2E6F9C2154106B0024DAAA /* Assets.xcassets */,
 				FC2E6F9E2154106B0024DAAA /* LaunchScreen.storyboard */,
 				FC2E6FA12154106B0024DAAA /* Info.plist */,
+				FC4393F4215560C900A5848E /* Macro.swift */,
+				FC4393F7215560DC00A5848E /* UIViewController+ViewCat.h */,
+				FC4393F8215560DC00A5848E /* UIViewController+ViewCat.m */,
+				FC4393F6215560DA00A5848E /* VNN-Bridging-Header.h */,
+				FC4393FA2155612600A5848E /* Information.swift */,
 			);
 			path = VNN;
 			sourceTree = "<group>";
@@ -163,6 +223,42 @@
 				FC2E6FB72154106B0024DAAA /* Info.plist */,
 			);
 			path = VNNUITests;
+			sourceTree = "<group>";
+		};
+		FC4393EF21555F8700A5848E /* INIT */ = {
+			isa = PBXGroup;
+			children = (
+				FC4393F121555FC700A5848E /* QL_LogIn_ViewController.swift */,
+				FC4393F021555FC700A5848E /* QL_LogIn_ViewController.xib */,
+				FC439402215562BF00A5848E /* TL_ChangeHost_ViewController.swift */,
+				FC439401215562BE00A5848E /* TL_ChangeHost_ViewController.xib */,
+			);
+			path = INIT;
+			sourceTree = "<group>";
+		};
+		FC4393FC2155615400A5848E /* MAIN */ = {
+			isa = PBXGroup;
+			children = (
+				FC4393FD2155616C00A5848E /* VN_Home_ViewController.swift */,
+				FC4393FE2155616C00A5848E /* VN_Home_ViewController.xib */,
+				FC4394052155657F00A5848E /* TG_Image_Cell.xib */,
+			);
+			path = MAIN;
+			sourceTree = "<group>";
+		};
+		FC4394072155684D00A5848E /* DETAIL */ = {
+			isa = PBXGroup;
+			children = (
+				FC4394082155687300A5848E /* VN_Picture_ViewController.swift */,
+				FC4394092155687300A5848E /* VN_Picture_ViewController.xib */,
+				FC43940C21556B0900A5848E /* QL_Drop_Cell.xib */,
+				FC43940D21556B0A00A5848E /* QL_Input_Cell.xib */,
+				FC2CED57215942B900E332A8 /* QL_Group_Cell.xib */,
+				FC2CED592159430400E332A8 /* QL_Image_Cell.xib */,
+				FC2CED5B215948AF00E332A8 /* format.plist */,
+				FC2CED5D215948BB00E332A8 /* TG_Drop_Cell.xib */,
+			);
+			path = DETAIL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +333,7 @@
 				TargetAttributes = {
 					FC2E6F91215410660024DAAA = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 					FC2E6FA52154106B0024DAAA = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -274,8 +371,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC2E6FA02154106B0024DAAA /* LaunchScreen.storyboard in Resources */,
+				FC2CED5E215948BB00E332A8 /* TG_Drop_Cell.xib in Resources */,
 				FC2E6F9D2154106B0024DAAA /* Assets.xcassets in Resources */,
 				FC2E6F9B215410660024DAAA /* Main.storyboard in Resources */,
+				FC2CED63215957A600E332A8 /* VN_Report_ViewController.xib in Resources */,
+				FC43940B2155687300A5848E /* VN_Picture_ViewController.xib in Resources */,
+				FC4394002155616C00A5848E /* VN_Home_ViewController.xib in Resources */,
+				FC4394062155657F00A5848E /* TG_Image_Cell.xib in Resources */,
+				FC439403215562C000A5848E /* TL_ChangeHost_ViewController.xib in Resources */,
+				FC43940E21556B0A00A5848E /* QL_Drop_Cell.xib in Resources */,
+				FC2CED5C215948AF00E332A8 /* format.plist in Resources */,
+				FC2CED5A2159430400E332A8 /* QL_Image_Cell.xib in Resources */,
+				FC4393F221555FC700A5848E /* QL_LogIn_ViewController.xib in Resources */,
+				FC2CED58215942B900E332A8 /* QL_Group_Cell.xib in Resources */,
+				FC43940F21556B0A00A5848E /* QL_Input_Cell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,15 +410,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-VNNUITests-checkManifestLockResult.txt",
 			);
@@ -323,15 +428,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-VNN-checkManifestLockResult.txt",
 			);
@@ -345,8 +446,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-VNN/Pods-VNN-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
@@ -359,8 +458,6 @@
 				"${BUILT_PRODUCTS_DIR}/Toast/Toast.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVHexColor.framework",
@@ -381,15 +478,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-VNNTests-checkManifestLockResult.txt",
 			);
@@ -405,8 +498,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC2CED62215957A600E332A8 /* VN_Report_ViewController.swift in Sources */,
+				FC4393FB2155612700A5848E /* Information.swift in Sources */,
+				FC4393FF2155616C00A5848E /* VN_Home_ViewController.swift in Sources */,
+				FC43940A2155687300A5848E /* VN_Picture_ViewController.swift in Sources */,
+				FC4393F5215560C900A5848E /* Macro.swift in Sources */,
 				FC2E6F98215410660024DAAA /* ViewController.swift in Sources */,
 				FC2E6F96215410660024DAAA /* AppDelegate.swift in Sources */,
+				FC4393F321555FC700A5848E /* QL_LogIn_ViewController.swift in Sources */,
+				FC439404215562C000A5848E /* TL_ChangeHost_ViewController.swift in Sources */,
+				FC4393F9215560DC00A5848E /* UIViewController+ViewCat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +681,7 @@
 			baseConfigurationReference = A6DC3C983B7EC1722603E897 /* Pods-VNN.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = VNN/Info.plist;
@@ -591,6 +693,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vn.VNN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "VNN/VNN-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -601,6 +705,7 @@
 			baseConfigurationReference = 6F0681F58AB4FCC304E1D677 /* Pods-VNN.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = VNN/Info.plist;
@@ -612,6 +717,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vn.VNN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "VNN/VNN-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VN_Picture_ViewController" customModule="VNN" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="WYG-5c-UAZ" id="z1L-Nf-lIv"/>
+                <outlet property="view" destination="G1D-PJ-vYm" id="cVG-jq-TTP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="G1D-PJ-vYm">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PrW-vB-4TX">
+                    <rect key="frame" x="0.0" y="20" width="320" height="64"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJj-qR-YRz">
+                            <rect key="frame" x="0.0" y="20" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="Dtu-PN-Xz8"/>
+                                <constraint firstAttribute="width" constant="44" id="JoT-K6-FkX"/>
+                            </constraints>
+                            <state key="normal" image="back_a"/>
+                            <connections>
+                                <action selector="didPressBack" destination="-1" eventType="touchUpInside" id="tQw-fB-6o3"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VVN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8t-NB-tKq">
+                            <rect key="frame" x="142.5" y="32" width="36" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="Mw7-Ty-ZaM"/>
+                                <constraint firstAttribute="height" constant="21" id="cBW-Yj-iUA"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVP-0v-w3q" customClass="DropButton">
+                            <rect key="frame" x="276" y="20" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="NiY-XL-nQs"/>
+                                <constraint firstAttribute="height" constant="44" id="TCT-2v-9yg"/>
+                            </constraints>
+                            <state key="normal" image="dot"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="pListName" value="format"/>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.90980392160000001" green="0.49019607840000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="RJj-qR-YRz" secondAttribute="bottom" id="8Uf-yo-IN5"/>
+                        <constraint firstAttribute="height" constant="64" id="KUx-6j-oMw"/>
+                        <constraint firstItem="RJj-qR-YRz" firstAttribute="leading" secondItem="PrW-vB-4TX" secondAttribute="leading" id="MEs-6j-awU"/>
+                        <constraint firstAttribute="bottom" secondItem="ZVP-0v-w3q" secondAttribute="bottom" id="UbG-MU-0ir"/>
+                        <constraint firstItem="I8t-NB-tKq" firstAttribute="centerX" secondItem="PrW-vB-4TX" secondAttribute="centerX" id="k9n-lI-6KY"/>
+                        <constraint firstAttribute="bottom" secondItem="I8t-NB-tKq" secondAttribute="bottom" constant="11" id="kdr-Bk-RXm"/>
+                        <constraint firstAttribute="trailing" secondItem="ZVP-0v-w3q" secondAttribute="trailing" id="qe2-MM-blI"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="flex" value=""/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WYG-5c-UAZ">
+                    <rect key="frame" x="0.0" y="84" width="320" height="396"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Jea-Lh-0Ed"/>
+                        <outlet property="delegate" destination="-1" id="Jnd-3V-B6E"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="WYG-5c-UAZ" firstAttribute="trailing" secondItem="udh-Y6-scR" secondAttribute="trailing" id="8r8-wS-cU4"/>
+                <constraint firstItem="PrW-vB-4TX" firstAttribute="top" secondItem="udh-Y6-scR" secondAttribute="top" id="Tta-1N-1kB"/>
+                <constraint firstItem="PrW-vB-4TX" firstAttribute="leading" secondItem="udh-Y6-scR" secondAttribute="leading" id="o1Q-Xh-soc"/>
+                <constraint firstItem="WYG-5c-UAZ" firstAttribute="bottom" secondItem="udh-Y6-scR" secondAttribute="bottom" id="qSy-nl-RBD"/>
+                <constraint firstItem="WYG-5c-UAZ" firstAttribute="top" secondItem="PrW-vB-4TX" secondAttribute="bottom" id="qdz-f7-kod"/>
+                <constraint firstItem="PrW-vB-4TX" firstAttribute="trailing" secondItem="udh-Y6-scR" secondAttribute="trailing" id="z4A-CG-Lmv"/>
+                <constraint firstItem="WYG-5c-UAZ" firstAttribute="leading" secondItem="udh-Y6-scR" secondAttribute="leading" id="zc9-Gx-iCG"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="udh-Y6-scR"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="back_a" width="170" height="170"/>
+        <image name="dot" width="16" height="16"/>
+    </resources>
+</document>

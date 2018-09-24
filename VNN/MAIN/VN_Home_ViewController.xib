@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VN_Home_ViewController" customModule="VNN" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="meO-9p-Wkq" id="rhI-bc-1rZ"/>
+                <outlet property="view" destination="BDC-91-led" id="fid-rh-cKF"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="BDC-91-led">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OVg-LB-r1H">
+                    <rect key="frame" x="0.0" y="20" width="320" height="64"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0cT-HS-3w0">
+                            <rect key="frame" x="0.0" y="20" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="QLj-xW-4Yy"/>
+                                <constraint firstAttribute="width" constant="44" id="qxy-lM-2sJ"/>
+                            </constraints>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VVN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTp-sw-gq6">
+                            <rect key="frame" x="142.5" y="32" width="36" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="Kdf-Gl-R3l"/>
+                                <constraint firstAttribute="height" constant="21" id="R9l-WB-1Rn"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZO-dV-QYZ" customClass="DropButton">
+                            <rect key="frame" x="276" y="20" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="EDC-pQ-jMH"/>
+                                <constraint firstAttribute="height" constant="44" id="pGR-Hk-AUI"/>
+                            </constraints>
+                            <state key="normal" image="dot"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="pListName" value="format"/>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.90980392160000001" green="0.49019607840000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="KTp-sw-gq6" secondAttribute="bottom" constant="11" id="82b-T8-7hF"/>
+                        <constraint firstItem="0cT-HS-3w0" firstAttribute="leading" secondItem="OVg-LB-r1H" secondAttribute="leading" id="DDC-gB-X6e"/>
+                        <constraint firstAttribute="height" constant="64" id="SyW-7V-bTr"/>
+                        <constraint firstAttribute="bottom" secondItem="LZO-dV-QYZ" secondAttribute="bottom" id="XD0-a2-3aA"/>
+                        <constraint firstAttribute="trailing" secondItem="LZO-dV-QYZ" secondAttribute="trailing" id="nTJ-Dc-HDd"/>
+                        <constraint firstAttribute="bottom" secondItem="0cT-HS-3w0" secondAttribute="bottom" id="rJt-7m-Oep"/>
+                        <constraint firstItem="KTp-sw-gq6" firstAttribute="centerX" secondItem="OVg-LB-r1H" secondAttribute="centerX" id="xJW-Nf-vBZ"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="flex" value=""/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="meO-9p-Wkq">
+                    <rect key="frame" x="0.0" y="84" width="320" height="396"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hqr-Og-Mgb">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="rkv-ih-hzT"/>
+                        <outlet property="delegate" destination="-1" id="ubi-Pu-EAP"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="meO-9p-Wkq" firstAttribute="leading" secondItem="vtO-lO-mCy" secondAttribute="leading" id="9Ag-ju-oXH"/>
+                <constraint firstItem="OVg-LB-r1H" firstAttribute="top" secondItem="vtO-lO-mCy" secondAttribute="top" id="9EG-ve-L3u"/>
+                <constraint firstItem="meO-9p-Wkq" firstAttribute="trailing" secondItem="vtO-lO-mCy" secondAttribute="trailing" id="h53-HU-zed"/>
+                <constraint firstItem="OVg-LB-r1H" firstAttribute="trailing" secondItem="vtO-lO-mCy" secondAttribute="trailing" id="kG0-YI-2gH"/>
+                <constraint firstItem="meO-9p-Wkq" firstAttribute="bottom" secondItem="vtO-lO-mCy" secondAttribute="bottom" id="pHH-o8-heJ"/>
+                <constraint firstItem="meO-9p-Wkq" firstAttribute="top" secondItem="OVg-LB-r1H" secondAttribute="bottom" id="sOG-zk-6HK"/>
+                <constraint firstItem="OVg-LB-r1H" firstAttribute="leading" secondItem="vtO-lO-mCy" secondAttribute="leading" id="y53-Bg-MR1"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vtO-lO-mCy"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dot" width="16" height="16"/>
+    </resources>
+</document>
