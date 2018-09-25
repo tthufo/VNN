@@ -38,13 +38,13 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
             ])
         
         
-        LTRequest.sharedInstance().didRequestInfo(["CMD_CODE":"getappinfo",
+        LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
                                                    "header":["Authorization":Information.token == nil ? "" : Information.token!],
-                                                   "platform":"ios",
+                                                   "Postparam":["CMD_CODE":"getappinfo","platform":"ios"],
                                                    "overrideLoading":1,
                                                    "overrideAlert":1,
                                                    "host":self,
-                                                   "postFix":"getappinfo"
+                                                   "postFix":"processRequest"
             ], withCache: { (cache) in
                 
         }) { (response, errorCode, error, isValid) in

@@ -72,8 +72,8 @@ extension String {
     }
 
     func urlGet(postFix: String) -> String {
-        let host = root().getValue("url")
-        return "%@/%@".format(parameters:(host)!, postFix)
+        let host = root().infoPlist()["host"]//root().getValue("url")
+        return "%@/%@".format(parameters:(host)! as! CVarArg, postFix)
     }
     
     func dictionize() -> NSDictionary {
