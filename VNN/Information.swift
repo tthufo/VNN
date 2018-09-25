@@ -18,16 +18,16 @@ class Information: NSObject {
     static func saveToken() {
         
         if self.getValue("token") != nil {
-            token = "Bearer %@".format(parameters: self.getValue("token"))
+            token = "%@".format(parameters: self.getValue("token"))
         } else {
             token = nil
         }
         
-        if self.getValue("userName") != nil {
-            userName = self.getValue("userName")
-        } else {
-            userName = nil
-        }
+//        if self.getValue("userName") != nil {
+//            userName = self.getValue("userName")
+//        } else {
+//            userName = nil
+//        }
     }
     
     static func saveInfo() {

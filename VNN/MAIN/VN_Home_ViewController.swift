@@ -23,6 +23,35 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         collectionView.withCell("TG_Image_Cell")
         
+        didRequestInfo()
+    }
+    
+    func didRequestInfo() {
+        
+        print(["CMD_CODE":"getappinfo",
+               "header":["Authorization":Information.token == nil ? "" : Information.token!],
+               "platform":"ios",
+               "overrideLoading":1,
+               "overrideAlert":1,
+               "host":self,
+               "postFix":"getappinfo"
+            ])
+        
+        
+        LTRequest.sharedInstance().didRequestInfo(["CMD_CODE":"getappinfo",
+                                                   "header":["Authorization":Information.token == nil ? "" : Information.token!],
+                                                   "platform":"ios",
+                                                   "overrideLoading":1,
+                                                   "overrideAlert":1,
+                                                   "host":self,
+                                                   "postFix":"getappinfo"
+            ], withCache: { (cache) in
+                
+        }) { (response, errorCode, error, isValid) in
+            
+            print(response)
+            
+        }
     }
     
     @IBAction func didPressMenu(menu: DropButton) {

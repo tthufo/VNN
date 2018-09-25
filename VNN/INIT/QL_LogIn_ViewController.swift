@@ -41,16 +41,18 @@ class QL_LogIn_ViewController: UIViewController, UITextFieldDelegate {
             self.addValue("1", andKey: "auto")
         }
         
-        if self.getValue("auto") == "1" {
-            uName.text = self.getValue("name")
-            pass.text = self.getValue("pass")
-        }
+//        if self.getValue("auto") == "1" {
+//            uName.text = self.getValue("name")
+//            pass.text = self.getValue("pass")
+//        }
      
         check.setImage(UIImage.init(named: (self.getValue("auto") == nil || self.getValue("auto") == "0") ? "check_in" : "check_ac"), for: .normal)
         
         self.view.action(forTouch: [:]) { (obj) in
             self.view.endEditing(true)
         }
+        
+        //didRequestInfo()
     }
     
     @IBAction func didPressCheck() {
@@ -63,8 +65,6 @@ class QL_LogIn_ViewController: UIViewController, UITextFieldDelegate {
         
         self.view.endEditing(true)
         
-        self.navigationController?.pushViewController(VN_Home_ViewController(), animated: true)
-
         if uName.text == "" || pass.text == "" {
             self.showToast("Tên đăng nhập và Mật khẩu không được để trống", andPos: 0)
             
@@ -77,8 +77,39 @@ class QL_LogIn_ViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        self.navigationController?.pushViewController(VN_Home_ViewController(), animated: true)
-//        didAuthorize()
+        didRequestLogin()
+    }
+    
+    func didRequestLogin() {
+        LTRequest.sharedInstance().didRequestInfo(["CMD_CODE":"login",
+                                                   "Postparam":["user_name":"test", "password":"123456", "push_device_id":"1"],
+                                                   "overrideLoading":1,
+                                                   "overrideAlert":1,
+                                                   "postFix":"login",
+                                                   "host":self], withCache: { (cache) in
+            
+        }) { (response, errorCode, error, isValid) in
+            if error != nil {
+                
+                let result = response?.dictionize()
+                
+                self.showToast(result!["ERR_MSG"] as! String, andPos: 0)
+                
+                return
+            }
+            
+            let result = response?.dictionize()
+
+            self.addValue(result!["TOKEN"] as? String, andKey: "token")
+            
+            self.add(result!["RESULT"] as! [AnyHashable : Any], andKey: "info")
+            
+            Information.saveInfo()
+            
+            Information.saveInfo()
+            
+            self.navigationController?.pushViewController(VN_Home_ViewController(), animated: true)
+        }
     }
     
 //    func didAuthorize() {
