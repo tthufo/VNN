@@ -12,8 +12,14 @@ class VN_Picture_ViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
-//    var dataList = [Any]()
+    var regionList = NSMutableArray()
     
+    var cityList = NSMutableArray()
+
+    var districtList = NSMutableArray()
+    
+    var uploadData = NSMutableDictionary()
+
     var dataList = [["ident":"QL_Drop_Cell"],
                     ["ident":"QL_Drop_Cell"],
                     ["ident":"QL_Drop_Cell"],
@@ -35,10 +41,125 @@ class VN_Picture_ViewController: UIViewController {
         self.tableView.withCell("QL_Group_Cell")
         self.tableView.withCell("QL_Image_Cell")
 
+        self.uploadData.addEntries(from: ["region":[:],
+                                          "city":[:],
+                                          "district":[:]])
+        
+        didRequestRegion()
     }
 
     @IBAction func didPressBack() {
        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func didRequestRegion() {
+        self.showSVHUD("Đang tải", andOption: 0)
+        LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
+                                                   "header":["Authorization":Information.token == nil ? "" : Information.token!],
+                                                   "Postparam":["CMD_CODE":"getlistregion","user_id":INFO()["id"], "id":""],
+                                                   "overrideAlert":1,
+                                                   "postFix":"processRequest"
+            ], withCache: { (cache) in
+                
+        }) { (response, errorCode, error, isValid) in
+            
+            if error != nil {
+                
+                self.hideSVHUD()
+                
+                return
+            }
+            let result = response?.dictionize()
+            
+            self.regionList.removeAllObjects()
+            
+            self.regionList.addObjects(from: result!["RESULT"] as! [Any])
+            
+            self.uploadData["region"] = self.regionList.firstObject
+            
+            self.didRequestCity(region: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
+            
+            self.tableView.reloadData()
+        }
+    }
+    
+    func didRequestCity(region: String) {
+        LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
+                                                   "header":["Authorization":Information.token == nil ? "" : Information.token!],
+                                                   "Postparam":["CMD_CODE":"getlistcity","user_id":INFO()["id"], "id":region],
+                                                   "overrideAlert":1,
+                                                   "postFix":"processRequest"
+            ], withCache: { (cache) in
+                
+        }) { (response, errorCode, error, isValid) in
+            
+            if error != nil {
+                
+                self.hideSVHUD()
+
+                return
+            }
+            
+            let result = response?.dictionize()
+            
+            self.cityList.removeAllObjects()
+            
+            if (result!["RESULT"] as! [Any]).count != 0 {
+                
+                self.cityList.addObjects(from: result!["RESULT"] as! [Any])
+                
+                self.uploadData["city"] = self.cityList.firstObject
+                
+                self.didRequestDistrict(city: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
+                
+            } else {
+                self.cityList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
+                
+                self.uploadData["city"] = self.cityList.firstObject
+                
+                self.districtList.removeAllObjects()
+                
+                self.districtList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
+                
+                self.uploadData["district"] = self.districtList.firstObject
+            }
+
+            self.tableView.reloadData()
+        }
+    }
+    
+    func didRequestDistrict(city: String) {
+        LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
+                                                   "header":["Authorization":Information.token == nil ? "" : Information.token!],
+                                                   "Postparam":["CMD_CODE":"getlistdistrict","user_id":INFO()["id"], "id":city],
+                                                   "overrideAlert":1,
+                                                   "postFix":"processRequest"
+            ], withCache: { (cache) in
+                
+        }) { (response, errorCode, error, isValid) in
+            
+            self.hideSVHUD()
+
+            if error != nil {
+                return
+            }
+            let result = response?.dictionize()
+            
+            self.districtList.removeAllObjects()
+            
+            if (result!["RESULT"] as! [Any]).count != 0 {
+                self.districtList.addObjects(from: result!["RESULT"] as! [Any])
+                
+                self.uploadData["district"] = self.districtList.firstObject
+            } else {
+                self.districtList.removeAllObjects()
+
+                self.districtList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
+                
+                self.uploadData["district"] = self.districtList.firstObject
+            }
+            self.tableView.reloadData()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -145,17 +266,17 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataList.count
+        return self.uploadData.allKeys.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: (dataList[indexPath.row] as NSDictionary)["ident"] as! String, for: indexPath)
         
-        if dataList.count == 0 {
-            return cell
-        }
+//        if dataList.count == 0 {
+//            return cell
+//        }
         
-        let data = dataList[indexPath.row] as! NSDictionary
+        let data = dataList[indexPath.row] as NSDictionary
         
         if data["ident"] as! String == "QL_Input_Cell" {
             let input = (self.withView(cell, tag: 2) as! UITextField)
@@ -173,24 +294,38 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
         
         if data["ident"] as! String == "QL_Drop_Cell" {
             
-//            let plistName = data["pList"]
-            
-//            let key = data["key"] as! String
-            
             let drop = (self.withView(cell, tag: 2) as! DropButton)
+
+            let data = self.uploadData.allValues[indexPath.row] as! NSDictionary
             
-//            drop.pListName = plistName as! NSString
+            if data.allValues.count != 0 {
+                drop.setTitle(data["title"] as? String, for: .normal)
+            }
             
-//            drop.setTitle(activeData[key] as? String, for: .normal)
+            let array = indexPath.row == 0 ? self.regionList : indexPath.row == 1 ? self.cityList : self.districtList
+            
+            let key = indexPath.row == 0 ? "region" : indexPath.row == 1 ? "city" : "district"
             
             drop.action(forTouch: [:]) { (objc) in
-                drop.didDropDown(withData: [["title":"ahihi"]] as! [Any], andCompletion: { (result) in
+                drop.didDropDown(withData: array as! [Any], andCompletion: { (result) in
                     if result != nil {
                         let data = (result as! NSDictionary)["data"]
                         
-//                        (self.dataList[indexPath.row] as! NSMutableDictionary)["activeData"] = data
+                        if (data as! NSDictionary).getValueFromKey("id") == "-1" {
+                            return
+                        }
                         
-//                        drop.setTitle((data as! NSDictionary)[key] as? String, for: .normal)
+                        self.uploadData[key] = data
+                        
+                        drop.setTitle((data as! NSDictionary)["title"] as? String, for: .normal)
+                        
+                        if indexPath.row == 0 {
+                            self.didRequestCity(region: (data as! NSDictionary)["id"] as! String)
+                        }
+                        
+                        if indexPath.row == 1 {
+                            self.didRequestDistrict(city: (data as! NSDictionary)["id"] as! String)
+                        }
                     }
                 })
             }

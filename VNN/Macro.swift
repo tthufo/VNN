@@ -66,6 +66,10 @@ func logged() -> Bool {
     return Information.token != nil
 }
 
+func INFO() -> NSDictionary {
+    return Information.userInfo!
+}
+
 extension String {
     func replace(target: String, withString: String) -> String {
         return self.replace(target:target, withString:withString)

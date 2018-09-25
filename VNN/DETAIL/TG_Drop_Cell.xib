@@ -19,29 +19,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEp-IK-tDs">
-                        <rect key="frame" x="52" y="0.0" width="260" height="43"/>
+                        <rect key="frame" x="8" y="0.0" width="304" height="43"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="43" id="WqC-ll-JQd"/>
+                            <constraint firstAttribute="height" constant="43" id="p0c-SL-J3c"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                         <color key="textColor" red="0.3333333432674408" green="0.3333333432674408" blue="0.3333333432674408" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" tag="104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LgR-Bp-ncx">
-                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="cgM-bT-haf"/>
-                            <constraint firstAttribute="width" constant="44" id="hap-tD-2ma"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
-                <color key="backgroundColor" red="0.69019607843137254" green="0.70588235294117641" blue="0.71372549019607845" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="OEp-IK-tDs" firstAttribute="leading" secondItem="LgR-Bp-ncx" secondAttribute="trailing" constant="8" id="6HZ-nn-4cw"/>
-                    <constraint firstItem="OEp-IK-tDs" firstAttribute="top" secondItem="rVR-Dk-Uzz" secondAttribute="top" id="6sU-tW-2cS"/>
-                    <constraint firstAttribute="trailing" secondItem="OEp-IK-tDs" secondAttribute="trailing" constant="8" id="pDK-bk-Eqz"/>
-                    <constraint firstItem="LgR-Bp-ncx" firstAttribute="leading" secondItem="rVR-Dk-Uzz" secondAttribute="leading" id="tdh-pQ-xDc"/>
-                    <constraint firstItem="LgR-Bp-ncx" firstAttribute="top" secondItem="rVR-Dk-Uzz" secondAttribute="top" id="yfP-4e-nCw"/>
+                    <constraint firstItem="OEp-IK-tDs" firstAttribute="leading" secondItem="rVR-Dk-Uzz" secondAttribute="leading" constant="8" id="Ab9-fN-kKs"/>
+                    <constraint firstItem="OEp-IK-tDs" firstAttribute="top" secondItem="rVR-Dk-Uzz" secondAttribute="top" id="CEt-qh-2TC"/>
+                    <constraint firstAttribute="trailing" secondItem="OEp-IK-tDs" secondAttribute="trailing" constant="8" id="ijj-uc-fmn"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>

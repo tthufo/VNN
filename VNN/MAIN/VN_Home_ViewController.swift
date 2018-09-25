@@ -27,17 +27,6 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func didRequestInfo() {
-        
-        print(["CMD_CODE":"getappinfo",
-               "header":["Authorization":Information.token == nil ? "" : Information.token!],
-               "platform":"ios",
-               "overrideLoading":1,
-               "overrideAlert":1,
-               "host":self,
-               "postFix":"getappinfo"
-            ])
-        
-        
         LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
                                                    "header":["Authorization":Information.token == nil ? "" : Information.token!],
                                                    "Postparam":["CMD_CODE":"getappinfo","platform":"ios"],
