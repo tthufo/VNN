@@ -10,6 +10,8 @@ import UIKit
 
 class VN_Picture_ViewController: UIViewController {
 
+    let statusDealer = [["title":"Đại lý có sẵn", "id":1], ["title":"Đại lý đối thủ", "id":2], ["title":"Đại lý phát sinh", "id":3]]
+    
     @IBOutlet var tableView: UITableView!
     
     var regionList = NSMutableArray()
@@ -18,36 +20,63 @@ class VN_Picture_ViewController: UIViewController {
 
     var districtList = NSMutableArray()
     
-    var uploadData = NSMutableDictionary()
+    var kb: KeyBoard!
 
-    var dataList = [["ident":"QL_Drop_Cell"],
-                    ["ident":"QL_Drop_Cell"],
-                    ["ident":"QL_Drop_Cell"],
-                    ["ident":"QL_Drop_Cell"],
-                    ["ident":"QL_Input_Cell"],
-                    ["ident":"QL_Input_Cell"],
-                    ["ident":"QL_Input_Cell"],
-                    ["ident":"QL_Group_Cell"],
-                    ["ident":"QL_Input_Cell"],
-                    ["ident":"QL_Image_Cell"],
-                    ["ident":"QL_Image_Cell"],
-                    ["ident":"QL_Image_Cell"]]
+    var dataList = NSMutableArray()
+    
+    var isEnemy: Bool = false
+    
+    var temp = [["ident":"QL_Drop_Cell", "data":[:], "title":"Miền"],
+                    ["ident":"QL_Drop_Cell", "data":[:], "title":"Tỉnh"],
+                    ["ident":"QL_Drop_Cell", "data":[:], "title":"Quận/Huyện"],
+                    ["ident":"QL_Box_Cell", "data":["title":"Đại lý có sẵn", "id":1], "title":"Tình trạng đại lý"],
+                    ["ident":"QL_Code_Cell", "data":"", "title":"Mã đại lý"],
+                    ["ident":"QL_Input_Cell", "data":"", "title":"Địa chỉ đại lý"],
+                    ["ident":"QL_Input_Cell", "data":"", "title":"Tên đại lý"],
+                    ["ident":"QL_Input_Cell", "data":"", "number":1, "title":"Số điện thoại"],
+                    ["ident":"TG_Room_Cell_N", "data":"", "title":"Tình trạng vật phẩm"],
+                    ["ident":"QL_Input_Cell", "data":"", "title":"Ghi chú"]]
+    
+    
+//                    ["ident":"QL_Image_Cell"],
+//                    ["ident":"QL_Image_Cell"],
+//                    ["ident":"QL_Image_Cell"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        kb = KeyBoard.shareInstance()
+        
+        self.tableView.withCell("QL_Code_Cell")
+
+        self.tableView.withCell("TG_Room_Cell_N")
 
         self.tableView.withCell("QL_Drop_Cell")
         self.tableView.withCell("QL_Input_Cell")
         self.tableView.withCell("QL_Group_Cell")
         self.tableView.withCell("QL_Image_Cell")
 
-        self.uploadData.addEntries(from: ["region":[:],
-                                          "city":[:],
-                                          "district":[:]])
+        self.tableView.withCell("QL_Box_Cell")
+        
+        self.dataList.addObjects(from: (self.temp as NSArray).withMutable())
         
         didRequestRegion()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        kb.keyboardOff()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        kb.keyboard { (height, isOn) in
+            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, isOn ? (height) : 0, 0)
+        }
+    }
+    
     @IBAction func didPressBack() {
        self.navigationController?.popViewController(animated: true)
     }
@@ -75,7 +104,9 @@ class VN_Picture_ViewController: UIViewController {
             
             self.regionList.addObjects(from: result!["RESULT"] as! [Any])
             
-            self.uploadData["region"] = self.regionList.firstObject
+            //self.uploadData["region"] = self.regionList.firstObject
+            
+            (self.dataList[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
             
             self.didRequestCity(region: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
             
@@ -108,20 +139,26 @@ class VN_Picture_ViewController: UIViewController {
                 
                 self.cityList.addObjects(from: result!["RESULT"] as! [Any])
                 
-                self.uploadData["city"] = self.cityList.firstObject
+//                self.uploadData["city"] = self.cityList.firstObject
                 
+                (self.dataList[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
+
                 self.didRequestDistrict(city: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
                 
             } else {
                 self.cityList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
                 
-                self.uploadData["city"] = self.cityList.firstObject
+//                self.uploadData["city"] = self.cityList.firstObject
                 
+                (self.dataList[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
+
                 self.districtList.removeAllObjects()
                 
                 self.districtList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
                 
-                self.uploadData["district"] = self.districtList.firstObject
+//                self.uploadData["district"] = self.districtList.firstObject
+                
+                (self.dataList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
             }
 
             self.tableView.reloadData()
@@ -150,13 +187,17 @@ class VN_Picture_ViewController: UIViewController {
             if (result!["RESULT"] as! [Any]).count != 0 {
                 self.districtList.addObjects(from: result!["RESULT"] as! [Any])
                 
-                self.uploadData["district"] = self.districtList.firstObject
+//                self.uploadData["district"] = self.districtList.firstObject
+                
+                (self.dataList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
             } else {
                 self.districtList.removeAllObjects()
 
                 self.districtList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
                 
-                self.uploadData["district"] = self.districtList.firstObject
+//                self.uploadData["district"] = self.districtList.firstObject
+                
+                (self.dataList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
             }
             self.tableView.reloadData()
         }
@@ -262,49 +303,47 @@ extension VN_Picture_ViewController: UITextFieldDelegate {
 extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return (self.isEnemy && indexPath.row == 4) ? 0 : UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.uploadData.allKeys.count
+        return self.dataList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: (dataList[indexPath.row] as NSDictionary)["ident"] as! String, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: (dataList[indexPath.row] as! NSDictionary)["ident"] as! String, for: indexPath)
         
-//        if dataList.count == 0 {
-//            return cell
-//        }
+        let data = dataList[indexPath.row] as! NSDictionary
         
-        let data = dataList[indexPath.row] as NSDictionary
+        let title = self.withView(cell, tag: 1) as! UILabel
+        
+        title.text = data["title"] as? String
         
         if data["ident"] as! String == "QL_Input_Cell" {
             let input = (self.withView(cell, tag: 2) as! UITextField)
-            
-//            let isNumber = data.response(forKey: "number")
-//
-//            input.keyboardType = isNumber ? .numberPad : .default
-//
-//            input.accessibilityLabel = "%i".format(parameters: indexPath.row)
-            
+
+            let isNumber = data.response(forKey: "number")
+
+            input.keyboardType = isNumber ? .numberPad : .default
+
+            input.accessibilityLabel = "%i".format(parameters: indexPath.row)
+
             input.delegate = self
-            
-//            input.text = data["data"] as? String
+
+            input.text = data["data"] as? String
         }
         
         if data["ident"] as! String == "QL_Drop_Cell" {
             
             let drop = (self.withView(cell, tag: 2) as! DropButton)
-
-            let data = self.uploadData.allValues[indexPath.row] as! NSDictionary
             
-            if data.allValues.count != 0 {
-                drop.setTitle(data["title"] as? String, for: .normal)
+            let dropData = data["data"] as! NSDictionary
+            
+            if dropData.allValues.count != 0 {
+                drop.setTitle(dropData["title"] as? String, for: .normal)
             }
             
             let array = indexPath.row == 0 ? self.regionList : indexPath.row == 1 ? self.cityList : self.districtList
-            
-            let key = indexPath.row == 0 ? "region" : indexPath.row == 1 ? "city" : "district"
             
             drop.action(forTouch: [:]) { (objc) in
                 drop.didDropDown(withData: array as! [Any], andCompletion: { (result) in
@@ -315,7 +354,7 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
                             return
                         }
                         
-                        self.uploadData[key] = data
+                        (self.dataList[indexPath.row] as! NSMutableDictionary)["data"] = data
                         
                         drop.setTitle((data as! NSDictionary)["title"] as? String, for: .normal)
                         
@@ -331,89 +370,56 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
             }
         }
         
-//        if data["ident"] as! String == "QL_Calendar_Cell" {
-//            let cal = (self.withView(cell, tag: 2) as! UIImageView)
+        if data["ident"] as! String == "QL_Box_Cell" {
+            let drop = (self.withView(cell, tag: 2) as! DropButton)
+            
+            let dropData = data["data"] as! NSDictionary
+            
+            if dropData.allValues.count != 0 {
+                drop.setTitle(dropData["title"] as? String, for: .normal)
+            }
+            
+            drop.action(forTouch: [:]) { (objc) in
+                drop.didDropDown(withData: self.statusDealer, andCompletion: { (result) in
+                    if result != nil {
+                        let data = (result as! NSDictionary)["data"]
+                        
+                        (self.dataList[indexPath.row] as! NSMutableDictionary)["data"] = data
+
+                        self.isEnemy = (data as! NSDictionary).getValueFromKey("id") == "2"
+                        
+                        self.tableView.reloadData()
+                        
+                        drop.setTitle((data as! NSDictionary)["title"] as? String, for: .normal)
+                    }
+                })
+            }
+        }
+
+        if data["ident"] as! String == "QL_Code_Cell" {
+            let code = (self.withView(cell, tag: 2) as! UIButton)
+            
+            let codeData = data["data"] as! String
+            
+            code.setTitle(codeData, for: .normal)
+            
+            code.action(forTouch: [:]) { (objc) in
+                TG_PopUp_View().initWithCode(content: [:], finished: { (result) in
+                    
+                })
+            }
+        }
+
+        if data["ident"] as! String == "TG_Room_Cell_N" {
+//            let group = (self.withView(cell, tag: 2) as! UIButton)
 //
-//            cal.action(forTouch: [:]) { (objc) in
-//                let cal = MNViewController.init(calendar: Calendar.init(identifier: .gregorian), title: "%i".format(parameters: indexPath.row))
-//
-//                cal?.delegate = self
-//
-//                self.present(cal!, animated: true) {
-//
-//                }
-//            }
-//
-//            let date = (self.withView(cell, tag: 3) as! UILabel)
-//
-//            date.text = data["data"] as? String
-//        }
-//
-//        if data["ident"] as! String == "QL_Location_Cell" {
-//            let loc = (self.withView(cell, tag: 2) as! UIImageView)
-//
-//            loc.action(forTouch: [:]) { (objc) in
-//                let map = QL_Map_ViewController()
-//
-//                map.indexing = "%i".format(parameters: indexPath.row)
-//
-//                map.tempLocation = data["data"] as! [[String : String]]
-//
-//                map.isMulti = false
-//
-//                map.delegate = self
-//
-//                self.present(map, animated: true, completion: {
-//
+//            group.action(forTouch: [:]) { (objc) in
+//                TG_PopUp_View().initWithItem(content: [:], finished: { (result) in
+//                    
 //                })
 //            }
-//
-//            if (data["data"] as! NSArray).count != 0 {
-//
-//                let coor = (data["data"] as! NSArray).firstObject as! NSDictionary
-//
-//                let X = (self.withView(cell, tag: 3) as! UILabel)
-//
-//                X.text = coor["lat"] as? String
-//
-//                let Y = (self.withView(cell, tag: 4) as! UILabel)
-//
-//                Y.text = coor["lng"] as? String
-//            }
-//        }
-//
-//        if data["ident"] as! String == "QL_Geo_Cell" {
-//            let loc = (self.withView(cell, tag: 2) as! UIImageView)
-//
-//            loc.action(forTouch: [:]) { (objc) in
-//                let map = QL_Map_ViewController()
-//
-//                map.indexing = "%i".format(parameters: indexPath.row)
-//
-//                map.tempLocation = data["data"] as! [[String : String]]
-//
-//                map.isMulti = true
-//
-//                map.delegate = self
-//
-//                self.present(map, animated: true, completion: {
-//
-//                })
-//            }
-//
-//            let te = (self.withView(cell, tag: 100) as! UILabel)
-//
-//            let scroll = (self.withView(cell, tag: 200) as! UIScrollView)
-//
-//
-//            if (data["data"] as! NSArray).count != 0 {
-//
-//                te.text = self.geoText(data: (data["data"] as? NSArray)!)
-//
-//                scroll.contentSize = CGSize.init(width: te.getSize().width + 10, height: 44)
-//            }
-//        }
-//
+        }
+
         if data["ident"] as! String == "QL_Image_Cell" {
 
             let gallery = (self.withView(cell, tag: 2) as! UIButton)
@@ -428,7 +434,7 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
                 self.didAskForCamera(indexing: "%i".format(parameters: indexPath.row))
             }
 
-            let image = (self.withView(cell, tag: 4) as! UIImageView)
+//            let image = (self.withView(cell, tag: 4) as! UIImageView)
 
 //            if data["data"] as! String != "" {
 //                image.image = (data["data"] as! String).stringImage()

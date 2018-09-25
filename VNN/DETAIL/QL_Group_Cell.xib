@@ -42,12 +42,6 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZb-Ph-y1u" customClass="DropButton">
-                        <rect key="frame" x="15" y="38" width="290" height="48"/>
-                        <state key="normal">
-                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                    </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_add" translatesAutoresizingMaskIntoConstraints="NO" id="6tc-oJ-BVW">
                         <rect key="frame" x="278" y="46" width="33" height="33"/>
                         <constraints>
@@ -55,6 +49,12 @@
                             <constraint firstAttribute="height" constant="33" id="4aR-9E-rlF"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZb-Ph-y1u">
+                        <rect key="frame" x="15" y="38" width="290" height="48"/>
+                        <state key="normal">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="i2S-Gx-d76" firstAttribute="top" secondItem="fsH-tq-Npj" secondAttribute="top" constant="9" id="4uK-By-zf3"/>

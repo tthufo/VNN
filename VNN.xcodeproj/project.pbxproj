@@ -37,6 +37,13 @@
 		FC43940B2155687300A5848E /* VN_Picture_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC4394092155687300A5848E /* VN_Picture_ViewController.xib */; };
 		FC43940E21556B0A00A5848E /* QL_Drop_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC43940C21556B0900A5848E /* QL_Drop_Cell.xib */; };
 		FC43940F21556B0A00A5848E /* QL_Input_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC43940D21556B0A00A5848E /* QL_Input_Cell.xib */; };
+		FCAE59B9215A92280032D37D /* QL_Box_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCAE59B8215A92280032D37D /* QL_Box_Cell.xib */; };
+		FCAE59BB215A95000032D37D /* QL_Code_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCAE59BA215A95000032D37D /* QL_Code_Cell.xib */; };
+		FCAE59BF215A9EC80032D37D /* TG_PopUp_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE59BD215A9EC70032D37D /* TG_PopUp_View.swift */; };
+		FCAE59C0215A9EC80032D37D /* TG_Menu_View.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCAE59BE215A9EC70032D37D /* TG_Menu_View.xib */; };
+		FCAE59C4215AB1490032D37D /* TG_Room_Cell_N.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCAE59C1215AB1490032D37D /* TG_Room_Cell_N.xib */; };
+		FCAE59C6215AB1490032D37D /* TG_Room_Cell_N.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE59C3215AB1490032D37D /* TG_Room_Cell_N.swift */; };
+		FCAE59C8215AB8B10032D37D /* TG_Room_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCAE59C7215AB8B10032D37D /* TG_Room_Cell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +108,13 @@
 		FC4394092155687300A5848E /* VN_Picture_ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VN_Picture_ViewController.xib; sourceTree = "<group>"; };
 		FC43940C21556B0900A5848E /* QL_Drop_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QL_Drop_Cell.xib; sourceTree = "<group>"; };
 		FC43940D21556B0A00A5848E /* QL_Input_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QL_Input_Cell.xib; sourceTree = "<group>"; };
+		FCAE59B8215A92280032D37D /* QL_Box_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QL_Box_Cell.xib; sourceTree = "<group>"; };
+		FCAE59BA215A95000032D37D /* QL_Code_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QL_Code_Cell.xib; sourceTree = "<group>"; };
+		FCAE59BD215A9EC70032D37D /* TG_PopUp_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TG_PopUp_View.swift; sourceTree = "<group>"; };
+		FCAE59BE215A9EC70032D37D /* TG_Menu_View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TG_Menu_View.xib; sourceTree = "<group>"; };
+		FCAE59C1215AB1490032D37D /* TG_Room_Cell_N.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TG_Room_Cell_N.xib; sourceTree = "<group>"; };
+		FCAE59C3215AB1490032D37D /* TG_Room_Cell_N.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TG_Room_Cell_N.swift; sourceTree = "<group>"; };
+		FCAE59C7215AB8B10032D37D /* TG_Room_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TG_Room_Cell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +202,7 @@
 		FC2E6F94215410660024DAAA /* VNN */ = {
 			isa = PBXGroup;
 			children = (
+				FCAE59BC215A9E740032D37D /* COMP */,
 				FC2CED5F2159578A00E332A8 /* REPORT */,
 				FC4394072155684D00A5848E /* DETAIL */,
 				FC4393FC2155615400A5848E /* MAIN */,
@@ -251,7 +266,9 @@
 			children = (
 				FC4394082155687300A5848E /* VN_Picture_ViewController.swift */,
 				FC4394092155687300A5848E /* VN_Picture_ViewController.xib */,
+				FCAE59BA215A95000032D37D /* QL_Code_Cell.xib */,
 				FC43940C21556B0900A5848E /* QL_Drop_Cell.xib */,
+				FCAE59B8215A92280032D37D /* QL_Box_Cell.xib */,
 				FC43940D21556B0A00A5848E /* QL_Input_Cell.xib */,
 				FC2CED57215942B900E332A8 /* QL_Group_Cell.xib */,
 				FC2CED592159430400E332A8 /* QL_Image_Cell.xib */,
@@ -259,6 +276,18 @@
 				FC2CED5D215948BB00E332A8 /* TG_Drop_Cell.xib */,
 			);
 			path = DETAIL;
+			sourceTree = "<group>";
+		};
+		FCAE59BC215A9E740032D37D /* COMP */ = {
+			isa = PBXGroup;
+			children = (
+				FCAE59BD215A9EC70032D37D /* TG_PopUp_View.swift */,
+				FCAE59BE215A9EC70032D37D /* TG_Menu_View.xib */,
+				FCAE59C7215AB8B10032D37D /* TG_Room_Cell.xib */,
+				FCAE59C3215AB1490032D37D /* TG_Room_Cell_N.swift */,
+				FCAE59C1215AB1490032D37D /* TG_Room_Cell_N.xib */,
+			);
+			path = COMP;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,17 +403,22 @@
 				FC2CED5E215948BB00E332A8 /* TG_Drop_Cell.xib in Resources */,
 				FC2E6F9D2154106B0024DAAA /* Assets.xcassets in Resources */,
 				FC2E6F9B215410660024DAAA /* Main.storyboard in Resources */,
+				FCAE59C0215A9EC80032D37D /* TG_Menu_View.xib in Resources */,
+				FCAE59B9215A92280032D37D /* QL_Box_Cell.xib in Resources */,
 				FC2CED63215957A600E332A8 /* VN_Report_ViewController.xib in Resources */,
 				FC43940B2155687300A5848E /* VN_Picture_ViewController.xib in Resources */,
 				FC4394002155616C00A5848E /* VN_Home_ViewController.xib in Resources */,
 				FC4394062155657F00A5848E /* TG_Image_Cell.xib in Resources */,
 				FC439403215562C000A5848E /* TL_ChangeHost_ViewController.xib in Resources */,
+				FCAE59BB215A95000032D37D /* QL_Code_Cell.xib in Resources */,
 				FC43940E21556B0A00A5848E /* QL_Drop_Cell.xib in Resources */,
 				FC2CED5C215948AF00E332A8 /* format.plist in Resources */,
 				FC2CED5A2159430400E332A8 /* QL_Image_Cell.xib in Resources */,
 				FC4393F221555FC700A5848E /* QL_LogIn_ViewController.xib in Resources */,
 				FC2CED58215942B900E332A8 /* QL_Group_Cell.xib in Resources */,
+				FCAE59C4215AB1490032D37D /* TG_Room_Cell_N.xib in Resources */,
 				FC43940F21556B0A00A5848E /* QL_Input_Cell.xib in Resources */,
+				FCAE59C8215AB8B10032D37D /* TG_Room_Cell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,10 +537,12 @@
 				FC4393FF2155616C00A5848E /* VN_Home_ViewController.swift in Sources */,
 				FC43940A2155687300A5848E /* VN_Picture_ViewController.swift in Sources */,
 				FC4393F5215560C900A5848E /* Macro.swift in Sources */,
+				FCAE59BF215A9EC80032D37D /* TG_PopUp_View.swift in Sources */,
 				FC2E6F98215410660024DAAA /* ViewController.swift in Sources */,
 				FC2E6F96215410660024DAAA /* AppDelegate.swift in Sources */,
 				FC4393F321555FC700A5848E /* QL_LogIn_ViewController.swift in Sources */,
 				FC439404215562C000A5848E /* TL_ChangeHost_ViewController.swift in Sources */,
+				FCAE59C6215AB1490032D37D /* TG_Room_Cell_N.swift in Sources */,
 				FC4393F9215560DC00A5848E /* UIViewController+ViewCat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
