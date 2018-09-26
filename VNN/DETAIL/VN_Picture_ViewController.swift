@@ -10,7 +10,7 @@ import UIKit
 
 class VN_Picture_ViewController: UIViewController {
 
-    let statusDealer = [["title":"Đại lý có sẵn", "id":1], ["title":"Đại lý đối thủ", "id":2], ["title":"Đại lý phát sinh", "id":3]]
+    let statusDealer = [["title":"Đại lý có sẵn", "id":1], ["title":"Đại lý đối thủ", "id":2]]
     
     @IBOutlet var tableView: UITableView!
     
@@ -22,7 +22,13 @@ class VN_Picture_ViewController: UIViewController {
     
     var kb: KeyBoard!
 
-    var dataList = NSMutableArray()
+//    var dataList = NSMutableArray()
+    
+    
+    var ownList = NSMutableArray()
+    
+    var theirList = NSMutableArray()
+
     
     var isEnemy: Bool = false
     
@@ -42,15 +48,28 @@ class VN_Picture_ViewController: UIViewController {
 //                    ["ident":"QL_Image_Cell"],
 //                    ["ident":"QL_Image_Cell"]]
 
+    
+    var temp1 = [["ident":"QL_Drop_Cell", "data":[:], "title":"Miền"],
+                ["ident":"QL_Drop_Cell", "data":[:], "title":"Tỉnh"],
+                ["ident":"QL_Drop_Cell", "data":[:], "title":"Quận/Huyện"],
+                ["ident":"QL_Box_Cell", "data":["title":"Đại lý có sẵn", "id":1], "title":"Tình trạng đại lý"],
+                ["ident":"QL_Code_Cell", "data":"", "title":"Mã đại lý"],
+                ["ident":"QL_Input_Cell", "data":"", "title":"Địa chỉ đại lý"],
+                ["ident":"QL_Input_Cell", "data":"", "title":"Tên đại lý"],
+                ["ident":"QL_Input_Cell", "data":"", "number":1, "title":"Số điện thoại"],
+                ["ident":"TG_Room_Cell_N", "data":"", "title":"Tình trạng vật phẩm"],
+                ["ident":"QL_Input_Cell", "data":"", "title":"Ghi chú"],
+                ["ident":"QL_Image_Cell", "data":["id":1, "img":""], "title":"Ảnh vật phẩm"],
+                ["ident":"QL_Image_Cell", "data":["id":2, "img":""], "title":"Ảnh toàn cảnh"],
+                ["ident":"QL_Image_Cell", "data":["id":3, "img":""], "title":"Ảnh trực diện tủ vé"]]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         kb = KeyBoard.shareInstance()
         
         self.tableView.withCell("QL_Code_Cell")
-
         self.tableView.withCell("TG_Room_Cell_N")
-
         self.tableView.withCell("QL_Drop_Cell")
         self.tableView.withCell("QL_Input_Cell")
         self.tableView.withCell("QL_Group_Cell")
@@ -58,10 +77,53 @@ class VN_Picture_ViewController: UIViewController {
 
         self.tableView.withCell("QL_Box_Cell")
         
-        self.dataList.addObjects(from: (self.temp as NSArray).withMutable())
-        
+        self.ownList.addObjects(from: (self.temp as NSArray).withMutable())
+
+        self.theirList.addObjects(from: (self.temp1 as NSArray).withMutable())
+
         didRequestRegion()
     }
+    
+    func dataList() -> NSMutableArray {
+        if !isEnemy {
+           return self.ownList
+        } else {
+           return self.theirList
+        }
+    }
+    
+    func getID(type: Int) -> Int {
+        let id = 0
+        
+        if type == 0 {
+            id = 
+        }
+        
+        return id
+    }
+    
+//    func changeBackData() {
+//        if !isEnemy {
+//            self.ownList.removeAllObjects()
+//
+//            self.ownList.addObjects(from: (self.dataList as NSArray).withMutable())
+//        } else {
+//            self.theirList.removeAllObjects()
+//
+//            self.theirList.addObjects(from: (self.dataList as NSArray).withMutable())
+//        }
+//    }
+//
+//    func changeData() {
+//
+//        self.dataList.removeAllObjects()
+//
+//        if !isEnemy {
+//            self.dataList.addObjects(from: (self.ownList as NSArray).withMutable())
+//        } else {
+//            self.dataList.addObjects(from: (self.theirList as NSArray).withMutable())
+//        }
+//    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -106,7 +168,7 @@ class VN_Picture_ViewController: UIViewController {
             
             //self.uploadData["region"] = self.regionList.firstObject
             
-            (self.dataList[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
+            (self.dataList()[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
             
             self.didRequestCity(region: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
             
@@ -141,7 +203,7 @@ class VN_Picture_ViewController: UIViewController {
                 
 //                self.uploadData["city"] = self.cityList.firstObject
                 
-                (self.dataList[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
+                (self.dataList()[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
 
                 self.didRequestDistrict(city: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
                 
@@ -150,7 +212,7 @@ class VN_Picture_ViewController: UIViewController {
                 
 //                self.uploadData["city"] = self.cityList.firstObject
                 
-                (self.dataList[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
+                (self.dataList()[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
 
                 self.districtList.removeAllObjects()
                 
@@ -158,7 +220,7 @@ class VN_Picture_ViewController: UIViewController {
                 
 //                self.uploadData["district"] = self.districtList.firstObject
                 
-                (self.dataList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+                (self.dataList()[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
             }
 
             self.tableView.reloadData()
@@ -189,7 +251,7 @@ class VN_Picture_ViewController: UIViewController {
                 
 //                self.uploadData["district"] = self.districtList.firstObject
                 
-                (self.dataList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+                (self.dataList()[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
             } else {
                 self.districtList.removeAllObjects()
 
@@ -197,8 +259,45 @@ class VN_Picture_ViewController: UIViewController {
                 
 //                self.uploadData["district"] = self.districtList.firstObject
                 
-                (self.dataList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+                (self.dataList()[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
             }
+            self.tableView.reloadData()
+        }
+    }
+    
+    func didRequestAgency() {
+        LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
+                                                   "header":["Authorization":Information.token == nil ? "" : Information.token!],
+                                                   "Postparam":["CMD_CODE":"searchagency",
+                                                                "user_id":INFO()["id"],
+                                                                "page_size":500,
+                                                                "agency_type": isEnemy ? 2 : 1,
+                                                                "module_id":1,
+                                                                "city_id":"",
+                                                                "district_id":"",
+                                                                "region_id":""],
+                                                   "overrideAlert":1,
+                                                   "postFix":"processRequest"
+            ], withCache: { (cache) in
+                
+        }) { (response, errorCode, error, isValid) in
+            
+            if error != nil {
+                
+                return
+            }
+            let result = response?.dictionize()
+            
+            self.regionList.removeAllObjects()
+            
+            self.regionList.addObjects(from: result!["RESULT"] as! [Any])
+            
+            //self.uploadData["region"] = self.regionList.firstObject
+            
+            (self.dataList()[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
+            
+            self.didRequestCity(region: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
+            
             self.tableView.reloadData()
         }
     }
@@ -273,7 +372,7 @@ class VN_Picture_ViewController: UIViewController {
     }
     
     func saveImage(image: UIImage, indexing: String) {
-        (dataList[Int(indexing)!] as! NSMutableDictionary)["data"] = image.imageString()
+        //(dataList[Int(indexing)!] as! NSMutableDictionary)["data"] = image.imageString()
         
         self.tableView.reloadData()
     }
@@ -293,7 +392,7 @@ extension VN_Picture_ViewController: UITextFieldDelegate {
         if let text = textField.text as NSString? {
             let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
             
-            (dataList[indexing!] as! NSMutableDictionary)["data"] = txtAfterUpdate
+            (self.dataList()[indexing!] as! NSMutableDictionary)["data"] = txtAfterUpdate
         }
         
         return true
@@ -307,13 +406,13 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataList.count
+        return self.dataList().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: (dataList[indexPath.row] as! NSDictionary)["ident"] as! String, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: (self.dataList()[indexPath.row] as! NSDictionary)["ident"] as! String, for: indexPath)
         
-        let data = dataList[indexPath.row] as! NSDictionary
+        let data = self.dataList()[indexPath.row] as! NSDictionary
         
         let title = self.withView(cell, tag: 1) as! UILabel
         
@@ -354,7 +453,7 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
                             return
                         }
                         
-                        (self.dataList[indexPath.row] as! NSMutableDictionary)["data"] = data
+                        (self.dataList()[indexPath.row] as! NSMutableDictionary)["data"] = data
                         
                         drop.setTitle((data as! NSDictionary)["title"] as? String, for: .normal)
                         
@@ -375,22 +474,20 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
             
             let dropData = data["data"] as! NSDictionary
             
-            if dropData.allValues.count != 0 {
-                drop.setTitle(dropData["title"] as? String, for: .normal)
-            }
+            drop.setTitle(dropData["title"] as? String, for: .normal)
             
             drop.action(forTouch: [:]) { (objc) in
                 drop.didDropDown(withData: self.statusDealer, andCompletion: { (result) in
                     if result != nil {
                         let data = (result as! NSDictionary)["data"]
                         
-                        (self.dataList[indexPath.row] as! NSMutableDictionary)["data"] = data
-
                         self.isEnemy = (data as! NSDictionary).getValueFromKey("id") == "2"
-                        
-                        self.tableView.reloadData()
-                        
+
+                        (self.dataList()[indexPath.row] as! NSMutableDictionary)["data"] = data
+
                         drop.setTitle((data as! NSDictionary)["title"] as? String, for: .normal)
+                        
+                        self.perform(#selector(self.didReloadData), with: nil, afterDelay: 0.5)
                     }
                 })
             }
@@ -442,6 +539,10 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
         }
         
         return cell
+    }
+    
+    @objc func didReloadData() {
+        self.tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

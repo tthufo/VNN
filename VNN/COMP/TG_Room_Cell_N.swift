@@ -16,7 +16,7 @@ class TG_Room_Cell_N: UITableViewCell , TTGTagCollectionViewDelegate, TTGTagColl
 
     var dataList = NSMutableArray()
     
-    var images: NSMutableArray? = ["sfdsfdsfds", "sfdsfdsf", "sfdsfdsfds", "sfdsfdsfdsfdsf", "sfdsfs", "sfdsfdsf", "sdfdsfdfsfsdfdsfdsfffdsfdsfsdfsdfsdfdsfsdfdsfdsfds"]
+    var images = NSMutableArray()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,7 +26,7 @@ class TG_Room_Cell_N: UITableViewCell , TTGTagCollectionViewDelegate, TTGTagColl
         
         tagCollectionView.scrollDirection = .horizontal
         
-        for string in images! {
+        for string in images {
             self.dataList.add(self.contentView.newLabel(withText: string as! String))
         }
         
