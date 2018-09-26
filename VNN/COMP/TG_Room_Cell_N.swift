@@ -16,18 +16,29 @@ class TG_Room_Cell_N: UITableViewCell , TTGTagCollectionViewDelegate, TTGTagColl
 
     var dataList = NSMutableArray()
     
-    var images = NSMutableArray()
+    var images: NSMutableArray!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         tagCollectionView.delegate = self;
+        
         tagCollectionView.dataSource = self;
         
         tagCollectionView.scrollDirection = .horizontal
         
-        for string in images {
-            self.dataList.add(self.contentView.newLabel(withText: string as! String))
+        self.reload()
+    }
+    
+    func reload() {
+        self.dataList.removeAllObjects()
+
+        if images != nil {
+            for dict in images {
+                if (dict as! NSDictionary).getValueFromKey("active") == "1" {
+                    self.dataList.add(self.contentView.newLabel(withText: "%@ %@".format(parameters: (dict as! NSDictionary)["title"] as! String, (dict as! NSDictionary)["data"] as! String)))
+                }
+            }
         }
         
         tagCollectionView.reload()
@@ -57,10 +68,11 @@ class TG_Room_Cell_N: UITableViewCell , TTGTagCollectionViewDelegate, TTGTagColl
         
         button.action(forTouch: [:]) { (objc) in
             
-            self.dataList.removeObject(at: Int(index))
+            (self.images[Int(index)] as! NSMutableDictionary)["active"] = "0"
             
-            self.tagCollectionView.reload()
+            print(index)
             
+            self.reload()
         }
         
         return label

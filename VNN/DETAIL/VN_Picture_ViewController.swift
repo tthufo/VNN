@@ -529,11 +529,17 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
         }
 
         if data["ident"] as! String == "TG_Room_Cell_N" {
+            let items = data["data"] as! NSMutableArray
+
             let group = (self.withView(cell, tag: 2) as! UIImageView)
 
             group.action(forTouch: [:]) { (objc) in
-                TG_PopUp_View().initWithItem(content: [:], finished: { (result) in
+                TG_PopUp_View().initWithItem(content: items, finished: { (result) in
+                    (self.dataList()[indexPath.row] as! NSMutableDictionary)["data"] = result
                     
+                    (cell as! TG_Room_Cell_N).images = result
+                    
+                    (cell as! TG_Room_Cell_N).reload()
                 })
             }
         }

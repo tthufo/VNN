@@ -16,14 +16,14 @@ class TG_PopUp_View: CustomIOS7AlertView, UITextFieldDelegate, UITableViewDelega
     
     var checkList = NSMutableArray()
     
-    var itemList = [["title":"Ticke", "active":"0", "data":"", "key":"ticke", "id":"0"],
-                    ["title":"Biển hiệu", "active":"0", "data":"", "key":"bienhieu", "id":"1"],
-                    ["title":"Decal dán tủ", "active":"0", "data":"", "key":"decal", "id":"2"],
-                    ["title":"Phiếu thưởng", "active":"0", "data":"", "key":"phieuthuong", "id":"3"],
-                    ["title":"Dù", "active":"0", "data":"", "key":"du", "id":"4"],
-                    ["title":"Bèo mái hiên", "active":"0", "data":"", "key":"beomaihien", "id":"5"],
-                    ["title":"Bảng dò số", "active":"0", "data":"", "key":"bangdoso", "id":"6"],
-                    ["title":"Khác", "active":"0", "data":"", "key":"khac", "id":"7"]
+    var itemList = [["title":"Ticke", "active":"0", "data":"997", "key":"ticke", "id":"0"],
+                    ["title":"Biển hiệu", "active":"0", "data":"997", "key":"bienhieu", "id":"1"],
+                    ["title":"Decal dán tủ", "active":"0", "data":"997", "key":"decal", "id":"2"],
+                    ["title":"Phiếu thưởng", "active":"0", "data":"997", "key":"phieuthuong", "id":"3"],
+                    ["title":"Dù", "active":"0", "data":"997", "key":"du", "id":"4"],
+                    ["title":"Bèo mái hiên", "active":"0", "data":"997", "key":"beomaihien", "id":"5"],
+                    ["title":"Bảng dò số", "active":"0", "data":"997", "key":"bangdoso", "id":"6"],
+                    ["title":"Khác", "active":"0", "data":"997", "key":"khac", "id":"7"]
                    ]
 
     
@@ -159,6 +159,8 @@ class TG_PopUp_View: CustomIOS7AlertView, UITextFieldDelegate, UITableViewDelega
             
             let drop = self.withView(cell, tag: 2) as! DropButton
             
+            drop.setTitle(data["data"] as? String, for: .normal)
+            
             drop.action(forTouch: [:]) { (objc) in
                 drop.didDropDown(withData: self.dataModel, andCompletion: { (result) in
                     let output = (result as! NSDictionary)["data"]
@@ -189,15 +191,18 @@ class TG_PopUp_View: CustomIOS7AlertView, UITextFieldDelegate, UITableViewDelega
     
     
     
-    func initWithItem(content: NSDictionary, finished: @escaping (_ obj: NSDictionary) -> Void) {
+    func initWithItem(content: NSArray, finished: @escaping (_ obj: NSMutableArray) -> Void) {
         let base = Bundle.main.loadNibNamed("TG_Menu_View",
                                             owner: nil,
                                             options: nil)?[3] as! UIView
         base.frame = CGRect.init(x: 0, y: 0, width: 300, height: 400)
         
         
-        
-        self.checkList.addObjects(from: (self.itemList as NSArray).withMutable())
+        if content.count == 0 {
+            self.checkList.addObjects(from: (self.itemList as NSArray).withMutable())
+        } else {
+            self.checkList.addObjects(from: content as! [Any])
+        }
         
         
         
@@ -220,8 +225,7 @@ class TG_PopUp_View: CustomIOS7AlertView, UITextFieldDelegate, UITableViewDelega
         done.action(forTouch: [:]) { (obj) in
             self.close()
             
-            print(self.checkList);
-            
+            finished(self.checkList)
         }
         
         
