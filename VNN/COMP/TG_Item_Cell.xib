@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TG_Item_Cell" rowHeight="97" id="b1d-2m-y7b">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="97"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b1d-2m-y7b" id="Wxl-pI-upe">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="96.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mcl-8t-rPd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="97"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="97" id="KGJ-P1-zLY"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XjT-bV-26I">
+                        <rect key="frame" x="7" y="-5" width="49" height="49"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" image="check_in_b"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sG-2x-5TP">
+                        <rect key="frame" x="70" y="9" width="245" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Fso-MR-hac"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZn-Pl-Xfr">
+                        <rect key="frame" x="5" y="38" width="310" height="48"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                <integer key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p0S-GJ-D1V" customClass="DropButton">
+                        <rect key="frame" x="15" y="38" width="290" height="48"/>
+                        <state key="normal">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="pListName" value="format"/>
+                        </userDefinedRuntimeAttributes>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drop_a" translatesAutoresizingMaskIntoConstraints="NO" id="FtV-aI-mEY">
+                        <rect key="frame" x="278" y="46" width="33" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="33" id="OLx-gC-cWd"/>
+                            <constraint firstAttribute="width" constant="33" id="zXH-pP-wnE"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="IZn-Pl-Xfr" firstAttribute="leading" secondItem="Wxl-pI-upe" secondAttribute="leading" constant="5" id="01p-B2-3df"/>
+                    <constraint firstItem="Mcl-8t-rPd" firstAttribute="top" secondItem="Wxl-pI-upe" secondAttribute="top" id="2eE-ZT-VZy"/>
+                    <constraint firstItem="p0S-GJ-D1V" firstAttribute="top" secondItem="6sG-2x-5TP" secondAttribute="bottom" constant="8" id="5zR-7o-baM"/>
+                    <constraint firstAttribute="bottom" secondItem="p0S-GJ-D1V" secondAttribute="bottom" constant="10.5" id="7kW-BM-PHO"/>
+                    <constraint firstAttribute="bottom" secondItem="Mcl-8t-rPd" secondAttribute="bottom" id="8S7-Jx-Sdd"/>
+                    <constraint firstAttribute="trailing" secondItem="Mcl-8t-rPd" secondAttribute="trailing" id="CMG-px-wkA"/>
+                    <constraint firstAttribute="trailing" secondItem="p0S-GJ-D1V" secondAttribute="trailing" constant="15" id="LXA-B6-ZRc"/>
+                    <constraint firstItem="6sG-2x-5TP" firstAttribute="top" secondItem="Wxl-pI-upe" secondAttribute="top" constant="9" id="VIp-hE-cjB"/>
+                    <constraint firstAttribute="trailing" secondItem="6sG-2x-5TP" secondAttribute="trailing" constant="5" id="b1b-oC-3dC"/>
+                    <constraint firstItem="Mcl-8t-rPd" firstAttribute="leading" secondItem="Wxl-pI-upe" secondAttribute="leading" id="cQf-2n-k6b"/>
+                    <constraint firstItem="FtV-aI-mEY" firstAttribute="top" secondItem="6sG-2x-5TP" secondAttribute="bottom" constant="16" id="gO2-AJ-wg2"/>
+                    <constraint firstItem="p0S-GJ-D1V" firstAttribute="leading" secondItem="Wxl-pI-upe" secondAttribute="leading" constant="15" id="pGR-oU-Ze7"/>
+                    <constraint firstAttribute="bottom" secondItem="IZn-Pl-Xfr" secondAttribute="bottom" constant="10.5" id="pre-Pd-9vM"/>
+                    <constraint firstAttribute="trailing" secondItem="IZn-Pl-Xfr" secondAttribute="trailing" constant="5" id="qAl-W5-lO6"/>
+                    <constraint firstItem="6sG-2x-5TP" firstAttribute="leading" secondItem="Wxl-pI-upe" secondAttribute="leading" constant="70" id="qfm-1m-V8J"/>
+                    <constraint firstItem="IZn-Pl-Xfr" firstAttribute="top" secondItem="6sG-2x-5TP" secondAttribute="bottom" constant="8" id="x20-dI-ggx"/>
+                    <constraint firstAttribute="trailing" secondItem="FtV-aI-mEY" secondAttribute="trailing" constant="9" id="yG9-JF-Eb6"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="-47" y="-93.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="check_in_b" width="49" height="49"/>
+        <image name="drop_a" width="49" height="49"/>
+    </resources>
+</document>

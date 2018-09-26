@@ -81,8 +81,15 @@ class QL_LogIn_ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func didRequestLogin() {
+        
+        let userName = uName.text
+        
+        let passWord = pass.text
+        
         LTRequest.sharedInstance().didRequestInfo(["CMD_CODE":"login",
-                                                   "Postparam":["user_name":"test", "password":"123456", "push_device_id":"1"],
+                                                   "Postparam":["user_name":userName ,
+                                                                "password":passWord ,
+                                                                "push_device_id":"1"],
                                                    "overrideLoading":1,
                                                    "overrideAlert":1,
                                                    "postFix":"login",
@@ -104,7 +111,7 @@ class QL_LogIn_ViewController: UIViewController, UITextFieldDelegate {
             
             self.add(result!["RESULT"] as! [AnyHashable : Any], andKey: "info")
             
-            Information.saveInfo()
+            Information.saveToken()
             
             Information.saveInfo()
             

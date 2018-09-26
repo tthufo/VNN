@@ -22,7 +22,7 @@ class VN_Picture_ViewController: UIViewController {
     
     var kb: KeyBoard!
 
-//    var dataList = NSMutableArray()
+    var dealerList = NSMutableArray()
     
     
     var ownList = NSMutableArray()
@@ -36,32 +36,69 @@ class VN_Picture_ViewController: UIViewController {
                     ["ident":"QL_Drop_Cell", "data":[:], "title":"Tỉnh"],
                     ["ident":"QL_Drop_Cell", "data":[:], "title":"Quận/Huyện"],
                     ["ident":"QL_Box_Cell", "data":["title":"Đại lý có sẵn", "id":1], "title":"Tình trạng đại lý"],
-                    ["ident":"QL_Code_Cell", "data":"", "title":"Mã đại lý"],
+                    ["ident":"QL_Code_Cell", "data":"", "list":[], "title":"Mã đại lý"],
                     ["ident":"QL_Input_Cell", "data":"", "title":"Địa chỉ đại lý"],
                     ["ident":"QL_Input_Cell", "data":"", "title":"Tên đại lý"],
                     ["ident":"QL_Input_Cell", "data":"", "number":1, "title":"Số điện thoại"],
-                    ["ident":"TG_Room_Cell_N", "data":"", "title":"Tình trạng vật phẩm"],
+                    ["ident":"TG_Room_Cell_N", "data":[], "title":"Tình trạng vật phẩm"],
                     ["ident":"QL_Input_Cell", "data":"", "title":"Ghi chú"]]
     
-    
-//                    ["ident":"QL_Image_Cell"],
-//                    ["ident":"QL_Image_Cell"],
-//                    ["ident":"QL_Image_Cell"]]
-
     
     var temp1 = [["ident":"QL_Drop_Cell", "data":[:], "title":"Miền"],
                 ["ident":"QL_Drop_Cell", "data":[:], "title":"Tỉnh"],
                 ["ident":"QL_Drop_Cell", "data":[:], "title":"Quận/Huyện"],
                 ["ident":"QL_Box_Cell", "data":["title":"Đại lý có sẵn", "id":1], "title":"Tình trạng đại lý"],
-                ["ident":"QL_Code_Cell", "data":"", "title":"Mã đại lý"],
+                ["ident":"QL_Code_Cell", "data":"", "list":[], "title":"Mã đại lý"],
                 ["ident":"QL_Input_Cell", "data":"", "title":"Địa chỉ đại lý"],
                 ["ident":"QL_Input_Cell", "data":"", "title":"Tên đại lý"],
                 ["ident":"QL_Input_Cell", "data":"", "number":1, "title":"Số điện thoại"],
-                ["ident":"TG_Room_Cell_N", "data":"", "title":"Tình trạng vật phẩm"],
+                ["ident":"TG_Room_Cell_N", "data":[], "title":"Tình trạng vật phẩm"],
                 ["ident":"QL_Input_Cell", "data":"", "title":"Ghi chú"],
-                ["ident":"QL_Image_Cell", "data":["id":1, "img":""], "title":"Ảnh vật phẩm"],
-                ["ident":"QL_Image_Cell", "data":["id":2, "img":""], "title":"Ảnh toàn cảnh"],
-                ["ident":"QL_Image_Cell", "data":["id":3, "img":""], "title":"Ảnh trực diện tủ vé"]]
+                ["ident":"QL_Image_Cell", "id":1, "data":"", "title":"Ảnh vật phẩm"],
+                ["ident":"QL_Image_Cell", "id":2, "data":"", "title":"Ảnh toàn cảnh"],
+                ["ident":"QL_Image_Cell", "id":3, "data":"", "title":"Ảnh trực diện tủ vé"]]
+    
+    func fillInDealer(dealer: NSDictionary) {
+        
+        var hehe = [Any]()
+        
+        for dict in self.dataList() {
+            if (dict as! NSDictionary)["ident"] as! String == "QL_Image_Cell" {
+                hehe.append(dict)
+            }
+        }
+        
+        self.dataList().removeObjects(in: hehe)
+        
+        let aDealer = dealer.reFormat()
+        
+        let inputPictures = aDealer!["input_picture"] as! NSArray
+        
+        for dict in inputPictures {
+            let imageCell = NSMutableDictionary()
+            
+            imageCell.addEntries(from: dict as! [AnyHashable : Any])
+            
+            imageCell["ident"] = "QL_Image_Cell"
+            
+            imageCell["data"] = ""
+            
+            self.dataList().add(imageCell)
+        }
+        
+        (self.dataList()[4] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("agency_code")
+
+        (self.dataList()[5] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("address")
+
+        (self.dataList()[6] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("agency_name")
+
+        (self.dataList()[7] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("phonenumber")
+
+        (self.dataList()[9] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("ghi_chu")
+        
+        self.tableView.reloadData()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,38 +129,11 @@ class VN_Picture_ViewController: UIViewController {
         }
     }
     
-    func getID(type: Int) -> Int {
-        let id = 0
+    func getID(type: Int) -> String {
+        let id = ((self.dataList()[type] as! NSDictionary)["data"] as! NSDictionary)["id"]
         
-        if type == 0 {
-            id = 
-        }
-        
-        return id
+        return id as! String
     }
-    
-//    func changeBackData() {
-//        if !isEnemy {
-//            self.ownList.removeAllObjects()
-//
-//            self.ownList.addObjects(from: (self.dataList as NSArray).withMutable())
-//        } else {
-//            self.theirList.removeAllObjects()
-//
-//            self.theirList.addObjects(from: (self.dataList as NSArray).withMutable())
-//        }
-//    }
-//
-//    func changeData() {
-//
-//        self.dataList.removeAllObjects()
-//
-//        if !isEnemy {
-//            self.dataList.addObjects(from: (self.ownList as NSArray).withMutable())
-//        } else {
-//            self.dataList.addObjects(from: (self.theirList as NSArray).withMutable())
-//        }
-//    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -166,8 +176,6 @@ class VN_Picture_ViewController: UIViewController {
             
             self.regionList.addObjects(from: result!["RESULT"] as! [Any])
             
-            //self.uploadData["region"] = self.regionList.firstObject
-            
             (self.dataList()[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
             
             self.didRequestCity(region: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
@@ -201,8 +209,6 @@ class VN_Picture_ViewController: UIViewController {
                 
                 self.cityList.addObjects(from: result!["RESULT"] as! [Any])
                 
-//                self.uploadData["city"] = self.cityList.firstObject
-                
                 (self.dataList()[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
 
                 self.didRequestDistrict(city: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
@@ -210,15 +216,11 @@ class VN_Picture_ViewController: UIViewController {
             } else {
                 self.cityList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
                 
-//                self.uploadData["city"] = self.cityList.firstObject
-                
                 (self.dataList()[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
 
                 self.districtList.removeAllObjects()
                 
                 self.districtList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
-                
-//                self.uploadData["district"] = self.districtList.firstObject
                 
                 (self.dataList()[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
             }
@@ -249,34 +251,37 @@ class VN_Picture_ViewController: UIViewController {
             if (result!["RESULT"] as! [Any]).count != 0 {
                 self.districtList.addObjects(from: result!["RESULT"] as! [Any])
                 
-//                self.uploadData["district"] = self.districtList.firstObject
-                
                 (self.dataList()[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
             } else {
                 self.districtList.removeAllObjects()
 
                 self.districtList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
                 
-//                self.uploadData["district"] = self.districtList.firstObject
-                
                 (self.dataList()[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
             }
             self.tableView.reloadData()
+            
+            self.didRequestAgency()
         }
     }
     
     func didRequestAgency() {
+        
+      let dict = ["CMD_CODE":"searchagency",
+         "user_id":INFO()["id"],
+         "page_size":500,
+         "agency_type": isEnemy ? 2 : 1,
+         "module_id":1,
+         "city_id":self.getID(type: 1),
+         "district_id":self.getID(type: 2),
+         "region_id":self.getID(type: 0)]
+        
         LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
                                                    "header":["Authorization":Information.token == nil ? "" : Information.token!],
-                                                   "Postparam":["CMD_CODE":"searchagency",
-                                                                "user_id":INFO()["id"],
-                                                                "page_size":500,
-                                                                "agency_type": isEnemy ? 2 : 1,
-                                                                "module_id":1,
-                                                                "city_id":"",
-                                                                "district_id":"",
-                                                                "region_id":""],
+                                                   "Postparam":dict,
                                                    "overrideAlert":1,
+                                                   "host":self,
+                                                   "overrideLoading":1,
                                                    "postFix":"processRequest"
             ], withCache: { (cache) in
                 
@@ -286,22 +291,22 @@ class VN_Picture_ViewController: UIViewController {
                 
                 return
             }
-            let result = response?.dictionize()
+            let result = response?.dictionize()["RESULT"]
+
+            if (result as! NSArray).count == 0 {
+                return
+            }
             
-            self.regionList.removeAllObjects()
+            self.dealerList.removeAllObjects()
             
-            self.regionList.addObjects(from: result!["RESULT"] as! [Any])
+            self.dealerList.addObjects(from: result as! [Any])
             
-            //self.uploadData["region"] = self.regionList.firstObject
+            let dealer = (result as! NSArray).firstObject
             
-            (self.dataList()[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
-            
-            self.didRequestCity(region: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
-            
-            self.tableView.reloadData()
+            self.fillInDealer(dealer: dealer as! NSDictionary)
         }
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
@@ -372,7 +377,7 @@ class VN_Picture_ViewController: UIViewController {
     }
     
     func saveImage(image: UIImage, indexing: String) {
-        //(dataList[Int(indexing)!] as! NSMutableDictionary)["data"] = image.imageString()
+        (self.dataList()[Int(indexing)!] as! NSMutableDictionary)["data"] = image.imageString()
         
         self.tableView.reloadData()
     }
@@ -402,6 +407,13 @@ extension VN_Picture_ViewController: UITextFieldDelegate {
 extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let data = self.dataList()[indexPath.row] as! NSDictionary
+
+        if data["ident"] as! String == "QL_Image_Cell" {
+            return data["data"] as! String == "" ? 55 : 234
+        }
+        
         return (self.isEnemy && indexPath.row == 4) ? 0 : UITableViewAutomaticDimension
     }
     
@@ -464,6 +476,10 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
                         if indexPath.row == 1 {
                             self.didRequestDistrict(city: (data as! NSDictionary)["id"] as! String)
                         }
+                        
+                        if indexPath.row == 2 {
+                            self.didRequestAgency()
+                        }
                     }
                 })
             }
@@ -501,29 +517,34 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
             code.setTitle(codeData, for: .normal)
             
             code.action(forTouch: [:]) { (objc) in
-                TG_PopUp_View().initWithCode(content: [:], finished: { (result) in
+                
+                let pop = TG_PopUp_View()
+                
+                pop?.delegate = self
+                
+                pop?.initWithCode(content: self.dealerList, finished: { (result) in
                     
                 })
             }
         }
 
         if data["ident"] as! String == "TG_Room_Cell_N" {
-//            let group = (self.withView(cell, tag: 2) as! UIButton)
-//
-//            group.action(forTouch: [:]) { (objc) in
-//                TG_PopUp_View().initWithItem(content: [:], finished: { (result) in
-//                    
-//                })
-//            }
+            let group = (self.withView(cell, tag: 2) as! UIImageView)
+
+            group.action(forTouch: [:]) { (objc) in
+                TG_PopUp_View().initWithItem(content: [:], finished: { (result) in
+                    
+                })
+            }
         }
 
         if data["ident"] as! String == "QL_Image_Cell" {
 
-            let gallery = (self.withView(cell, tag: 2) as! UIButton)
-
-            gallery.action(forTouch: [:]) { (objc) in
-                self.didAskForMedia(indexing: "%i".format(parameters: indexPath.row))
-            }
+//            let gallery = (self.withView(cell, tag: 2) as! UIButton)
+//
+//            gallery.action(forTouch: [:]) { (objc) in
+//                self.didAskForMedia(indexing: "%i".format(parameters: indexPath.row))
+//            }
 
             let cam = (self.withView(cell, tag: 3) as! UIButton)
 
@@ -531,11 +552,11 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
                 self.didAskForCamera(indexing: "%i".format(parameters: indexPath.row))
             }
 
-//            let image = (self.withView(cell, tag: 4) as! UIImageView)
+            let image = (self.withView(cell, tag: 4) as! UIImageView)
 
-//            if data["data"] as! String != "" {
-//                image.image = (data["data"] as! String).stringImage()
-//            }
+            if data["data"] as! String != "" {
+                image.image = (data["data"] as! String).stringImage()
+            }
         }
         
         return cell
@@ -547,5 +568,16 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension VN_Picture_ViewController: CustomIOS7AlertViewDelegate {
+    func customIOS7dialogButtonTouchUp(inside alertView: Any!, clickedButtonAt buttonIndex: Int) {
+        
+//        let data = self.dealerList[buttonIndex] as! NSDictionary
+        
+        let data = alertView as! NSDictionary
+        
+        self.fillInDealer(dealer: data)
     }
 }

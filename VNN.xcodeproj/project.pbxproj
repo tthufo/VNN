@@ -37,6 +37,7 @@
 		FC43940B2155687300A5848E /* VN_Picture_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC4394092155687300A5848E /* VN_Picture_ViewController.xib */; };
 		FC43940E21556B0A00A5848E /* QL_Drop_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC43940C21556B0900A5848E /* QL_Drop_Cell.xib */; };
 		FC43940F21556B0A00A5848E /* QL_Input_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC43940D21556B0A00A5848E /* QL_Input_Cell.xib */; };
+		FC768482215C15A400A2FAC4 /* TG_Item_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC768481215C15A400A2FAC4 /* TG_Item_Cell.xib */; };
 		FCAE59B9215A92280032D37D /* QL_Box_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCAE59B8215A92280032D37D /* QL_Box_Cell.xib */; };
 		FCAE59BB215A95000032D37D /* QL_Code_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCAE59BA215A95000032D37D /* QL_Code_Cell.xib */; };
 		FCAE59BF215A9EC80032D37D /* TG_PopUp_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE59BD215A9EC70032D37D /* TG_PopUp_View.swift */; };
@@ -108,6 +109,7 @@
 		FC4394092155687300A5848E /* VN_Picture_ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VN_Picture_ViewController.xib; sourceTree = "<group>"; };
 		FC43940C21556B0900A5848E /* QL_Drop_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QL_Drop_Cell.xib; sourceTree = "<group>"; };
 		FC43940D21556B0A00A5848E /* QL_Input_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QL_Input_Cell.xib; sourceTree = "<group>"; };
+		FC768481215C15A400A2FAC4 /* TG_Item_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TG_Item_Cell.xib; sourceTree = "<group>"; };
 		FCAE59B8215A92280032D37D /* QL_Box_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QL_Box_Cell.xib; sourceTree = "<group>"; };
 		FCAE59BA215A95000032D37D /* QL_Code_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QL_Code_Cell.xib; sourceTree = "<group>"; };
 		FCAE59BD215A9EC70032D37D /* TG_PopUp_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TG_PopUp_View.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				FCAE59C7215AB8B10032D37D /* TG_Room_Cell.xib */,
 				FCAE59C3215AB1490032D37D /* TG_Room_Cell_N.swift */,
 				FCAE59C1215AB1490032D37D /* TG_Room_Cell_N.xib */,
+				FC768481215C15A400A2FAC4 /* TG_Item_Cell.xib */,
 			);
 			path = COMP;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				FC4394002155616C00A5848E /* VN_Home_ViewController.xib in Resources */,
 				FC4394062155657F00A5848E /* TG_Image_Cell.xib in Resources */,
 				FC439403215562C000A5848E /* TL_ChangeHost_ViewController.xib in Resources */,
+				FC768482215C15A400A2FAC4 /* TG_Item_Cell.xib in Resources */,
 				FCAE59BB215A95000032D37D /* QL_Code_Cell.xib in Resources */,
 				FC43940E21556B0A00A5848E /* QL_Drop_Cell.xib in Resources */,
 				FC2CED5C215948AF00E332A8 /* format.plist in Resources */,
@@ -720,6 +724,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Nguyen Ngoc Quang (589UWV5PGW)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = VNN/Info.plist;
@@ -730,7 +735,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vn.VNN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "4a3ab824-7280-47fb-8041-ce1df749ae95";
+				PROVISIONING_PROFILE_SPECIFIER = AgriWildcard;
 				SWIFT_OBJC_BRIDGING_HEADER = "VNN/VNN-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -744,6 +750,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Nguyen Ngoc Quang (589UWV5PGW)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = VNN/Info.plist;
@@ -754,7 +761,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vn.VNN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "4a3ab824-7280-47fb-8041-ce1df749ae95";
+				PROVISIONING_PROFILE_SPECIFIER = AgriWildcard;
 				SWIFT_OBJC_BRIDGING_HEADER = "VNN/VNN-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
