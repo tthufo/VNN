@@ -121,7 +121,42 @@
     
     [[self layer] addAnimation:animation forKey:@"scale"];
 }
+    
+- (UILabel *)newLabelWithText:(NSString *)text
+{
+    UILabel *label = [UILabel new];
+    label.userInteractionEnabled = YES;
+    label.font = [UIFont systemFontOfSize:18];
+    label.textAlignment = NSTextAlignmentLeft;
+    label.text = text;
+    label.textColor = [UIColor blackColor];
+    [label sizeToFit];
+    label.layer.masksToBounds = YES;
+    [self expandSizeForView:label extraWidth:20 extraHeight:15];
+    return label;
+}
 
+- (void)expandSizeForView:(UIView *)view extraWidth:(CGFloat)extraWidth extraHeight:(CGFloat)extraHeight {
+    
+    UIButton * x = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    x.tag = 1000;
+    
+    x.frame = CGRectMake(view.frame.size.width - 5, 0, 35, 35);
+    
+    [x setTitle:@"X" forState:UIControlStateNormal];
+    
+    [x setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    [view addSubview:x];
+    
+    CGRect frame = view.frame;
+    frame.size.width += extraWidth;
+    frame.size.height += extraHeight;
+    view.frame = frame;
+}
+
+    
 @end
 
 @implementation UIButton (badge)

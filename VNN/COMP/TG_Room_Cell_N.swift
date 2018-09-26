@@ -8,71 +8,64 @@
 
 import UIKit
 
-class TG_Room_Cell_N: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
+class TG_Room_Cell_N: UITableViewCell , TTGTagCollectionViewDelegate, TTGTagCollectionViewDataSource {
 
     @IBOutlet var collectionView: UICollectionView!
-
-    var images: NSMutableArray? = ["sfdsfdsfds", "sfdsfdsf", "sfdsfdsfds", "sfdsfdsfdsfdsf", "sfdsfs", "sfdsfdsf", "sdfdsfdfsfsdfdsfdsfffdsfdsfsdfsdfsdfdsfsdfdsfdsfds"]
     
-//    @IBOutlet var flowLayout: UICollectionViewFlowLayout!
+    @IBOutlet var tagCollectionView: TTGTagCollectionView!
+
+    var dataList = NSMutableArray()
+    
+    var images: NSMutableArray? = ["sfdsfdsfds", "sfdsfdsf", "sfdsfdsfds", "sfdsfdsfdsfdsf", "sfdsfs", "sfdsfdsf", "sdfdsfdfsfsdfdsfdsfffdsfdsfsdfsdfsdfdsfsdfdsfdsfds"]
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        collectionView.withCell("TG_Room_Cell")
+        tagCollectionView.delegate = self;
+        tagCollectionView.dataSource = self;
         
-        let flowLayout = UICollectionViewFlowLayout()
+        tagCollectionView.scrollDirection = .horizontal
         
-        let w = collectionView.frame.width - 20
+        for string in images! {
+            self.dataList.add(self.contentView.newLabel(withText: string as! String))
+        }
         
-        flowLayout.estimatedItemSize = CGSize(width: w, height: 50)
-        
-//        flowLayout.scrollDirection = .horizontal
-        
-        collectionView.setCollectionViewLayout(flowLayout, animated: true)
+        tagCollectionView.reload()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
     }
-        
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.images!.count
+    
+    func tagCollectionView(_ tagCollectionView: TTGTagCollectionView!, sizeForTagAt index: UInt) -> CGSize {
+        return (self.dataList[Int(index)] as! UILabel).frame.size
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
+    func tagCollectionView(_ tagCollectionView: TTGTagCollectionView!, didSelectTag tagView: UIView!, at index: UInt) {
+        
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
+    func numberOfTags(in tagCollectionView: TTGTagCollectionView!) -> UInt {
+        return UInt(self.dataList.count)
     }
     
-    func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-//        setNeedsLayout()
-//        layoutIfNeeded()
-        let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
-        var frame = layoutAttributes.frame
-        frame.size.width = ceil(size.width)
-        layoutAttributes.frame = frame
-        return layoutAttributes
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func tagCollectionView(_ tagCollectionView: TTGTagCollectionView!, tagViewFor index: UInt) -> UIView! {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TG_Room_Cell", for: indexPath as IndexPath)
+        let label = self.dataList[Int(index)] as! UILabel
         
-        let tag = (self.withView(cell, tag: 1) as! UILabel)
+        let button = self.withView(label, tag: 1000) as! UIButton
         
-        tag.text = images![indexPath.row] as? String
+        button.action(forTouch: [:]) { (objc) in
+            
+            self.dataList.removeObject(at: Int(index))
+            
+            self.tagCollectionView.reload()
+            
+        }
         
-        return cell
+        return label
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-    }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

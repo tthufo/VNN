@@ -30,9 +30,11 @@ PODS:
   - SDWebImage/Core (4.4.2)
   - SVProgressHUD (2.2.5)
   - Toast (4.0.0)
+  - TTGTagCollectionView (1.9.0)
 
 DEPENDENCIES:
   - AllPod
+  - TTGTagCollectionView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -44,6 +46,7 @@ SPEC REPOS:
     - SDWebImage
     - SVProgressHUD
     - Toast
+    - TTGTagCollectionView
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -54,7 +57,8 @@ SPEC CHECKSUMS:
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  TTGTagCollectionView: 958f20b946dee92a8ba20dc37d10a06737641ae9
 
-PODFILE CHECKSUM: 48bab476328b45bfb22d7cf554d507f6d9b0d207
+PODFILE CHECKSUM: dfd48440cd509f5d4511cc400a804a6a7efd1463
 
 COCOAPODS: 1.5.3

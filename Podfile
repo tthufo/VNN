@@ -8,6 +8,8 @@ target 'VNN' do
 
   pod 'AllPod'
 
+  pod 'TTGTagCollectionView'
+
   target 'VNNTests' do
     inherit! :search_paths
     # Pods for testing

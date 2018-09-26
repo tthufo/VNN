@@ -19,22 +19,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="123" height="39"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIV-Br-80M">
-                        <rect key="frame" x="93" y="2" width="30" height="34"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="34" id="Q7M-7Y-De2"/>
-                            <constraint firstAttribute="width" constant="30" id="nvK-xO-Iv6"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                        <state key="normal" title="X">
-                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmS-RV-cI1">
-                        <rect key="frame" x="0.0" y="0.0" width="85" height="39"/>
+                        <rect key="frame" x="0.0" y="0.0" width="123" height="39"/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="6X9-TM-aAg"/>
-                            <constraint firstAttribute="height" constant="39" id="KVO-Tw-2y0"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="123" id="RNg-kC-D2m"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -43,12 +31,10 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="iIV-Br-80M" secondAttribute="trailing" id="HVz-VF-qrK"/>
-                <constraint firstItem="iIV-Br-80M" firstAttribute="top" secondItem="1zC-7l-hCx" secondAttribute="top" constant="2" id="KHD-nm-Y7W"/>
-                <constraint firstAttribute="bottom" secondItem="iIV-Br-80M" secondAttribute="bottom" constant="3" id="XYG-Tt-nlP"/>
-                <constraint firstItem="HmS-RV-cI1" firstAttribute="top" secondItem="1zC-7l-hCx" secondAttribute="top" id="m1w-yb-ToX"/>
-                <constraint firstItem="HmS-RV-cI1" firstAttribute="leading" secondItem="1zC-7l-hCx" secondAttribute="leading" id="nHH-1X-kue"/>
-                <constraint firstItem="iIV-Br-80M" firstAttribute="leading" secondItem="HmS-RV-cI1" secondAttribute="trailing" constant="8" id="xDr-Lt-Zox"/>
+                <constraint firstItem="HmS-RV-cI1" firstAttribute="top" secondItem="1zC-7l-hCx" secondAttribute="top" id="EaZ-dS-IDj"/>
+                <constraint firstAttribute="bottom" secondItem="HmS-RV-cI1" secondAttribute="bottom" id="Li0-hn-hfr"/>
+                <constraint firstAttribute="trailing" secondItem="HmS-RV-cI1" secondAttribute="trailing" id="NEw-TH-OWN"/>
+                <constraint firstItem="HmS-RV-cI1" firstAttribute="leading" secondItem="1zC-7l-hCx" secondAttribute="leading" id="zwa-Sj-CSa"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="yTw-dP-Hvo"/>
             <size key="customSize" width="123" height="39"/>

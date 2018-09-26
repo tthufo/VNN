@@ -24,6 +24,8 @@ typedef void(^addressCompletion)(NSDictionary *);
 
 - (void)pulseViewSize:(float)oSize andSize:(float)size andDuration:(float)duration;
 
+- (UILabel *)newLabelWithText:(NSString *)text;
+    
 @end
 
 @interface UIButton (badge)
