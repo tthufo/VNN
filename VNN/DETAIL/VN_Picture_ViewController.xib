@@ -72,23 +72,45 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WYG-5c-UAZ">
-                    <rect key="frame" x="0.0" y="84" width="320" height="396"/>
+                    <rect key="frame" x="0.0" y="84" width="320" height="343"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Jea-Lh-0Ed"/>
                         <outlet property="delegate" destination="-1" id="Jnd-3V-B6E"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4EE-Jg-DrU">
+                    <rect key="frame" x="221" y="435" width="90" height="36"/>
+                    <color key="backgroundColor" red="0.90980392160000001" green="0.49019607840000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="5zs-c2-ECv"/>
+                        <constraint firstAttribute="height" constant="36" id="AZB-YF-PVB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <state key="normal" title="Hoàn thành">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="didRequestUpdateAgency" destination="-1" eventType="touchUpInside" id="0vY-bs-gwK"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="WYG-5c-UAZ" firstAttribute="trailing" secondItem="udh-Y6-scR" secondAttribute="trailing" id="8r8-wS-cU4"/>
+                <constraint firstItem="WYG-5c-UAZ" firstAttribute="top" secondItem="PrW-vB-4TX" secondAttribute="bottom" id="0Kf-pE-jji"/>
                 <constraint firstItem="PrW-vB-4TX" firstAttribute="top" secondItem="udh-Y6-scR" secondAttribute="top" id="Tta-1N-1kB"/>
+                <constraint firstItem="4EE-Jg-DrU" firstAttribute="top" secondItem="WYG-5c-UAZ" secondAttribute="bottom" constant="8" id="hHr-1J-dI2"/>
+                <constraint firstItem="udh-Y6-scR" firstAttribute="bottom" secondItem="4EE-Jg-DrU" secondAttribute="bottom" constant="9" id="hgl-YC-xw6"/>
+                <constraint firstItem="WYG-5c-UAZ" firstAttribute="leading" secondItem="udh-Y6-scR" secondAttribute="leading" id="jxw-p9-sK8"/>
                 <constraint firstItem="PrW-vB-4TX" firstAttribute="leading" secondItem="udh-Y6-scR" secondAttribute="leading" id="o1Q-Xh-soc"/>
-                <constraint firstItem="WYG-5c-UAZ" firstAttribute="bottom" secondItem="udh-Y6-scR" secondAttribute="bottom" id="qSy-nl-RBD"/>
-                <constraint firstItem="WYG-5c-UAZ" firstAttribute="top" secondItem="PrW-vB-4TX" secondAttribute="bottom" id="qdz-f7-kod"/>
+                <constraint firstItem="WYG-5c-UAZ" firstAttribute="trailing" secondItem="udh-Y6-scR" secondAttribute="trailing" id="pmf-3W-M1n"/>
+                <constraint firstItem="udh-Y6-scR" firstAttribute="trailing" secondItem="4EE-Jg-DrU" secondAttribute="trailing" constant="9" id="rIM-Ht-3Vh"/>
                 <constraint firstItem="PrW-vB-4TX" firstAttribute="trailing" secondItem="udh-Y6-scR" secondAttribute="trailing" id="z4A-CG-Lmv"/>
-                <constraint firstItem="WYG-5c-UAZ" firstAttribute="leading" secondItem="udh-Y6-scR" secondAttribute="leading" id="zc9-Gx-iCG"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="udh-Y6-scR"/>

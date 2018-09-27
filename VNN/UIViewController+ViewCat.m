@@ -122,9 +122,10 @@
     [[self layer] addAnimation:animation forKey:@"scale"];
 }
     
-- (UILabel *)newLabelWithText:(NSString *)text
+- (UILabel *)newLabelWithText:(NSString *)text andHint:(NSString*)hint
 {
     UILabel *label = [UILabel new];
+    label.accessibilityLabel = hint;
     label.userInteractionEnabled = YES;
     label.font = [UIFont systemFontOfSize:18];
     label.textAlignment = NSTextAlignmentLeft;

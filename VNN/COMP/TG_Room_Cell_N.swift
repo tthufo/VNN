@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol CellDelegate:class {
+    func didReloadDataCell(data: NSMutableArray, indexing: Int)
+}
+
 class TG_Room_Cell_N: UITableViewCell , TTGTagCollectionViewDelegate, TTGTagCollectionViewDataSource {
+
+    weak var delegate: CellDelegate?
 
     @IBOutlet var collectionView: UICollectionView!
     
@@ -36,7 +42,7 @@ class TG_Room_Cell_N: UITableViewCell , TTGTagCollectionViewDelegate, TTGTagColl
         if images != nil {
             for dict in images {
                 if (dict as! NSDictionary).getValueFromKey("active") == "1" {
-                    self.dataList.add(self.contentView.newLabel(withText: "%@ %@".format(parameters: (dict as! NSDictionary)["title"] as! String, (dict as! NSDictionary)["data"] as! String)))
+                    self.dataList.add(self.contentView.newLabel(withText: "%@ %@".format(parameters: (dict as! NSDictionary)["title"] as! String, (dict as! NSDictionary)["data"] as! String), andHint: (dict as! NSDictionary).getValueFromKey("id")))
                 }
             }
         }
@@ -67,12 +73,33 @@ class TG_Room_Cell_N: UITableViewCell , TTGTagCollectionViewDelegate, TTGTagColl
         let button = self.withView(label, tag: 1000) as! UIButton
         
         button.action(forTouch: [:]) { (objc) in
+                        
+            for dict in self.images {
+                if (dict as! NSDictionary).getValueFromKey("id") == label.accessibilityLabel {
+                    (dict as! NSMutableDictionary)["active"] = "0"
+                }
+            }
             
-            (self.images[Int(index)] as! NSMutableDictionary)["active"] = "0"
+            self.dataList.removeObject(at: Int(index))
             
-            print(index)
+            tagCollectionView.reload()
+  
+                self.delegate?.didReloadDataCell(data: self.images, indexing: 8)
+//
+//                return
+//            }
             
-            self.reload()
+//            guard let cell1 = self.superview as? UITableView else {
+//                let indexing = self.inDexOf(tagCollectionView, andTable: self.superview?.superview as! UITableView)
+//
+//                self.delegate?.didReloadDataCell(data: self.images, indexing: Int(indexing))
+//
+//                return
+//            }
+            
+//            let indexing = self.inDexOf(tagCollectionView, andTable: self.superview as! UITableView)
+//
+//            self.delegate?.didReloadDataCell(data: self.images, indexing: Int(indexing))
         }
         
         return label

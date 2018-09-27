@@ -122,7 +122,6 @@ class TG_PopUp_View: CustomIOS7AlertView, UITextFieldDelegate, UITableViewDelega
     
     
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableView.tag == 3 ? self.dataList.count : self.itemList.count
     }
@@ -163,11 +162,13 @@ class TG_PopUp_View: CustomIOS7AlertView, UITextFieldDelegate, UITableViewDelega
             
             drop.action(forTouch: [:]) { (objc) in
                 drop.didDropDown(withData: self.dataModel, andCompletion: { (result) in
-                    let output = (result as! NSDictionary)["data"]
-                    
-                    drop.setTitle((output as! NSDictionary)["title"] as? String, for: .normal)
-                    
-                    (self.checkList[indexPath.row] as! NSMutableDictionary)["data"] = (output as! NSDictionary)["title"] as? String
+                    if result != nil {
+                        let output = (result as! NSDictionary)["data"]
+                        
+                        drop.setTitle((output as! NSDictionary)["title"] as? String, for: .normal)
+                        
+                        (self.checkList[indexPath.row] as! NSMutableDictionary)["data"] = (output as! NSDictionary)["title"] as? String
+                    }
                 })
             }
         }

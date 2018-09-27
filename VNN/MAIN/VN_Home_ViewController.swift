@@ -23,9 +23,7 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         collectionView.withCell("TG_Image_Cell")
         
-        didRequestInfo()
-        
-        print(INFO())
+        //didRequestInfo()
     }
     
     func didRequestInfo() {
