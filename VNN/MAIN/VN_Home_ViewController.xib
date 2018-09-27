@@ -12,7 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VN_Home_ViewController" customModule="VNN" customModuleProvider="target">
             <connections>
+                <outlet property="bottomView" destination="5aD-IH-vhu" id="Yg6-dB-5hj"/>
                 <outlet property="collectionView" destination="meO-9p-Wkq" id="rhI-bc-1rZ"/>
+                <outlet property="overLay" destination="v2s-DI-mge" id="fSL-FE-Y7g"/>
+                <outlet property="user" destination="har-A1-nAy" id="R6A-VX-wbL"/>
                 <outlet property="view" destination="BDC-91-led" id="fid-rh-cKF"/>
             </connections>
         </placeholder>
@@ -47,12 +50,12 @@
                                 <constraint firstAttribute="width" constant="44" id="EDC-pQ-jMH"/>
                                 <constraint firstAttribute="height" constant="44" id="pGR-Hk-AUI"/>
                             </constraints>
-                            <state key="normal" image="dot"/>
+                            <state key="normal" image="menu"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="pListName" value="format"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="didPressMenuWithMenu:" destination="-1" eventType="touchUpInside" id="L5t-wn-pVe"/>
+                                <action selector="didPressLogOut" destination="-1" eventType="touchUpInside" id="3r2-f8-tiv"/>
                             </connections>
                         </button>
                     </subviews>
@@ -71,7 +74,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="meO-9p-Wkq">
-                    <rect key="frame" x="0.0" y="84" width="320" height="396"/>
+                    <rect key="frame" x="0.0" y="151" width="320" height="329"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hqr-Og-Mgb">
                         <size key="itemSize" width="50" height="50"/>
@@ -84,22 +87,70 @@
                         <outlet property="delegate" destination="-1" id="ubi-Pu-EAP"/>
                     </connections>
                 </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="har-A1-nAy">
+                    <rect key="frame" x="0.0" y="107" width="320" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="cWS-FV-qPL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="meO-9p-Wkq" firstAttribute="leading" secondItem="vtO-lO-mCy" secondAttribute="leading" id="9Ag-ju-oXH"/>
+                <constraint firstItem="har-A1-nAy" firstAttribute="leading" secondItem="vtO-lO-mCy" secondAttribute="leading" id="8zC-Q5-WnZ"/>
                 <constraint firstItem="OVg-LB-r1H" firstAttribute="top" secondItem="vtO-lO-mCy" secondAttribute="top" id="9EG-ve-L3u"/>
-                <constraint firstItem="meO-9p-Wkq" firstAttribute="trailing" secondItem="vtO-lO-mCy" secondAttribute="trailing" id="h53-HU-zed"/>
+                <constraint firstItem="meO-9p-Wkq" firstAttribute="leading" secondItem="vtO-lO-mCy" secondAttribute="leading" id="Cuf-c8-YGk"/>
+                <constraint firstItem="meO-9p-Wkq" firstAttribute="trailing" secondItem="vtO-lO-mCy" secondAttribute="trailing" id="L2N-ax-Bj0"/>
+                <constraint firstItem="har-A1-nAy" firstAttribute="trailing" secondItem="vtO-lO-mCy" secondAttribute="trailing" id="QR1-8k-RTb"/>
+                <constraint firstItem="meO-9p-Wkq" firstAttribute="bottom" secondItem="vtO-lO-mCy" secondAttribute="bottom" id="XMQ-3E-sF7"/>
+                <constraint firstItem="har-A1-nAy" firstAttribute="top" secondItem="OVg-LB-r1H" secondAttribute="bottom" constant="23" id="YrJ-Mx-p1A"/>
+                <constraint firstItem="meO-9p-Wkq" firstAttribute="top" secondItem="OVg-LB-r1H" secondAttribute="bottom" constant="67" id="e7u-Hn-AXz"/>
                 <constraint firstItem="OVg-LB-r1H" firstAttribute="trailing" secondItem="vtO-lO-mCy" secondAttribute="trailing" id="kG0-YI-2gH"/>
-                <constraint firstItem="meO-9p-Wkq" firstAttribute="bottom" secondItem="vtO-lO-mCy" secondAttribute="bottom" id="pHH-o8-heJ"/>
-                <constraint firstItem="meO-9p-Wkq" firstAttribute="top" secondItem="OVg-LB-r1H" secondAttribute="bottom" id="sOG-zk-6HK"/>
                 <constraint firstItem="OVg-LB-r1H" firstAttribute="leading" secondItem="vtO-lO-mCy" secondAttribute="leading" id="y53-Bg-MR1"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vtO-lO-mCy"/>
         </view>
+        <view contentMode="scaleToFill" id="5aD-IH-vhu">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZS-ww-OtL">
+                    <rect key="frame" x="195" y="0.0" width="98" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="Đăng xuất">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3J-KJ-kVR">
+                    <rect key="frame" x="159" y="5" width="3" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DtJ-Wr-gHG">
+                    <rect key="frame" x="23" y="0.0" width="98" height="50"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="Thoát">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="EXa-d5-lua"/>
+            <point key="canvasLocation" x="-14" y="292"/>
+        </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="v2s-DI-mge">
+            <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <point key="canvasLocation" x="118" y="366"/>
+        </button>
     </objects>
     <resources>
-        <image name="dot" width="16" height="16"/>
+        <image name="menu" width="170" height="170"/>
     </resources>
 </document>

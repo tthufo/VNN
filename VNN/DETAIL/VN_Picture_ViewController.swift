@@ -30,7 +30,7 @@ class VN_Picture_ViewController: UIViewController {
     var theirList = NSMutableArray()
 
     var tempData: NSMutableDictionary!
-    
+
     var isEnemy: Bool = false
     
     var temp = [["ident":"QL_Drop_Cell", "data":[:], "title":"Miền"],
@@ -194,8 +194,10 @@ class VN_Picture_ViewController: UIViewController {
             
             self.regionList.addObjects(from: result!["RESULT"] as! [Any])
             
-            (self.dataList()[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
+            (self.ownList[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
             
+            (self.theirList[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
+
             self.didRequestCity(region: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
             
             self.tableView.reloadData()
@@ -227,22 +229,28 @@ class VN_Picture_ViewController: UIViewController {
                 
                 self.cityList.addObjects(from: result!["RESULT"] as! [Any])
                 
-                (self.dataList()[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
+                (self.ownList[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
+
+                (self.theirList[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
 
                 self.didRequestDistrict(city: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
                 
             } else {
                 self.cityList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
                 
-                (self.dataList()[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
+                (self.ownList[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
+
+                (self.theirList[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
 
                 self.districtList.removeAllObjects()
                 
                 self.districtList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
                 
-                (self.dataList()[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+                (self.ownList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+                
+                (self.theirList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
             }
-
+            
             self.tableView.reloadData()
         }
     }
@@ -269,13 +277,18 @@ class VN_Picture_ViewController: UIViewController {
             if (result!["RESULT"] as! [Any]).count != 0 {
                 self.districtList.addObjects(from: result!["RESULT"] as! [Any])
                 
-                (self.dataList()[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+                (self.ownList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+                
+                (self.theirList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+
             } else {
                 self.districtList.removeAllObjects()
 
                 self.districtList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
                 
-                (self.dataList()[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+                (self.ownList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+                
+                (self.theirList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
             }
             self.tableView.reloadData()
             
@@ -294,6 +307,8 @@ class VN_Picture_ViewController: UIViewController {
          "district_id":self.getID(type: 2),
          "region_id":self.getID(type: 0)]
         
+        print(self.dataList())
+
         LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
                                                    "header":["Authorization":Information.token == nil ? "" : Information.token!],
                                                    "Postparam":dict,
@@ -312,14 +327,10 @@ class VN_Picture_ViewController: UIViewController {
             let result = response?.dictionize()["RESULT"]
 
             if (result as! NSArray).count == 0 {
-                
+                                
                 self.dealerList.removeAllObjects()
-                
-                self.ownList.removeAllObjects()
-                
-                self.ownList.addObjects(from: (self.temp as NSArray).withMutable())
-                
-                self.tableView.reloadData()
+
+                self.reset()
                 
                 return
             }
@@ -332,6 +343,25 @@ class VN_Picture_ViewController: UIViewController {
             
             self.fillInDealer(dealer: dealer as! NSDictionary)
         }
+    }
+    
+    func reset() {
+        
+        (self.ownList[4] as! NSMutableDictionary)["data"] = ""
+        
+        (self.ownList[4] as! NSMutableDictionary)["list"] = []
+        
+        (self.ownList[5] as! NSMutableDictionary)["data"] = ""
+        
+        (self.ownList[6] as! NSMutableDictionary)["data"] = ""
+        
+        (self.ownList[7] as! NSMutableDictionary)["data"] = ""
+        
+//        (self.ownList[8] as! NSMutableDictionary)["data"] = []
+
+        (self.ownList[9] as! NSMutableDictionary)["data"] = ""
+        
+        self.tableView.reloadData()
     }
     
     func getPicture() -> NSDictionary {
@@ -378,7 +408,16 @@ class VN_Picture_ViewController: UIViewController {
     }
     
     @IBAction func didRequestUpdateAgency() {
-
+        
+        if !isEnemy {
+            if (self.dataList()[4] as! NSMutableDictionary).getValueFromKey("data") == "" {
+                
+                self.showToast("Chưa có mã đại lý", andPos: 0)
+                
+                return
+            }
+        }
+        
         let updateData = NSMutableDictionary()
         
         let agencyInfo = ["agencyinfo":["address":(self.dataList()[5] as! NSMutableDictionary)["data"],
@@ -430,15 +469,6 @@ class VN_Picture_ViewController: UIViewController {
         
         print(updateData)
         
-        if !isEnemy {
-            if (self.dataList()[4] as! NSMutableDictionary).getValueFromKey("data") == "" {
-                
-                self.showToast("Chưa có mã đại lý", andPos: 0)
-                
-                return
-            }
-        }
-        
         LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
                                                    "header":["Authorization":Information.token == nil ? "" : Information.token!],
                                                    "Postparam":updateData,
@@ -455,13 +485,13 @@ class VN_Picture_ViewController: UIViewController {
                 return
             }
             
-//            let result = response?.dictionize().getValueFromKey("ERR_CODE")
-//
-//            if result == "0" {
-//                self.navigationController?.popViewController(animated: true)
-//
-//                self.showToast("Cập nhật đại lý thành công", andPos: 0)
-//            }
+            let result = response?.dictionize().getValueFromKey("ERR_CODE")
+
+            if result == "0" {
+                self.navigationController?.popViewController(animated: true)
+
+                self.showToast("Cập nhật đại lý thành công", andPos: 0)
+            }
             
             print(response)
         }
@@ -625,7 +655,12 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
                             return
                         }
                         
-                        (self.dataList()[indexPath.row] as! NSMutableDictionary)["data"] = data
+                        
+                        (self.ownList[indexPath.row] as! NSMutableDictionary)["data"] = data
+                        
+                        (self.theirList[indexPath.row] as! NSMutableDictionary)["data"] = data
+
+                        
                         
                         drop.setTitle((data as! NSDictionary)["title"] as? String, for: .normal)
                         
@@ -640,6 +675,8 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
                         if indexPath.row == 2 {
                             self.didRequestAgency()
                         }
+                        
+                        self.tableView.reloadData()
                     }
                 })
             }
@@ -730,7 +767,7 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
             let image = (self.withView(cell, tag: 4) as! UIImageView)
 
             if data["data"] as! String != "" {
-                image.image = (data["data"] as! String).stringImage()
+                image.image = (data["data"] as! NSString).replacingOccurrences(of: "data:image/png;base64,", with: "").stringImage()
             } else {
                 image.image = nil
             }

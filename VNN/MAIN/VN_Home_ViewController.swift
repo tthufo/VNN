@@ -10,7 +10,13 @@ import UIKit
 
 class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet var bottomView: UIView!
+    
+    @IBOutlet var overLay: UIButton!
+    
     @IBOutlet var collectionView: UICollectionView!
+    
+    @IBOutlet var user: UILabel!
     
     var timer: Timer?
     
@@ -24,6 +30,59 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
         collectionView.withCell("TG_Image_Cell")
         
         didRequestInfo()
+        
+        user.text = "User: %@".format(parameters: Information.userInfo?["username"] as! CVarArg)
+        
+        bottomView.frame = CGRect.init(x: 0, y: CGFloat(self.screenHeight() - 0), width: CGFloat(self.screenWidth()), height: 50)
+        
+        self.view.addSubview(bottomView)
+        
+        
+        overLay.frame = CGRect.init(x: 0, y: 0, width: CGFloat(self.screenWidth()), height: CGFloat(self.screenHeight() - 0))
+        
+        overLay.backgroundColor = UIColor.black
+        
+        overLay.alpha = 0.6
+        
+        overLay.action(forTouch: [:]) { (objc) in
+            self.didPressLogOut()
+            
+            self.view.endEditing(true)
+        }
+        
+        (self.withView(bottomView, tag: 1) as! UIButton).action(forTouch: [:]) { (objc) in
+            exit(0)
+        }
+        
+        (self.withView(bottomView, tag: 2) as! UIButton).action(forTouch: [:]) { (objc) in
+            
+            self.navigationController?.popToRootViewController(animated: true)
+            
+            Information.removeInfo()
+        }
+    }
+    
+    @IBAction func didPressLogOut() {
+        self.view.endEditing(true)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            var frame = self.bottomView.frame
+            
+            frame.origin.y -= frame.origin.y == CGFloat(self.screenHeight()) ? 50 : -50
+            
+            self.bottomView.frame = frame
+            
+        }) { (done) in
+            
+            let frame = self.bottomView.frame
+            
+            if frame.origin.y == CGFloat(self.screenHeight()) {
+                self.overLay.removeFromSuperview()
+            } else {
+                self.view.insertSubview(self.overLay, belowSubview: self.bottomView)
+            }
+        }
     }
     
     func didRequestInfo() {
@@ -122,21 +181,14 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
             self.navigationController?.pushViewController(VN_Care_ViewController(), animated: true)
             break
         case 2:
+            self.navigationController?.pushViewController(VN_Expand_ViewController(), animated: true)
             break
         case 3:
+            self.navigationController?.pushViewController(VN_Report_ViewController(), animated: true)
             break
         default:
             break
         }
-        
-//        if indexPath.item == 3 {
-//            let info = VN_Report_ViewController()
-//
-//            self.navigationController?.pushViewController(info, animated: true)
-//
-//        } else {
-
-//        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -35,8 +35,8 @@
                                 <action selector="didPressBack" destination="-1" eventType="touchUpInside" id="Ct8-gG-jhp"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VVN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXA-YM-bOA">
-                            <rect key="frame" x="142.5" y="32" width="36" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chăm sóc đại lý" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXA-YM-bOA">
+                            <rect key="frame" x="98" y="32" width="125.5" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="1Gq-Ar-G84"/>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="cqO-TH-xtW"/>

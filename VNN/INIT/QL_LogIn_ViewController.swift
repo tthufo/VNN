@@ -25,10 +25,6 @@ class QL_LogIn_ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if logged() {
-            self.navigationController?.pushViewController(VN_Home_ViewController(), animated: false)
-        }
-        
         let appInfo = self.appInfor()! as NSDictionary
         
         app.text = "Phiên bản %@".format(parameters: appInfo.getValueFromKey("majorVersion"))
@@ -41,22 +37,24 @@ class QL_LogIn_ViewController: UIViewController, UITextFieldDelegate {
             self.addValue("1", andKey: "auto")
         }
         
-//        if self.getValue("auto") == "1" {
-//            uName.text = self.getValue("name")
-//            pass.text = self.getValue("pass")
-//        }
+        if self.getValue("auto") == "1" {
+            uName.text = self.getValue("name")
+            pass.text = self.getValue("pass")
+        }
      
-        check.setImage(UIImage.init(named: (self.getValue("auto") == nil || self.getValue("auto") == "0") ? "check_in" : "check_ac"), for: .normal)
+        check.setImage(UIImage.init(named: (self.getValue("auto") == nil || self.getValue("auto") == "0") ? "check_in_b" : "check_ac_b"), for: .normal)
         
         self.view.action(forTouch: [:]) { (obj) in
             self.view.endEditing(true)
         }
         
-        //didRequestInfo()
+        if logged() {
+            self.didRequestLogin()
+        }
     }
     
     @IBAction func didPressCheck() {
-        check.setImage(UIImage.init(named: self.getValue("auto") == "1" ? "check_in" : "check_ac"), for: .normal)
+        check.setImage(UIImage.init(named: self.getValue("auto") == "1" ? "check_in_b" : "check_ac_b"), for: .normal)
         
         self.addValue(self.getValue("auto") == "0" ? "1" : "0", andKey: "auto")
     }
@@ -111,6 +109,10 @@ class QL_LogIn_ViewController: UIViewController, UITextFieldDelegate {
             
             self.add(result!["RESULT"] as! [AnyHashable : Any], andKey: "info")
             
+            self.addValue(self.uName.text, andKey: "name")
+            
+            self.addValue(self.pass.text, andKey: "pass")
+
             Information.saveToken()
             
             Information.saveInfo()
@@ -118,44 +120,6 @@ class QL_LogIn_ViewController: UIViewController, UITextFieldDelegate {
             self.navigationController?.pushViewController(VN_Home_ViewController(), animated: true)
         }
     }
-    
-//    func didAuthorize() {
-//        self.showSVHUD("Đang đăng nhập", andOption: 0)
-//
-//        let config = OIDServiceConfiguration.init(authorizationEndpoint: URL.init(string: "%@/connect/authorize".format(parameters: authenHost))!, tokenEndpoint: URL.init(string: "%@/connect/token".format(parameters: authenHost))!)
-//
-//        let token1 = OIDTokenRequest.init(configuration: config, grantType: "password", authorizationCode: nil, redirectURL: nil, clientID: "htgt.bn.app", clientSecret: "secret", scopes: nil, refreshToken: nil, codeVerifier: nil, additionalParameters: ["username":uName.text!,"password":pass.text!])
-//
-//        OIDAuthorizationService.perform(token1) { (response, error) in
-//
-//            if error != nil {
-//
-//                self.hideSVHUD()
-//
-//                self.showToast("Đăng nhập không thành công", andPos: 0)
-//
-//                return
-//            }
-//
-//            if self.getValue("auto") == "0" {
-//                self.removeValue("name")
-//                self.removeValue("pass")
-//            } else {
-//                self.addValue(self.uName.text, andKey: "name")
-//                self.addValue(self.pass.text, andKey: "pass")
-//            }
-//
-//            self.addValue(response?.accessToken, andKey: "token")
-//
-//            self.addValue(self.uName.text, andKey: "userName")
-//
-//            Information.saveToken()
-//
-//            self.hideSVHUD()
-//
-//            self.navigationController?.pushViewController(QL_Home_ViewController(), animated: true)
-//        }
-//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     
