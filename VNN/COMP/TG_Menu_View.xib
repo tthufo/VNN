@@ -325,5 +325,68 @@
             <viewLayoutGuide key="safeArea" id="76U-lF-JAw"/>
             <point key="canvasLocation" x="-890" y="1287"/>
         </view>
+        <view contentMode="scaleToFill" id="gcY-Od-f1l">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vật phẩm 997 còn duy trì" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdf-8d-Mfj">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                    <color key="backgroundColor" red="0.89232700890000005" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="fQk-fI-rxQ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" tag="30" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N3z-9u-aDP">
+                    <rect key="frame" x="0.0" y="58" width="300" height="285"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <button opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZH-K7-ur8">
+                    <rect key="frame" x="213" y="353" width="80" height="36"/>
+                    <color key="backgroundColor" red="0.90980392160000001" green="0.49019607840000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="1jb-BU-Zom"/>
+                        <constraint firstAttribute="width" constant="80" id="PRO-yI-aVk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <state key="normal" title="Hủy">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+                <button opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8E-BR-14D">
+                    <rect key="frame" x="7" y="353" width="80" height="36"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.90980392160000001" green="0.49019607840000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <state key="normal" title="Xong">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Me4-7P-vGE" firstAttribute="trailing" secondItem="LZH-K7-ur8" secondAttribute="trailing" constant="7" id="HKC-r9-XV3"/>
+                <constraint firstItem="bdf-8d-Mfj" firstAttribute="top" secondItem="Me4-7P-vGE" secondAttribute="top" id="Rdc-k0-xAO"/>
+                <constraint firstItem="Me4-7P-vGE" firstAttribute="bottom" secondItem="LZH-K7-ur8" secondAttribute="bottom" constant="11" id="TgL-fM-rLf"/>
+                <constraint firstItem="bdf-8d-Mfj" firstAttribute="trailing" secondItem="Me4-7P-vGE" secondAttribute="trailing" id="gyU-e7-1kC"/>
+                <constraint firstItem="bdf-8d-Mfj" firstAttribute="leading" secondItem="Me4-7P-vGE" secondAttribute="leading" id="kAv-wu-0GW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Me4-7P-vGE"/>
+            <point key="canvasLocation" x="-1233" y="1287"/>
+        </view>
     </objects>
 </document>

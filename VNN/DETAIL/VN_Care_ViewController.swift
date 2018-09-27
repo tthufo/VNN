@@ -1,15 +1,28 @@
 //
-//  VN_Picture_ViewController.swift
+//  VN_Care_ViewController.swift
 //  VNN
 //
-//  Created by Thanh Hai Tran on 9/22/18.
+//  Created by Thanh Hai Tran on 9/27/18.
 //  Copyright © 2018 Thanh Hai Tran. All rights reserved.
 //
 
 import UIKit
 
-class VN_Picture_ViewController: UIViewController {
-
+class VN_Care_ViewController: UIViewController {
+    
+    let dataModel = [["title":"997", "id":"0", "key":"997"],
+                     ["title":"8179", "id":"1", "key":"8179"],
+                     ["title":"6020", "id":"2", "key":"6020"],
+                     ["title":"6089", "id":"3", "key":"6089"],
+                     ["title":"8036", "id":"4", "key":"8036"],
+                     ["title":"6095", "id":"5", "key":"6095"],
+                     ["title":"7039", "id":"6", "key":"7039"],
+                     ["title":"8048", "id":"7", "key":"8048"],
+                     ["title":"5055", "id":"8", "key":"5055"],
+                     ["title":"8x12", "id":"9", "key":"8x12"],
+                     ["title":"6x66", "id":"10", "key":"6x66"],
+                     ["title":"Đầu số khác", "id":"11", "key":"Đầu số khác"]]
+    
     let statusDealer = [["title":"Đại lý có sẵn", "id":1], ["title":"Đại lý đối thủ", "id":2]]
     
     @IBOutlet var tableView: UITableView!
@@ -17,47 +30,65 @@ class VN_Picture_ViewController: UIViewController {
     var regionList = NSMutableArray()
     
     var cityList = NSMutableArray()
-
+    
     var districtList = NSMutableArray()
     
     var kb: KeyBoard!
-
+    
     var dealerList = NSMutableArray()
     
     
     var ownList = NSMutableArray()
     
     var theirList = NSMutableArray()
-
+    
     var tempData: NSMutableDictionary!
     
     var isEnemy: Bool = false
     
     var temp = [["ident":"QL_Drop_Cell", "data":[:], "title":"Miền"],
-                    ["ident":"QL_Drop_Cell", "data":[:], "title":"Tỉnh"],
-                    ["ident":"QL_Drop_Cell", "data":[:], "title":"Quận/Huyện"],
-                    ["ident":"QL_Box_Cell", "data":["title":"Đại lý có sẵn", "id":1], "title":"Tình trạng đại lý"],
-                    ["ident":"QL_Code_Cell", "data":"", "list":[], "title":"Mã đại lý"],
-                    ["ident":"QL_Input_Cell", "data":"", "title":"Địa chỉ đại lý"],
-                    ["ident":"QL_Input_Cell", "data":"", "title":"Tên đại lý"],
-                    ["ident":"QL_Input_Cell", "data":"", "number":1, "title":"Số điện thoại"],
-                    ["ident":"TG_Room_Cell_N", "data":[], "title":"Tình trạng vật phẩm"],
-                    ["ident":"QL_Input_Cell", "data":"", "title":"Ghi chú"]]
-    
-    
-    var temp1 = [["ident":"QL_Drop_Cell", "data":[:], "title":"Miền"],
                 ["ident":"QL_Drop_Cell", "data":[:], "title":"Tỉnh"],
                 ["ident":"QL_Drop_Cell", "data":[:], "title":"Quận/Huyện"],
-                ["ident":"QL_Box_Cell", "data":["title":"Đại lý có sẵn", "id":1], "title":"Tình trạng đại lý"],
                 ["ident":"QL_Code_Cell", "data":"", "list":[], "title":"Mã đại lý"],
                 ["ident":"QL_Input_Cell", "data":"", "title":"Địa chỉ đại lý"],
                 ["ident":"QL_Input_Cell", "data":"", "title":"Tên đại lý"],
                 ["ident":"QL_Input_Cell", "data":"", "number":1, "title":"Số điện thoại"],
+                ["ident":"QL_Box_Cell", "data":["title":"Gọi điện", "id":1], "list":[["title":"Gọi điện", "id":1], ["title":"Trực tiêp", "id":2]], "title":"Hình thức chăm sóc"],
                 ["ident":"TG_Room_Cell_N", "data":[], "title":"Tình trạng vật phẩm"],
-                ["ident":"QL_Input_Cell", "data":"", "title":"Ghi chú"],
-                ["ident":"QL_Image_Cell", "id":1, "data":"", "title":"Ảnh vật phẩm"],
-                ["ident":"QL_Image_Cell", "id":2, "data":"", "title":"Ảnh toàn cảnh"],
-                ["ident":"QL_Image_Cell", "id":3, "data":"", "title":"Ảnh trực diện tủ vé"]]
+                ["ident":"QL_Box_Cell", "data":["title":"997", "id":1], "list":[["title":"997", "id":"0", "key":"997"],
+                                                                                ["title":"8179", "id":"1", "key":"8179"],
+                                                                                ["title":"6020", "id":"2", "key":"6020"],
+                                                                                ["title":"6089", "id":"3", "key":"6089"],
+                                                                                ["title":"8036", "id":"4", "key":"8036"],
+                                                                                ["title":"6095", "id":"5", "key":"6095"],
+                                                                                ["title":"7039", "id":"6", "key":"7039"],
+                                                                                ["title":"8048", "id":"7", "key":"8048"],
+                                                                                ["title":"5055", "id":"8", "key":"5055"],
+                                                                                ["title":"8x12", "id":"9", "key":"8x12"],
+                                                                                ["title":"6x66", "id":"10", "key":"6x66"],
+                                                                                ["title":"Đầu số khác", "id":"11", "key":"Đầu số khác"]], "title":"Đối thủ liên hệ đại lý"],
+                ["ident":"QL_Input_Cell", "data":"", "title":"Lý do 997 mất quảng cáo"],
+                ["ident":"QL_Input_Cell", "data":"", "title":"Ghi chú"]]
+    
+    
+    var temp1 = [["ident":"QL_Drop_Cell", "data":[:], "title":"Miền"],
+                 ["ident":"QL_Drop_Cell", "data":[:], "title":"Tỉnh"],
+                 ["ident":"QL_Drop_Cell", "data":[:], "title":"Quận/Huyện"],
+                 ["ident":"QL_Code_Cell", "data":"", "list":[], "title":"Mã đại lý"],
+                 ["ident":"QL_Input_Cell", "data":"", "title":"Địa chỉ đại lý"],
+                 ["ident":"QL_Input_Cell", "data":"", "title":"Tên đại lý"],
+                 ["ident":"QL_Input_Cell", "data":"", "number":1, "title":"Số điện thoại"],
+                 ["ident":"QL_Box_Cell", "data":["title":"Gọi điện", "id":1], "title":"Hình thức chăm sóc"],
+                 ["ident":"TG_Room_Cell_N", "data":[], "title":"Tình trạng vật phẩm"],
+                 ["ident":"QL_Box_Cell", "data":["title":"997", "id":1], "title":"Đối thủ liên hệ đại lý"],
+                 ["ident":"QL_Input_Cell", "data":"", "title":"Lý do 997 mất quảng cáo"],
+                 ["ident":"QL_Input_Cell", "data":"", "title":"Ghi chú"],
+                 
+                 
+                 
+                 ["ident":"QL_Image_Cell", "id":1, "data":"", "title":"Ảnh vật phẩm"],
+                 ["ident":"QL_Image_Cell", "id":2, "data":"", "title":"Ảnh toàn cảnh"],
+                 ["ident":"QL_Image_Cell", "id":3, "data":"", "title":"Ảnh trực diện tủ vé"]]
     
     func fillInDealer(dealer: NSDictionary) {
         
@@ -90,13 +121,13 @@ class VN_Picture_ViewController: UIViewController {
         }
         
         (self.dataList()[4] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("agency_code")
-
+        
         (self.dataList()[5] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("address")
-
+        
         (self.dataList()[6] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("agency_name")
-
+        
         (self.dataList()[7] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("phonenumber")
-
+        
         (self.dataList()[9] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("ghi_chu")
         
         self.tableView.reloadData()
@@ -117,17 +148,17 @@ class VN_Picture_ViewController: UIViewController {
         self.tableView.withCell("QL_Box_Cell")
         
         self.ownList.addObjects(from: (self.temp as NSArray).withMutable())
-
+        
         self.theirList.addObjects(from: (self.temp1 as NSArray).withMutable())
-
+        
         didRequestRegion()
     }
     
     func dataList() -> NSMutableArray {
         if !isEnemy {
-           return self.ownList
+            return self.ownList
         } else {
-           return self.theirList
+            return self.theirList
         }
     }
     
@@ -141,7 +172,7 @@ class VN_Picture_ViewController: UIViewController {
         
         return id as! String
     }
-
+    
     func getNAME(type: Int) -> String {
         let data = ((self.dataList()[type] as! NSDictionary)["data"] as! NSDictionary)
         
@@ -168,7 +199,7 @@ class VN_Picture_ViewController: UIViewController {
     }
     
     @IBAction func didPressBack() {
-       self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func didRequestRegion() {
@@ -215,7 +246,7 @@ class VN_Picture_ViewController: UIViewController {
             if error != nil {
                 
                 self.hideSVHUD()
-
+                
                 return
             }
             
@@ -228,21 +259,21 @@ class VN_Picture_ViewController: UIViewController {
                 self.cityList.addObjects(from: result!["RESULT"] as! [Any])
                 
                 (self.dataList()[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
-
+                
                 self.didRequestDistrict(city: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
                 
             } else {
                 self.cityList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
                 
                 (self.dataList()[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
-
+                
                 self.districtList.removeAllObjects()
                 
                 self.districtList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
                 
                 (self.dataList()[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
             }
-
+            
             self.tableView.reloadData()
         }
     }
@@ -258,7 +289,7 @@ class VN_Picture_ViewController: UIViewController {
         }) { (response, errorCode, error, isValid) in
             
             self.hideSVHUD()
-
+            
             if error != nil {
                 return
             }
@@ -272,7 +303,7 @@ class VN_Picture_ViewController: UIViewController {
                 (self.dataList()[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
             } else {
                 self.districtList.removeAllObjects()
-
+                
                 self.districtList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
                 
                 (self.dataList()[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
@@ -285,14 +316,14 @@ class VN_Picture_ViewController: UIViewController {
     
     func didRequestAgency() {
         
-      let dict = ["CMD_CODE":"searchagency",
-         "user_id":INFO()["id"],
-         "page_size":500,
-         "agency_type": isEnemy ? 2 : 1,
-         "module_id":1,
-         "city_id":self.getID(type: 1),
-         "district_id":self.getID(type: 2),
-         "region_id":self.getID(type: 0)]
+        let dict = ["CMD_CODE":"searchagency",
+                    "user_id":INFO()["id"],
+                    "page_size":500,
+                    "agency_type": isEnemy ? 2 : 1,
+                    "module_id":2,
+                    "city_id":self.getID(type: 1),
+                    "district_id":self.getID(type: 2),
+                    "region_id":self.getID(type: 0)]
         
         LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
                                                    "header":["Authorization":Information.token == nil ? "" : Information.token!],
@@ -310,7 +341,7 @@ class VN_Picture_ViewController: UIViewController {
                 return
             }
             let result = response?.dictionize()["RESULT"]
-
+            
             if (result as! NSArray).count == 0 {
                 return
             }
@@ -362,14 +393,14 @@ class VN_Picture_ViewController: UIViewController {
                        "popupType":0,
                        "isSelected":false,
                        "indexList":0
-                       ])
+                ])
         }
         
         return ["vat_pham":items]
     }
     
     @IBAction func didRequestUpdateAgency() {
-
+        
         let updateData = NSMutableDictionary()
         
         let agencyInfo = ["agencyinfo":["address":(self.dataList()[5] as! NSMutableDictionary)["data"],
@@ -396,26 +427,22 @@ class VN_Picture_ViewController: UIViewController {
                                         "status_detail": "",
                                         "time_process": "",
                                         "id_job": self.isEnemy ? 0 : self.tempData["id_job"]
-                                        ]]
-                
+            ]]
+        
         let header = NSMutableDictionary()
         
         header.addEntries(from: (agencyInfo as NSDictionary).reFormat() as! [AnyHashable : Any])
         
         (header["agencyinfo"] as! NSMutableDictionary).addEntries(from: self.getPicture() as! [AnyHashable : Any])
-
+        
         (header["agencyinfo"] as! NSMutableDictionary).addEntries(from: self.getItem() as! [AnyHashable : Any])
-
+        
         let dict = ["CMD_CODE":"updateagencyInfo",
                     "user_id":INFO()["id"],
                     "location": "-1.0@-1.0",
                     "id": 0]
         
         updateData.addEntries(from: header as! [AnyHashable : Any])
-        
-//        updateData.addEntries(from: inputPicture as! [AnyHashable : Any])
-//
-//        updateData.addEntries(from: inputItem as! [AnyHashable : Any])
 
         updateData.addEntries(from: dict)
         
@@ -438,21 +465,21 @@ class VN_Picture_ViewController: UIViewController {
                                                    "overrideLoading":1,
                                                    "postFix":"processRequest"
             ], withCache: { (cache) in
-
+                
         }) { (response, errorCode, error, isValid) in
-
+            
             if error != nil {
-
+                
                 return
             }
             
-//            let result = response?.dictionize().getValueFromKey("ERR_CODE")
-//
-//            if result == "0" {
-//                self.navigationController?.popViewController(animated: true)
-//
-//                self.showToast("Cập nhật đại lý thành công", andPos: 0)
-//            }
+            //            let result = response?.dictionize().getValueFromKey("ERR_CODE")
+            //
+            //            if result == "0" {
+            //                self.navigationController?.popViewController(animated: true)
+            //
+            //                self.showToast("Cập nhật đại lý thành công", andPos: 0)
+            //            }
             
             print(response)
         }
@@ -460,7 +487,7 @@ class VN_Picture_ViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
+        
     }
     
     func didAskForMedia(indexing: String) {
@@ -534,7 +561,7 @@ class VN_Picture_ViewController: UIViewController {
     }
 }
 
-extension VN_Picture_ViewController: UITextFieldDelegate {
+extension VN_Care_ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         
@@ -555,12 +582,12 @@ extension VN_Picture_ViewController: UITextFieldDelegate {
     }
 }
 
-extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate {
+extension VN_Care_ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let data = self.dataList()[indexPath.row] as! NSDictionary
-
+        
         if data["ident"] as! String == "QL_Image_Cell" {
             return data["data"] as! String == "" ? 55 : 234
         }
@@ -583,15 +610,15 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
         
         if data["ident"] as! String == "QL_Input_Cell" {
             let input = (self.withView(cell, tag: 2) as! UITextField)
-
+            
             let isNumber = data.response(forKey: "number")
-
+            
             input.keyboardType = isNumber ? .numberPad : .default
-
+            
             input.accessibilityLabel = "%i".format(parameters: indexPath.row)
-
+            
             input.delegate = self
-
+            
             input.text = data["data"] as? String
         }
         
@@ -644,14 +671,14 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
             drop.setTitle(dropData["title"] as? String, for: .normal)
             
             drop.action(forTouch: [:]) { (objc) in
-                drop.didDropDown(withData: self.statusDealer, andCompletion: { (result) in
+                drop.didDropDown(withData: dropData["list"] as! [Any], andCompletion: { (result) in
                     if result != nil {
                         let data = (result as! NSDictionary)["data"]
                         
                         self.isEnemy = (data as! NSDictionary).getValueFromKey("id") == "2"
-
+                        
                         (self.dataList()[indexPath.row] as! NSMutableDictionary)["data"] = data
-
+                        
                         drop.setTitle((data as! NSDictionary)["title"] as? String, for: .normal)
                         
                         self.perform(#selector(self.didReloadData), with: nil, afterDelay: 0.5)
@@ -659,7 +686,7 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
                 })
             }
         }
-
+        
         if data["ident"] as! String == "QL_Code_Cell" {
             let code = (self.withView(cell, tag: 2) as! UIButton)
             
@@ -678,16 +705,16 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
                 })
             }
         }
-
+        
         if data["ident"] as! String == "TG_Room_Cell_N" {
             let items = (self.dataList()[indexPath.row] as! NSMutableDictionary)["data"] as! NSMutableArray
-
-            (cell as! TG_Room_Cell_N).images = items
             
-            (cell as! TG_Room_Cell_N).reload()
+//            (cell as! TG_Room_Cell_N).images = items
+//
+//            (cell as! TG_Room_Cell_N).reload()
             
             let group = (self.withView(cell, tag: 2) as! UIImageView)
-
+            
             (cell as! TG_Room_Cell_N).delegate = self
             
             group.action(forTouch: [:]) { (objc) in
@@ -695,35 +722,29 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
                     
                     (self.dataList()[indexPath.row] as! NSMutableDictionary)["data"] = result
                     
-                    (cell as! TG_Room_Cell_N).images = result
-                    
-                    (cell as! TG_Room_Cell_N).reload()
+//                    (cell as! TG_Room_Cell_N).images = result
+//
+//                    (cell as! TG_Room_Cell_N).reload()
                 })
             }
         }
-
-        if data["ident"] as! String == "QL_Image_Cell" {
-
-//            let gallery = (self.withView(cell, tag: 2) as! UIButton)
+        
+//        if data["ident"] as! String == "QL_Image_Cell" {
 //
-//            gallery.action(forTouch: [:]) { (objc) in
-//                self.didAskForMedia(indexing: "%i".format(parameters: indexPath.row))
+//            let cam = (self.withView(cell, tag: 3) as! UIButton)
+//
+//            cam.action(forTouch: [:]) { (objc) in
+//                self.didAskForCamera(indexing: "%i".format(parameters: indexPath.row))
 //            }
-
-            let cam = (self.withView(cell, tag: 3) as! UIButton)
-
-            cam.action(forTouch: [:]) { (objc) in
-                self.didAskForCamera(indexing: "%i".format(parameters: indexPath.row))
-            }
-
-            let image = (self.withView(cell, tag: 4) as! UIImageView)
-
-            if data["data"] as! String != "" {
-                image.image = (data["data"] as! String).stringImage()
-            } else {
-                image.image = nil
-            }
-        }
+//
+//            let image = (self.withView(cell, tag: 4) as! UIImageView)
+//
+//            if data["data"] as! String != "" {
+//                image.image = (data["data"] as! String).stringImage()
+//            } else {
+//                image.image = nil
+//            }
+//        }
         
         return cell
     }
@@ -737,13 +758,13 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
     }
 }
 
-extension VN_Picture_ViewController: CellDelegate {
+extension VN_Care_ViewController: CellDelegate {
     func didReloadDataCell(data: NSMutableArray, indexing: Int) {
         (self.dataList()[indexing] as! NSMutableDictionary)["data"] = data
     }
 }
 
-extension VN_Picture_ViewController: CustomIOS7AlertViewDelegate {
+extension VN_Care_ViewController: CustomIOS7AlertViewDelegate {
     func customIOS7dialogButtonTouchUp(inside alertView: Any!, clickedButtonAt buttonIndex: Int) {
         
         let data = alertView as! NSDictionary
@@ -751,3 +772,4 @@ extension VN_Picture_ViewController: CustomIOS7AlertViewDelegate {
         self.fillInDealer(dealer: data)
     }
 }
+

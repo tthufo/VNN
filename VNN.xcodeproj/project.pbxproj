@@ -38,6 +38,8 @@
 		FC43940E21556B0A00A5848E /* QL_Drop_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC43940C21556B0900A5848E /* QL_Drop_Cell.xib */; };
 		FC43940F21556B0A00A5848E /* QL_Input_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC43940D21556B0A00A5848E /* QL_Input_Cell.xib */; };
 		FC768482215C15A400A2FAC4 /* TG_Item_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC768481215C15A400A2FAC4 /* TG_Item_Cell.xib */; };
+		FC985AB5215C9BFC0022A132 /* VN_Care_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC985AB3215C9BFC0022A132 /* VN_Care_ViewController.swift */; };
+		FC985AB6215C9BFC0022A132 /* VN_Care_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC985AB4215C9BFC0022A132 /* VN_Care_ViewController.xib */; };
 		FCAE59B9215A92280032D37D /* QL_Box_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCAE59B8215A92280032D37D /* QL_Box_Cell.xib */; };
 		FCAE59BB215A95000032D37D /* QL_Code_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCAE59BA215A95000032D37D /* QL_Code_Cell.xib */; };
 		FCAE59BF215A9EC80032D37D /* TG_PopUp_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE59BD215A9EC70032D37D /* TG_PopUp_View.swift */; };
@@ -110,6 +112,8 @@
 		FC43940C21556B0900A5848E /* QL_Drop_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QL_Drop_Cell.xib; sourceTree = "<group>"; };
 		FC43940D21556B0A00A5848E /* QL_Input_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QL_Input_Cell.xib; sourceTree = "<group>"; };
 		FC768481215C15A400A2FAC4 /* TG_Item_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TG_Item_Cell.xib; sourceTree = "<group>"; };
+		FC985AB3215C9BFC0022A132 /* VN_Care_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VN_Care_ViewController.swift; sourceTree = "<group>"; };
+		FC985AB4215C9BFC0022A132 /* VN_Care_ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VN_Care_ViewController.xib; sourceTree = "<group>"; };
 		FCAE59B8215A92280032D37D /* QL_Box_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QL_Box_Cell.xib; sourceTree = "<group>"; };
 		FCAE59BA215A95000032D37D /* QL_Code_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QL_Code_Cell.xib; sourceTree = "<group>"; };
 		FCAE59BD215A9EC70032D37D /* TG_PopUp_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TG_PopUp_View.swift; sourceTree = "<group>"; };
@@ -276,6 +280,8 @@
 				FC2CED592159430400E332A8 /* QL_Image_Cell.xib */,
 				FC2CED5B215948AF00E332A8 /* format.plist */,
 				FC2CED5D215948BB00E332A8 /* TG_Drop_Cell.xib */,
+				FC985AB3215C9BFC0022A132 /* VN_Care_ViewController.swift */,
+				FC985AB4215C9BFC0022A132 /* VN_Care_ViewController.xib */,
 			);
 			path = DETAIL;
 			sourceTree = "<group>";
@@ -415,6 +421,7 @@
 				FC439403215562C000A5848E /* TL_ChangeHost_ViewController.xib in Resources */,
 				FC768482215C15A400A2FAC4 /* TG_Item_Cell.xib in Resources */,
 				FCAE59BB215A95000032D37D /* QL_Code_Cell.xib in Resources */,
+				FC985AB6215C9BFC0022A132 /* VN_Care_ViewController.xib in Resources */,
 				FC43940E21556B0A00A5848E /* QL_Drop_Cell.xib in Resources */,
 				FC2CED5C215948AF00E332A8 /* format.plist in Resources */,
 				FC2CED5A2159430400E332A8 /* QL_Image_Cell.xib in Resources */,
@@ -539,6 +546,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC2CED62215957A600E332A8 /* VN_Report_ViewController.swift in Sources */,
+				FC985AB5215C9BFC0022A132 /* VN_Care_ViewController.swift in Sources */,
 				FC4393FB2155612700A5848E /* Information.swift in Sources */,
 				FC4393FF2155616C00A5848E /* VN_Home_ViewController.swift in Sources */,
 				FC43940A2155687300A5848E /* VN_Picture_ViewController.swift in Sources */,

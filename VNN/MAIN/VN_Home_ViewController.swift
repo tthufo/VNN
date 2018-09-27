@@ -23,7 +23,7 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         collectionView.withCell("TG_Image_Cell")
         
-        //didRequestInfo()
+        didRequestInfo()
     }
     
     func didRequestInfo() {
@@ -112,17 +112,29 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        if indexPath.item == 3 {
-            let info = VN_Report_ViewController()
-            
-            self.navigationController?.pushViewController(info, animated: true)
-            
-        } else {
-            let info = VN_Picture_ViewController()
-            
-            self.navigationController?.pushViewController(info, animated: true)
-            
+        switch indexPath.item {
+        case 0:
+            self.navigationController?.pushViewController(VN_Picture_ViewController(), animated: true)
+            break
+        case 1:
+            self.navigationController?.pushViewController(VN_Care_ViewController(), animated: true)
+            break
+        case 2:
+            break
+        case 3:
+            break
+        default:
+            break
         }
+        
+//        if indexPath.item == 3 {
+//            let info = VN_Report_ViewController()
+//
+//            self.navigationController?.pushViewController(info, animated: true)
+//
+//        } else {
+
+//        }
     }
     
     override func didReceiveMemoryWarning() {
