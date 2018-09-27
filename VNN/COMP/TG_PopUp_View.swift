@@ -24,7 +24,7 @@ class TG_PopUp_View: CustomIOS7AlertView, UITextFieldDelegate, UITableViewDelega
                     ["title":"Bèo mái hiên", "active":"0", "data":"997", "key":"beomaihien", "id":"5"],
                     ["title":"Bảng dò số", "active":"0", "data":"997", "key":"bangdoso", "id":"6"],
                     ["title":"Khác", "active":"0", "data":"997", "key":"khac", "id":"7"]
-                   ]
+                    ]
 
     
     let dataModel = [["title":"997", "id":"0", "key":"997"],
@@ -127,13 +127,13 @@ class TG_PopUp_View: CustomIOS7AlertView, UITextFieldDelegate, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: tableView.tag == 3 ? "TG_Drop_Cell" : "TG_Item_Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: tableView.tag == 3 ? "TG_Drop_Cell" : tableView.tag == 30 ? "TG_Item_Cell" : "TG_Remain_Cell", for: indexPath)
         
         if tableView.tag == 3 {
             let data = self.dataList[indexPath.row] as! NSDictionary
             
             (self.withView(cell, tag: 101) as! UILabel).text = data.getValueFromKey("agency_code")
-        } else {
+        } else if tableView.tag == 30 {
             let data = self.checkList[indexPath.row] as! NSDictionary
 
             
@@ -170,6 +170,20 @@ class TG_PopUp_View: CustomIOS7AlertView, UITextFieldDelegate, UITableViewDelega
                         (self.checkList[indexPath.row] as! NSMutableDictionary)["data"] = (output as! NSDictionary)["title"] as? String
                     }
                 })
+            }
+        } else {
+            let data = self.checkList[indexPath.row] as! NSDictionary
+            
+            (self.withView(cell, tag: 101) as! UILabel).text = data.getValueFromKey("title")
+            
+            let check = self.withView(cell, tag: 100) as! UIButton
+
+            check.setImage(UIImage(named: (self.checkList[indexPath.row] as! NSMutableDictionary).getValueFromKey("active") == "0" ? "check_in_b" : "check_ac_b"), for: .normal)
+            
+            check.action(forTouch: [:]) { (objc) in
+                (self.checkList[indexPath.row] as! NSMutableDictionary)["active"] = (self.checkList[indexPath.row] as! NSDictionary).getValueFromKey("active") == "0" ? "1" : "0"
+                
+                tableView.reloadData()
             }
         }
         
@@ -211,6 +225,56 @@ class TG_PopUp_View: CustomIOS7AlertView, UITextFieldDelegate, UITableViewDelega
         
         
         tableView.withCell("TG_Item_Cell")
+        
+        
+        tableView.dataSource = self
+        
+        tableView.delegate = self
+        
+        
+        
+        
+        
+        let done = self.withView(base, tag: 5) as! UIButton
+        
+        done.action(forTouch: [:]) { (obj) in
+            self.close()
+            
+            finished(self.checkList)
+        }
+        
+        
+        let cancel = self.withView(base, tag: 4) as! UIButton
+        
+        cancel.action(forTouch: [:]) { (obj) in
+            self.close()
+        }
+        
+        self.containerView = base
+        
+        self.useMotionEffects = true
+        
+        show()
+    }
+    
+    
+    func initWithRemainItem(content: NSArray, finished: @escaping (_ obj: NSMutableArray) -> Void) {
+        let base = Bundle.main.loadNibNamed("TG_Menu_View",
+                                            owner: nil,
+                                            options: nil)?[4] as! UIView
+        base.frame = CGRect.init(x: 0, y: 0, width: 300, height: 400)
+        
+        
+        if content.count == 0 {
+            self.checkList.addObjects(from: (self.itemList as NSArray).withMutable())
+        } else {
+            self.checkList.addObjects(from: content as! [Any])
+        }
+        
+        let tableView = self.withView(base, tag: 300) as! UITableView
+        
+        
+        tableView.withCell("TG_Remain_Cell")
         
         
         tableView.dataSource = self

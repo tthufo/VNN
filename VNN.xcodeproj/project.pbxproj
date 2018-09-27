@@ -40,6 +40,7 @@
 		FC768482215C15A400A2FAC4 /* TG_Item_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC768481215C15A400A2FAC4 /* TG_Item_Cell.xib */; };
 		FC985AB5215C9BFC0022A132 /* VN_Care_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC985AB3215C9BFC0022A132 /* VN_Care_ViewController.swift */; };
 		FC985AB6215C9BFC0022A132 /* VN_Care_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC985AB4215C9BFC0022A132 /* VN_Care_ViewController.xib */; };
+		FC985AB8215CB8110022A132 /* TG_Remain_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC985AB7215CB8110022A132 /* TG_Remain_Cell.xib */; };
 		FCAE59B9215A92280032D37D /* QL_Box_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCAE59B8215A92280032D37D /* QL_Box_Cell.xib */; };
 		FCAE59BB215A95000032D37D /* QL_Code_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCAE59BA215A95000032D37D /* QL_Code_Cell.xib */; };
 		FCAE59BF215A9EC80032D37D /* TG_PopUp_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE59BD215A9EC70032D37D /* TG_PopUp_View.swift */; };
@@ -114,6 +115,7 @@
 		FC768481215C15A400A2FAC4 /* TG_Item_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TG_Item_Cell.xib; sourceTree = "<group>"; };
 		FC985AB3215C9BFC0022A132 /* VN_Care_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VN_Care_ViewController.swift; sourceTree = "<group>"; };
 		FC985AB4215C9BFC0022A132 /* VN_Care_ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VN_Care_ViewController.xib; sourceTree = "<group>"; };
+		FC985AB7215CB8110022A132 /* TG_Remain_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TG_Remain_Cell.xib; sourceTree = "<group>"; };
 		FCAE59B8215A92280032D37D /* QL_Box_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QL_Box_Cell.xib; sourceTree = "<group>"; };
 		FCAE59BA215A95000032D37D /* QL_Code_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QL_Code_Cell.xib; sourceTree = "<group>"; };
 		FCAE59BD215A9EC70032D37D /* TG_PopUp_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TG_PopUp_View.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				FCAE59C3215AB1490032D37D /* TG_Room_Cell_N.swift */,
 				FCAE59C1215AB1490032D37D /* TG_Room_Cell_N.xib */,
 				FC768481215C15A400A2FAC4 /* TG_Item_Cell.xib */,
+				FC985AB7215CB8110022A132 /* TG_Remain_Cell.xib */,
 			);
 			path = COMP;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC985AB8215CB8110022A132 /* TG_Remain_Cell.xib in Resources */,
 				FC2E6FA02154106B0024DAAA /* LaunchScreen.storyboard in Resources */,
 				FC2CED5E215948BB00E332A8 /* TG_Drop_Cell.xib in Resources */,
 				FC2E6F9D2154106B0024DAAA /* Assets.xcassets in Resources */,

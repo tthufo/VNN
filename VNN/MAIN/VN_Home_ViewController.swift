@@ -67,6 +67,8 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
                 break
             case 4:
                 self.navigationController?.popToRootViewController(animated: true)
+                
+                Information.removeInfo()
                 break
             case 5:
                 exit(0)

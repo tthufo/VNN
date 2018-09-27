@@ -312,6 +312,15 @@ class VN_Picture_ViewController: UIViewController {
             let result = response?.dictionize()["RESULT"]
 
             if (result as! NSArray).count == 0 {
+                
+                self.dealerList.removeAllObjects()
+                
+                self.ownList.removeAllObjects()
+                
+                self.ownList.addObjects(from: (self.temp as NSArray).withMutable())
+                
+                self.tableView.reloadData()
+                
                 return
             }
             
@@ -528,7 +537,7 @@ class VN_Picture_ViewController: UIViewController {
     }
     
     func saveImage(image: UIImage, indexing: String) {
-        (self.dataList()[Int(indexing)!] as! NSMutableDictionary)["data"] = image.imageString()
+        (self.dataList()[Int(indexing)!] as! NSMutableDictionary)["data"] = "data:image/png;base64,%@".format(parameters: image.imageString())
         
         self.tableView.reloadData()
     }
@@ -698,6 +707,8 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
                     (cell as! TG_Room_Cell_N).images = result
                     
                     (cell as! TG_Room_Cell_N).reload()
+                    
+                    self.tableView.reloadData()
                 })
             }
         }

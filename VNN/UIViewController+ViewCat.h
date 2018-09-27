@@ -24,6 +24,8 @@ typedef void(^addressCompletion)(NSDictionary *);
 
 - (void)pulseViewSize:(float)oSize andSize:(float)size andDuration:(float)duration;
 
+- (UITableView *)getTableView;
+
 - (UILabel *)newLabelWithText:(NSString *)text andHint:(NSString*)hint;
     
 @end

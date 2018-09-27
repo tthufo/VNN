@@ -24,6 +24,8 @@ class TG_Room_Cell_N: UITableViewCell , TTGTagCollectionViewDelegate, TTGTagColl
     
     var images: NSMutableArray!
     
+    var noShow: Bool = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -38,11 +40,21 @@ class TG_Room_Cell_N: UITableViewCell , TTGTagCollectionViewDelegate, TTGTagColl
     
     func reload() {
         self.dataList.removeAllObjects()
-
-        if images != nil {
-            for dict in images {
-                if (dict as! NSDictionary).getValueFromKey("active") == "1" {
-                    self.dataList.add(self.contentView.newLabel(withText: "%@ %@".format(parameters: (dict as! NSDictionary)["title"] as! String, (dict as! NSDictionary)["data"] as! String), andHint: (dict as! NSDictionary).getValueFromKey("id")))
+        
+        if noShow {
+            if images != nil {
+                for dict in images {
+                    if (dict as! NSDictionary).getValueFromKey("active") == "1" {
+                        self.dataList.add(self.contentView.newLabel(withText: "%@".format(parameters: (dict as! NSDictionary)["title"] as! String), andHint: (dict as! NSDictionary).getValueFromKey("id")))
+                    }
+                }
+            }
+        } else {
+            if images != nil {
+                for dict in images {
+                    if (dict as! NSDictionary).getValueFromKey("active") == "1" {
+                        self.dataList.add(self.contentView.newLabel(withText: "%@ %@".format(parameters: (dict as! NSDictionary)["title"] as! String, (dict as! NSDictionary)["data"] as! String), andHint: (dict as! NSDictionary).getValueFromKey("id")))
+                    }
                 }
             }
         }
@@ -84,11 +96,8 @@ class TG_Room_Cell_N: UITableViewCell , TTGTagCollectionViewDelegate, TTGTagColl
             
             tagCollectionView.reload()
   
-                self.delegate?.didReloadDataCell(data: self.images, indexing: 8)
-//
-//                return
-//            }
-            
+//            self.delegate?.didReloadDataCell(data: self.images, indexing: 8)
+
 //            guard let cell1 = self.superview as? UITableView else {
 //                let indexing = self.inDexOf(tagCollectionView, andTable: self.superview?.superview as! UITableView)
 //
@@ -97,9 +106,11 @@ class TG_Room_Cell_N: UITableViewCell , TTGTagCollectionViewDelegate, TTGTagColl
 //                return
 //            }
             
-//            let indexing = self.inDexOf(tagCollectionView, andTable: self.superview as! UITableView)
-//
-//            self.delegate?.didReloadDataCell(data: self.images, indexing: Int(indexing))
+            
+            
+            let indexing = self.inDexOf(tagCollectionView, andTable: self.contentView.getTableView())
+
+            self.delegate?.didReloadDataCell(data: self.images, indexing: Int(indexing))
         }
         
         return label

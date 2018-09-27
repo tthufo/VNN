@@ -121,6 +121,32 @@
     
     [[self layer] addAnimation:animation forKey:@"scale"];
 }
+
+- (UITableView *)getTableView {
+    // get the superview of this class, note the camel-case V to differentiate
+    // from the class' superview property.
+    UIView *superView = self.superview;
+    
+    /*
+     check to see that *superView != nil* (if it is then we've walked up the
+     entire chain of views without finding a UITableView object) and whether
+     the superView is a UITableView.
+     */
+    while (superView && ![superView isKindOfClass:[UITableView class]]) {
+        superView = superView.superview;
+    }
+    
+    // if superView != nil, then it means we found the UITableView that contains
+    // the cell.
+    if (superView) {
+        // cast the object and return
+        return (UITableView *)superView;
+    }
+    
+    // we did not find any UITableView
+    return nil;
+}
+
     
 - (UILabel *)newLabelWithText:(NSString *)text andHint:(NSString*)hint
 {

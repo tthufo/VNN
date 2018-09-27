@@ -53,8 +53,8 @@ class VN_Care_ViewController: UIViewController {
                 ["ident":"QL_Input_Cell", "data":"", "title":"Địa chỉ đại lý"],
                 ["ident":"QL_Input_Cell", "data":"", "title":"Tên đại lý"],
                 ["ident":"QL_Input_Cell", "data":"", "number":1, "title":"Số điện thoại"],
-                ["ident":"QL_Box_Cell", "data":["title":"Gọi điện", "id":1], "list":[["title":"Gọi điện", "id":1], ["title":"Trực tiêp", "id":2]], "title":"Hình thức chăm sóc"],
-                ["ident":"TG_Room_Cell_N", "data":[], "title":"Tình trạng vật phẩm"],
+                ["ident":"QL_Box_Cell", "data":["title":"Gọi điện", "id":1], "list":[["title":"Gọi điện", "id":1], ["title":"Trực tiếp", "id":2]], "title":"Hình thức chăm sóc"],
+                ["ident":"TG_Room_Cell_N", "data":[], "title":"Vật phẩm 997 còn duy trì"],
                 ["ident":"QL_Box_Cell", "data":["title":"997", "id":1], "list":[["title":"997", "id":"0", "key":"997"],
                                                                                 ["title":"8179", "id":"1", "key":"8179"],
                                                                                 ["title":"6020", "id":"2", "key":"6020"],
@@ -106,6 +106,8 @@ class VN_Care_ViewController: UIViewController {
         
         let aDealer = dealer.reFormat()
         
+        (aDealer as! NSMutableDictionary)["ly_do_mat_quang_cao"] = ""
+        
         let inputPictures = aDealer!["input_picture"] as! NSArray
         
         for dict in inputPictures {
@@ -120,15 +122,18 @@ class VN_Care_ViewController: UIViewController {
             self.dataList().add(imageCell)
         }
         
-        (self.dataList()[4] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("agency_code")
+//        "doi_thu_lien_he": "997",
+//        "hinh_thuc_cham_xoc": "1",
         
-        (self.dataList()[5] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("address")
+        (self.dataList()[3] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("agency_code")
         
-        (self.dataList()[6] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("agency_name")
+        (self.dataList()[4] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("address")
         
-        (self.dataList()[7] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("phonenumber")
+        (self.dataList()[5] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("agency_name")
         
-        (self.dataList()[9] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("ghi_chu")
+        (self.dataList()[10] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("ly_do_mat_quang_cao")
+
+        (self.dataList()[11] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("ghi_chu")
         
         self.tableView.reloadData()
     }
@@ -343,6 +348,15 @@ class VN_Care_ViewController: UIViewController {
             let result = response?.dictionize()["RESULT"]
             
             if (result as! NSArray).count == 0 {
+                
+                self.dealerList.removeAllObjects()
+                
+                self.ownList.removeAllObjects()
+                
+                self.ownList.addObjects(from: (self.temp as NSArray).withMutable())
+
+                self.tableView.reloadData()
+                
                 return
             }
             
@@ -419,7 +433,7 @@ class VN_Care_ViewController: UIViewController {
                                         "id": "",
                                         "location": "-1.0@-1.0",
                                         "ly_do_mat_quang_cao": "",
-                                        "module_id": 1,
+                                        "module_id": 2,
                                         "phonenumber": (self.dataList()[7] as! NSMutableDictionary)["data"],
                                         "region_id": self.getID(type: 0),
                                         "region_name": self.getNAME(type: 0),
@@ -449,7 +463,7 @@ class VN_Care_ViewController: UIViewController {
         print(updateData)
         
         if !isEnemy {
-            if (self.dataList()[4] as! NSMutableDictionary).getValueFromKey("data") == "" {
+            if (self.dataList()[3] as! NSMutableDictionary).getValueFromKey("data") == "" {
                 
                 self.showToast("Chưa có mã đại lý", andPos: 0)
                 
@@ -589,7 +603,7 @@ extension VN_Care_ViewController: UITableViewDataSource, UITableViewDelegate {
         let data = self.dataList()[indexPath.row] as! NSDictionary
         
         if data["ident"] as! String == "QL_Image_Cell" {
-            return data["data"] as! String == "" ? 55 : 234
+            return CGFloat.leastNormalMagnitude //data["data"] as! String == "" ? 55 : 234
         }
         
         return (self.isEnemy && indexPath.row == 4) ? 0 : UITableViewAutomaticDimension
@@ -666,16 +680,16 @@ extension VN_Care_ViewController: UITableViewDataSource, UITableViewDelegate {
         if data["ident"] as! String == "QL_Box_Cell" {
             let drop = (self.withView(cell, tag: 2) as! DropButton)
             
+            let data = self.dataList()[indexPath.row] as! NSDictionary
+            
             let dropData = data["data"] as! NSDictionary
             
             drop.setTitle(dropData["title"] as? String, for: .normal)
             
             drop.action(forTouch: [:]) { (objc) in
-                drop.didDropDown(withData: dropData["list"] as! [Any], andCompletion: { (result) in
+                drop.didDropDown(withData: data["list"] as! [Any], andCompletion: { (result) in
                     if result != nil {
                         let data = (result as! NSDictionary)["data"]
-                        
-                        self.isEnemy = (data as! NSDictionary).getValueFromKey("id") == "2"
                         
                         (self.dataList()[indexPath.row] as! NSMutableDictionary)["data"] = data
                         
@@ -709,22 +723,29 @@ extension VN_Care_ViewController: UITableViewDataSource, UITableViewDelegate {
         if data["ident"] as! String == "TG_Room_Cell_N" {
             let items = (self.dataList()[indexPath.row] as! NSMutableDictionary)["data"] as! NSMutableArray
             
-//            (cell as! TG_Room_Cell_N).images = items
-//
-//            (cell as! TG_Room_Cell_N).reload()
+            (cell as! TG_Room_Cell_N).images = items
+            
+            (cell as! TG_Room_Cell_N).noShow = true
+
+            (cell as! TG_Room_Cell_N).reload()
             
             let group = (self.withView(cell, tag: 2) as! UIImageView)
             
             (cell as! TG_Room_Cell_N).delegate = self
             
             group.action(forTouch: [:]) { (objc) in
-                TG_PopUp_View().initWithItem(content: items, finished: { (result) in
+                
+                TG_PopUp_View().initWithRemainItem(content: items, finished: { (result) in
                     
                     (self.dataList()[indexPath.row] as! NSMutableDictionary)["data"] = result
                     
-//                    (cell as! TG_Room_Cell_N).images = result
-//
-//                    (cell as! TG_Room_Cell_N).reload()
+                    (cell as! TG_Room_Cell_N).images = result
+
+                    (cell as! TG_Room_Cell_N).noShow = true
+
+                    (cell as! TG_Room_Cell_N).reload()
+                    
+                    self.tableView.reloadData()
                 })
             }
         }
