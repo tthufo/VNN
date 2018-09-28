@@ -100,6 +100,10 @@ class VN_Picture_ViewController: UIViewController {
         (self.dataList()[9] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("ghi_chu")
         
         self.tableView.reloadData()
+        
+        self.tableView.action(forTouch: [:]) { (objc) in
+            self.view.endEditing(true)
+        }
     }
     
     
@@ -627,6 +631,8 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
 
             input.keyboardType = isNumber ? .numberPad : .default
 
+            input.inputAccessoryView = isNumber ? self.toolBar() : nil
+            
             input.accessibilityLabel = "%i".format(parameters: indexPath.row)
 
             input.delegate = self
@@ -647,6 +653,9 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
             let array = indexPath.row == 0 ? self.regionList : indexPath.row == 1 ? self.cityList : self.districtList
             
             drop.action(forTouch: [:]) { (objc) in
+                
+                self.view.endEditing(true)
+                
                 drop.didDropDown(withData: array as! [Any], andCompletion: { (result) in
                     if result != nil {
                         let data = (result as! NSDictionary)["data"]
@@ -690,6 +699,7 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
             drop.setTitle(dropData["title"] as? String, for: .normal)
             
             drop.action(forTouch: [:]) { (objc) in
+                self.view.endEditing(true)
                 drop.didDropDown(withData: self.statusDealer, andCompletion: { (result) in
                     if result != nil {
                         let data = (result as! NSDictionary)["data"]
@@ -714,7 +724,8 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
             code.setTitle(codeData, for: .normal)
             
             code.action(forTouch: [:]) { (objc) in
-                
+                self.view.endEditing(true)
+
                 let pop = TG_PopUp_View()
                 
                 pop?.delegate = self
@@ -737,6 +748,7 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
             (cell as! TG_Room_Cell_N).delegate = self
             
             group.action(forTouch: [:]) { (objc) in
+                self.view.endEditing(true)
                 TG_PopUp_View().initWithItem(content: items, finished: { (result) in
                     
                     (self.dataList()[indexPath.row] as! NSMutableDictionary)["data"] = result
@@ -774,6 +786,22 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
         }
         
         return cell
+    }
+    
+    func toolBar() -> UIToolbar {
+
+        let toolBar = UIToolbar.init(frame: CGRect.init(x: 0, y: 0, width: Int(self.screenWidth()), height: 50))
+        
+        toolBar.barStyle = .default
+        
+        toolBar.items = [UIBarButtonItem.init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+                         UIBarButtonItem.init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+                         UIBarButtonItem.init(title: "Thoát", style: .done, target: self, action: #selector(disMiss))]
+        return toolBar
+    }
+    
+    @objc func disMiss() {
+        self.view.endEditing(true)
     }
     
     @objc func didReloadData() {

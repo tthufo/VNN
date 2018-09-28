@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VN_Report_ViewController" customModule="VNN" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="akv-Mw-Fft" id="2HH-s7-pIy"/>
                 <outlet property="view" destination="Dn5-ux-HXC" id="jXX-wu-6g6"/>
             </connections>
         </placeholder>
@@ -73,6 +74,10 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="akv-Mw-Fft">
                     <rect key="frame" x="0.0" y="125" width="320" height="355"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="dhk-Ux-QpA"/>
+                        <outlet property="delegate" destination="-1" id="T0Y-Wm-B8o"/>
+                    </connections>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RsW-ri-K8m">
                     <rect key="frame" x="5" y="86" width="310" height="40"/>

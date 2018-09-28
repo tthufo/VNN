@@ -175,12 +175,28 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
 
         switch indexPath.item {
         case 0:
+            if INFO().getValueFromKey("type") == "4" {
+                self.showToast("Bạn không đường quyền truy cập chức năng này", andPos: 0)
+                
+                return
+            }
+            
             self.navigationController?.pushViewController(VN_Picture_ViewController(), animated: true)
             break
         case 1:
+            if INFO().getValueFromKey("type") == "2" {
+                self.showToast("Bạn không đường quyền truy cập chức năng này", andPos: 0)
+                
+                return
+            }
             self.navigationController?.pushViewController(VN_Care_ViewController(), animated: true)
             break
         case 2:
+            if INFO().getValueFromKey("type") == "2" {
+                self.showToast("Bạn không đường quyền truy cập chức năng này", andPos: 0)
+                
+                return
+            }
             self.navigationController?.pushViewController(VN_Expand_ViewController(), animated: true)
             break
         case 3:

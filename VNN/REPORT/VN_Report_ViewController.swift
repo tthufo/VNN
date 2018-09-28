@@ -42,17 +42,11 @@ class VN_Report_ViewController: UIViewController {
             }
             let result = response?.dictionize()
             
-//            self.regionList.removeAllObjects()
-//
-//            self.regionList.addObjects(from: result!["RESULT"] as! [Any])
-//
-//            (self.ownList[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
-//
-//            (self.theirList[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
-//
-//            self.didRequestCity(region: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
-//
-//            self.tableView.reloadData()
+            self.dataList.removeAllObjects()
+
+            self.dataList.addObjects(from: result!["RESULT"] as! [Any])
+
+            self.tableView.reloadData()
         }
     }
    
@@ -65,7 +59,7 @@ extension VN_Report_ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return UITableViewAutomaticDimension
+        return 45
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,11 +67,20 @@ extension VN_Report_ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        var cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+        
+        if( !(cell != nil))
+        {
+            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
+        }
         
         let data = self.dataList[indexPath.row] as! NSDictionary
+
+        cell!.textLabel?.text = data["agency_name"] as? String
         
-        return cell
+        cell!.detailTextLabel?.text = data["address"] as? String
+        
+        return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
