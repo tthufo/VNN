@@ -473,7 +473,7 @@ class VN_Care_ViewController: UIViewController {
                                         "ghi_chu": (self.dataList()[11] as! NSMutableDictionary)["data"],
                                         "hinh_thuc_cham_xoc": ((self.dataList()[7] as! NSMutableDictionary)["data"] as! NSDictionary)["id"],
                                         "id": "",
-                                        "location": "-1.0@-1.0",
+                                        "location": self.coor(),
                                         "ly_do_mat_quang_cao": (self.dataList()[10] as! NSMutableDictionary)["data"],
                                         "module_id": 2,
                                         "phonenumber": (self.dataList()[6] as! NSMutableDictionary)["data"],
@@ -495,7 +495,7 @@ class VN_Care_ViewController: UIViewController {
         
         let dict = ["CMD_CODE":"updateagencyInfo",
                     "user_id":INFO()["id"],
-                    "location": "-1.0@-1.0",
+                    "location": self.coor(),
                     "id": 0]
         
         updateData.addEntries(from: header as! [AnyHashable : Any])

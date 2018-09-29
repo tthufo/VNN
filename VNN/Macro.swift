@@ -142,6 +142,22 @@ extension UIImageView {
     }
 }
 
+extension NSObject {
+    func coor() -> String {
+        
+        let location = Permission.shareInstance()
+        
+        if (location?.isLocationEnable())! {
+            
+            let cor = "%f@%f".format(parameters: (location!.currentLocation()["lat"] as? NSNumber)?.floatValue ?? 0, (location!.currentLocation()["lng"] as? NSNumber)?.floatValue ?? 0)
+            
+            return cor
+        }
+        
+        return "-1.0@-1.0"
+    }
+}
+
 extension UIView {
     var parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self

@@ -51,6 +51,25 @@ class QL_LogIn_ViewController: UIViewController, UITextFieldDelegate {
         if logged() {
             self.didRequestLogin()
         }
+        
+        Permission.shareInstance().initLocation(false) { (type) in
+            switch type {
+            case .lAlways:
+                break
+            case .lWhenUse:
+                break
+            case .lDenied:
+                break
+            case .lDisabled:
+                break
+            case .lNotSure:
+                break
+            case .lRestricted:
+                break
+            default:
+                break
+            }
+        }
     }
     
     @IBAction func didPressCheck() {

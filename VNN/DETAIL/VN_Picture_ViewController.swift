@@ -438,7 +438,7 @@ class VN_Picture_ViewController: UIViewController {
                                         "ghi_chu": (self.dataList()[9] as! NSMutableDictionary)["data"],
                                         "hinh_thuc_cham_xoc": "",
                                         "id": "",
-                                        "location": "-1.0@-1.0",
+                                        "location": self.coor(),
                                         "ly_do_mat_quang_cao": "",
                                         "module_id": 1,
                                         "phonenumber": (self.dataList()[7] as! NSMutableDictionary)["data"],
@@ -460,7 +460,7 @@ class VN_Picture_ViewController: UIViewController {
 
         let dict = ["CMD_CODE":"updateagencyInfo",
                     "user_id":INFO()["id"],
-                    "location": "-1.0@-1.0",
+                    "location": self.coor(),
                     "id": 0]
         
         updateData.addEntries(from: header as! [AnyHashable : Any])
