@@ -30,7 +30,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="ZVR-oQ-hn1"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -43,7 +43,8 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fyt-N2-n6s" customClass="DropButton">
-                        <rect key="frame" x="15" y="38" width="290" height="48"/>
+                        <rect key="frame" x="5" y="38" width="310" height="48"/>
+                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <state key="normal">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
@@ -62,7 +63,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Snk-hG-KA6" secondAttribute="trailing" id="7dH-9H-Gtv"/>
                     <constraint firstItem="Snk-hG-KA6" firstAttribute="top" secondItem="qos-oQ-9wW" secondAttribute="top" id="IzP-J4-3ww"/>
-                    <constraint firstItem="Fyt-N2-n6s" firstAttribute="leading" secondItem="qos-oQ-9wW" secondAttribute="leading" constant="15" id="OlU-eQ-I2f"/>
+                    <constraint firstItem="Fyt-N2-n6s" firstAttribute="leading" secondItem="qos-oQ-9wW" secondAttribute="leading" constant="5" id="OlU-eQ-I2f"/>
                     <constraint firstItem="sjl-Fe-BSQ" firstAttribute="top" secondItem="B42-kj-kFq" secondAttribute="bottom" constant="8" id="V9q-sd-B4O"/>
                     <constraint firstItem="B42-kj-kFq" firstAttribute="leading" secondItem="qos-oQ-9wW" secondAttribute="leading" constant="5" id="VKQ-hO-Tzh"/>
                     <constraint firstItem="Snk-hG-KA6" firstAttribute="leading" secondItem="qos-oQ-9wW" secondAttribute="leading" id="VQE-IB-6R1"/>
@@ -75,7 +76,7 @@
                     <constraint firstAttribute="trailing" secondItem="sjl-Fe-BSQ" secondAttribute="trailing" constant="5" id="j40-AP-3c3"/>
                     <constraint firstAttribute="trailing" secondItem="B42-kj-kFq" secondAttribute="trailing" constant="5" id="nu6-Xv-5iF"/>
                     <constraint firstItem="4ki-6n-wpJ" firstAttribute="top" secondItem="B42-kj-kFq" secondAttribute="bottom" constant="16" id="o3m-qT-X52"/>
-                    <constraint firstAttribute="trailing" secondItem="Fyt-N2-n6s" secondAttribute="trailing" constant="15" id="qlP-IN-zhG"/>
+                    <constraint firstAttribute="trailing" secondItem="Fyt-N2-n6s" secondAttribute="trailing" constant="5" id="qlP-IN-zhG"/>
                     <constraint firstItem="sjl-Fe-BSQ" firstAttribute="leading" secondItem="qos-oQ-9wW" secondAttribute="leading" constant="5" id="xoO-N9-Eei"/>
                 </constraints>
             </tableViewCellContentView>

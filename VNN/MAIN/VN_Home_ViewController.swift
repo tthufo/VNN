@@ -31,7 +31,12 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         didRequestInfo()
         
-        user.text = "User: %@".format(parameters: Information.userInfo?["username"] as! CVarArg)
+        let userT = "User: %@".format(parameters: Information.userInfo?["username"] as! CVarArg)
+        
+        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: userT)
+        attributedString.setColorForText(textForAttribute: Information.userInfo?["username"] as! String, withColor: UIColor.red)
+        
+        user.attributedText = attributedString
         
         bottomView.frame = CGRect.init(x: 0, y: CGFloat(self.screenHeight() - 0), width: CGFloat(self.screenWidth()), height: 50)
         
@@ -176,7 +181,7 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
         switch indexPath.item {
         case 0:
             if INFO().getValueFromKey("type") == "4" {
-                self.showToast("Bạn không đường quyền truy cập chức năng này", andPos: 0)
+                self.showToast("Bạn không được quyền truy cập chức năng này", andPos: 0)
                 
                 return
             }
@@ -185,7 +190,7 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
             break
         case 1:
             if INFO().getValueFromKey("type") == "2" {
-                self.showToast("Bạn không đường quyền truy cập chức năng này", andPos: 0)
+                self.showToast("Bạn không được quyền truy cập chức năng này", andPos: 0)
                 
                 return
             }
@@ -193,7 +198,7 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
             break
         case 2:
             if INFO().getValueFromKey("type") == "2" {
-                self.showToast("Bạn không đường quyền truy cập chức năng này", andPos: 0)
+                self.showToast("Bạn không được quyền truy cập chức năng này", andPos: 0)
                 
                 return
             }

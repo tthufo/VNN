@@ -153,7 +153,7 @@
     UILabel *label = [UILabel new];
     label.accessibilityLabel = hint;
     label.userInteractionEnabled = YES;
-    label.font = [UIFont systemFontOfSize:18];
+    label.font = [UIFont systemFontOfSize:15];
     label.textAlignment = NSTextAlignmentLeft;
     label.text = text;
     label.textColor = [UIColor blackColor];

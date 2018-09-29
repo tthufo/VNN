@@ -91,16 +91,19 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K5V-wN-obJ">
-                    <rect key="frame" x="46" y="95" width="258" height="22"/>
+                <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tìm đại lý ..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K5V-wN-obJ">
+                    <rect key="frame" x="16" y="95" width="288" height="22"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="22" id="Si6-2p-pE3"/>
+                        <constraint firstAttribute="height" constant="22" id="Kvv-3P-2kQ"/>
                     </constraints>
                     <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="Inv-cK-bTJ"/>
+                    </connections>
                 </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_add" translatesAutoresizingMaskIntoConstraints="NO" id="neN-5X-AdJ">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_add" translatesAutoresizingMaskIntoConstraints="NO" id="neN-5X-AdJ">
                     <rect key="frame" x="5" y="91" width="28" height="28"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="28" id="LTn-0F-B2K"/>
@@ -110,14 +113,14 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="K5V-wN-obJ" firstAttribute="leading" secondItem="DKm-Ay-orN" secondAttribute="leading" constant="16" id="1C1-08-1LI"/>
                 <constraint firstItem="neN-5X-AdJ" firstAttribute="top" secondItem="5lp-SI-dQ1" secondAttribute="bottom" constant="7" id="7rB-av-0Qi"/>
+                <constraint firstItem="K5V-wN-obJ" firstAttribute="top" secondItem="5lp-SI-dQ1" secondAttribute="bottom" constant="11" id="Cuo-A1-Z7q"/>
                 <constraint firstItem="RsW-ri-K8m" firstAttribute="top" secondItem="5lp-SI-dQ1" secondAttribute="bottom" constant="2" id="Ejg-cr-5DD"/>
-                <constraint firstItem="K5V-wN-obJ" firstAttribute="leading" secondItem="neN-5X-AdJ" secondAttribute="trailing" constant="13" id="G7u-uc-DFX"/>
-                <constraint firstItem="K5V-wN-obJ" firstAttribute="top" secondItem="5lp-SI-dQ1" secondAttribute="bottom" constant="11" id="JxC-pK-D1J"/>
                 <constraint firstItem="neN-5X-AdJ" firstAttribute="leading" secondItem="DKm-Ay-orN" secondAttribute="leading" constant="5" id="QPn-x1-jY7"/>
                 <constraint firstItem="akv-Mw-Fft" firstAttribute="trailing" secondItem="DKm-Ay-orN" secondAttribute="trailing" id="QTa-gi-Uyj"/>
-                <constraint firstItem="DKm-Ay-orN" firstAttribute="trailing" secondItem="K5V-wN-obJ" secondAttribute="trailing" constant="16" id="ZV2-FA-ff2"/>
                 <constraint firstItem="5lp-SI-dQ1" firstAttribute="leading" secondItem="DKm-Ay-orN" secondAttribute="leading" id="ZpP-zr-XPf"/>
+                <constraint firstItem="DKm-Ay-orN" firstAttribute="trailing" secondItem="K5V-wN-obJ" secondAttribute="trailing" constant="16" id="bpr-6u-NLJ"/>
                 <constraint firstItem="5lp-SI-dQ1" firstAttribute="trailing" secondItem="DKm-Ay-orN" secondAttribute="trailing" id="cLi-Im-PFa"/>
                 <constraint firstItem="akv-Mw-Fft" firstAttribute="top" secondItem="neN-5X-AdJ" secondAttribute="bottom" constant="6" id="pgr-bq-tnK"/>
                 <constraint firstItem="RsW-ri-K8m" firstAttribute="leading" secondItem="DKm-Ay-orN" secondAttribute="leading" constant="5" id="rE5-0Y-gsD"/>
@@ -134,6 +137,6 @@
     <resources>
         <image name="back_a" width="170" height="170"/>
         <image name="dot" width="16" height="16"/>
-        <image name="ic_add" width="49" height="49"/>
+        <image name="ic_add" width="90" height="88"/>
     </resources>
 </document>

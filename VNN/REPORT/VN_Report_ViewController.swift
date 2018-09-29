@@ -12,14 +12,32 @@ class VN_Report_ViewController: UIViewController {
 
     var dataList = NSMutableArray()
     
+    var tempList = NSMutableArray()
+    
     @IBOutlet var tableView: UITableView!
 
+    var kb = KeyBoard.shareInstance()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         didRequestAgency()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        kb?.keyboard { (height, isOn) in
+            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, isOn ? (height) : 0, 0)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        kb?.keyboardOff()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -44,14 +62,52 @@ class VN_Report_ViewController: UIViewController {
             
             self.dataList.removeAllObjects()
 
+            self.tempList.removeAllObjects()
+
             self.dataList.addObjects(from: result!["RESULT"] as! [Any])
 
+            self.tempList.addObjects(from: result!["RESULT"] as! [Any])
+            
             self.tableView.reloadData()
         }
     }
    
     @IBAction func didPressBack() {
         self.navigationController?.popViewController(animated: true)
+    }
+}
+
+extension VN_Report_ViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if let text = textField.text as NSString? {
+            let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
+            
+            let predicate = NSPredicate(format: "SELF.agency_name CONTAINS[cd] %@ OR SELF.address CONTAINS[cd] %@", txtAfterUpdate, txtAfterUpdate)
+            
+            let arr = (tempList as NSArray).filtered(using: predicate)
+            
+            self.dataList.removeAllObjects()
+            
+            if arr.count > 0 {
+                self.dataList.addObjects(from: arr)
+            } else {
+                self.dataList.addObjects(from: self.tempList as! [Any])
+            }
+            
+            let parent = textField.superview
+            
+            self.tableView.reloadData()
+        }
+        
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        return true
     }
 }
 
@@ -71,7 +127,7 @@ extension VN_Report_ViewController: UITableViewDataSource, UITableViewDelegate {
         
         if( !(cell != nil))
         {
-            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
+            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
         }
         
         let data = self.dataList[indexPath.row] as! NSDictionary

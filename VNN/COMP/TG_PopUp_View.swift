@@ -199,6 +199,10 @@ class TG_PopUp_View: CustomIOS7AlertView, UITextFieldDelegate, UITableViewDelega
             self.close()
             
             self.delegate.customIOS7dialogButtonTouchUp(inside: data, clickedButtonAt: indexPath.row)
+        } else {
+            (self.checkList[indexPath.row] as! NSMutableDictionary)["active"] = (self.checkList[indexPath.row] as! NSDictionary).getValueFromKey("active") == "0" ? "1" : "0"
+            
+            tableView.reloadData()
         }
     }
     

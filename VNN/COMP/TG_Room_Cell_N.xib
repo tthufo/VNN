@@ -30,7 +30,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="vOC-0w-rXh"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -93,6 +93,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_add" width="49" height="49"/>
+        <image name="ic_add" width="90" height="88"/>
     </resources>
 </document>

@@ -35,7 +35,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Fso-MR-hac"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -89,6 +89,6 @@
     </objects>
     <resources>
         <image name="check_in_b" width="49" height="49"/>
-        <image name="drop_a" width="49" height="49"/>
+        <image name="drop_a" width="57" height="57"/>
     </resources>
 </document>
