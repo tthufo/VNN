@@ -34,8 +34,8 @@
                                 <constraint firstAttribute="width" constant="44" id="qxy-lM-2sJ"/>
                             </constraints>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VVN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTp-sw-gq6">
-                            <rect key="frame" x="142.5" y="32" width="36" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTp-sw-gq6">
+                            <rect key="frame" x="155.5" y="32" width="10" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="Kdf-Gl-R3l"/>
                                 <constraint firstAttribute="height" constant="21" id="R9l-WB-1Rn"/>
@@ -58,13 +58,22 @@
                                 <action selector="didPressLogOut" destination="-1" eventType="touchUpInside" id="3r2-f8-tiv"/>
                             </connections>
                         </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cg_icon_cg" translatesAutoresizingMaskIntoConstraints="NO" id="cmW-DE-3WQ">
+                            <rect key="frame" x="8" y="26" width="90" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="W4i-Es-2D4"/>
+                                <constraint firstAttribute="width" constant="90" id="nZw-Xj-YZx"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.90980392160000001" green="0.49019607840000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="1" green="0.33333333333333331" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="cmW-DE-3WQ" firstAttribute="leading" secondItem="OVg-LB-r1H" secondAttribute="leading" constant="8" id="4lR-eX-mY4"/>
                         <constraint firstAttribute="bottom" secondItem="KTp-sw-gq6" secondAttribute="bottom" constant="11" id="82b-T8-7hF"/>
                         <constraint firstItem="0cT-HS-3w0" firstAttribute="leading" secondItem="OVg-LB-r1H" secondAttribute="leading" id="DDC-gB-X6e"/>
                         <constraint firstAttribute="height" constant="64" id="SyW-7V-bTr"/>
                         <constraint firstAttribute="bottom" secondItem="LZO-dV-QYZ" secondAttribute="bottom" id="XD0-a2-3aA"/>
+                        <constraint firstAttribute="bottom" secondItem="cmW-DE-3WQ" secondAttribute="bottom" constant="6" id="gaN-Zq-0qT"/>
                         <constraint firstAttribute="trailing" secondItem="LZO-dV-QYZ" secondAttribute="trailing" id="nTJ-Dc-HDd"/>
                         <constraint firstAttribute="bottom" secondItem="0cT-HS-3w0" secondAttribute="bottom" id="rJt-7m-Oep"/>
                         <constraint firstItem="KTp-sw-gq6" firstAttribute="centerX" secondItem="OVg-LB-r1H" secondAttribute="centerX" id="xJW-Nf-vBZ"/>
@@ -151,6 +160,7 @@
         </button>
     </objects>
     <resources>
+        <image name="cg_icon_cg" width="107" height="66"/>
         <image name="menu" width="170" height="170"/>
     </resources>
 </document>

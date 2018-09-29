@@ -48,7 +48,8 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p0S-GJ-D1V" customClass="DropButton">
-                        <rect key="frame" x="15" y="38" width="290" height="48"/>
+                        <rect key="frame" x="5" y="38" width="310" height="48"/>
+                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="50" maxY="0.0"/>
                         <state key="normal">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
@@ -71,12 +72,12 @@
                     <constraint firstAttribute="bottom" secondItem="p0S-GJ-D1V" secondAttribute="bottom" constant="10.5" id="7kW-BM-PHO"/>
                     <constraint firstAttribute="bottom" secondItem="Mcl-8t-rPd" secondAttribute="bottom" id="8S7-Jx-Sdd"/>
                     <constraint firstAttribute="trailing" secondItem="Mcl-8t-rPd" secondAttribute="trailing" id="CMG-px-wkA"/>
-                    <constraint firstAttribute="trailing" secondItem="p0S-GJ-D1V" secondAttribute="trailing" constant="15" id="LXA-B6-ZRc"/>
+                    <constraint firstAttribute="trailing" secondItem="p0S-GJ-D1V" secondAttribute="trailing" constant="5" id="LXA-B6-ZRc"/>
                     <constraint firstItem="6sG-2x-5TP" firstAttribute="top" secondItem="Wxl-pI-upe" secondAttribute="top" constant="9" id="VIp-hE-cjB"/>
                     <constraint firstAttribute="trailing" secondItem="6sG-2x-5TP" secondAttribute="trailing" constant="5" id="b1b-oC-3dC"/>
                     <constraint firstItem="Mcl-8t-rPd" firstAttribute="leading" secondItem="Wxl-pI-upe" secondAttribute="leading" id="cQf-2n-k6b"/>
                     <constraint firstItem="FtV-aI-mEY" firstAttribute="top" secondItem="6sG-2x-5TP" secondAttribute="bottom" constant="16" id="gO2-AJ-wg2"/>
-                    <constraint firstItem="p0S-GJ-D1V" firstAttribute="leading" secondItem="Wxl-pI-upe" secondAttribute="leading" constant="15" id="pGR-oU-Ze7"/>
+                    <constraint firstItem="p0S-GJ-D1V" firstAttribute="leading" secondItem="Wxl-pI-upe" secondAttribute="leading" constant="5" id="pGR-oU-Ze7"/>
                     <constraint firstAttribute="bottom" secondItem="IZn-Pl-Xfr" secondAttribute="bottom" constant="10.5" id="pre-Pd-9vM"/>
                     <constraint firstAttribute="trailing" secondItem="IZn-Pl-Xfr" secondAttribute="trailing" constant="5" id="qAl-W5-lO6"/>
                     <constraint firstItem="6sG-2x-5TP" firstAttribute="leading" secondItem="Wxl-pI-upe" secondAttribute="leading" constant="70" id="qfm-1m-V8J"/>
