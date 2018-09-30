@@ -25,6 +25,13 @@ class VN_Picture_ViewController: UIViewController {
     var dealerList = NSMutableArray()
     
     
+    
+    var editData: NSDictionary!
+    
+    var tempEditData: NSDictionary!
+
+    
+    
     var ownList = NSMutableArray()
     
     var theirList = NSMutableArray()
@@ -89,6 +96,20 @@ class VN_Picture_ViewController: UIViewController {
             self.dataList().add(imageCell)
         }
         
+        let inputItems = aDealer!["vat_pham"] as! NSArray
+
+        let items = NSMutableArray()
+        
+        for dict in inputItems {
+            for item in (Information.itemList as NSArray).withMutable() {
+                if (item as! NSDictionary)["title"] as? String ==  (dict as! NSDictionary)["title"] as? String {
+                    (item as! NSMutableDictionary)["active"] = "1"
+                    items.add(item)
+                    break
+                }
+            }
+        }
+                
         (self.dataList()[4] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("agency_code")
 
         (self.dataList()[5] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("address")
@@ -97,13 +118,11 @@ class VN_Picture_ViewController: UIViewController {
 
         (self.dataList()[7] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("phonenumber")
 
+        (self.dataList()[8] as! NSMutableDictionary)["data"] = items
+
         (self.dataList()[9] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("ghi_chu")
         
         self.tableView.reloadData()
-        
-        self.tableView.action(forTouch: [:]) { (objc) in
-            self.view.endEditing(true)
-        }
     }
     
     
@@ -125,6 +144,10 @@ class VN_Picture_ViewController: UIViewController {
         self.theirList.addObjects(from: (self.temp1 as NSArray).withMutable())
 
         didRequestRegion()
+        
+        self.tableView.action(forTouch: [:]) { (objc) in
+            self.view.endEditing(true)
+        }
     }
     
     func dataList() -> NSMutableArray {
@@ -175,6 +198,23 @@ class VN_Picture_ViewController: UIViewController {
        self.navigationController?.popViewController(animated: true)
     }
     
+    func getDefault(array: NSArray, indexing: String) -> Int {
+        var index = 0
+
+        if self.tempEditData == nil {
+            return index
+        }
+        
+        for dict in array {
+            if (dict as! NSDictionary).getValueFromKey("id") == indexing {
+                index = array.index(of: dict)
+                break
+            }
+        }
+        
+        return index
+    }
+    
     func didRequestRegion() {
         self.showSVHUD("Đang tải", andOption: 0)
         LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
@@ -198,11 +238,17 @@ class VN_Picture_ViewController: UIViewController {
             
             self.regionList.addObjects(from: result!["RESULT"] as! [Any])
             
-            (self.ownList[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
+            var indexing = 0
             
-            (self.theirList[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
+            if self.tempEditData != nil {
+                indexing = self.getDefault(array: self.regionList, indexing: self.editData.getValueFromKey("region_id"))
+            }
+            
+            (self.ownList[0] as! NSMutableDictionary)["data"] = self.regionList.object(at: indexing)
+            
+            (self.theirList[0] as! NSMutableDictionary)["data"] = self.regionList.object(at: indexing)
 
-            self.didRequestCity(region: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
+            self.didRequestCity(region: (self.regionList.object(at: indexing) as! NSDictionary).getValueFromKey("id"))
             
             self.tableView.reloadData()
         }
@@ -233,11 +279,17 @@ class VN_Picture_ViewController: UIViewController {
                 
                 self.cityList.addObjects(from: result!["RESULT"] as! [Any])
                 
-                (self.ownList[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
+                var indexing = 0
+                
+                if self.tempEditData != nil {
+                    indexing = self.getDefault(array: self.cityList, indexing: self.editData.getValueFromKey("city_id"))
+                }
+                
+                (self.ownList[1] as! NSMutableDictionary)["data"] = self.cityList.object(at: indexing)
 
-                (self.theirList[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
+                (self.theirList[1] as! NSMutableDictionary)["data"] = self.cityList.object(at: indexing)
 
-                self.didRequestDistrict(city: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
+                self.didRequestDistrict(city: (self.cityList.object(at: indexing) as! NSDictionary).getValueFromKey("id"))
                 
             } else {
                 self.cityList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
@@ -281,9 +333,15 @@ class VN_Picture_ViewController: UIViewController {
             if (result!["RESULT"] as! [Any]).count != 0 {
                 self.districtList.addObjects(from: result!["RESULT"] as! [Any])
                 
-                (self.ownList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+                var indexing = 0
                 
-                (self.theirList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+                if self.tempEditData != nil {
+                    indexing = self.getDefault(array: self.districtList, indexing: self.editData.getValueFromKey("district_id"))
+                }
+                
+                (self.ownList[2] as! NSMutableDictionary)["data"] = self.districtList.object(at: indexing)
+                
+                (self.theirList[2] as! NSMutableDictionary)["data"] = self.districtList.object(at: indexing)
 
             } else {
                 self.districtList.removeAllObjects()
@@ -302,6 +360,10 @@ class VN_Picture_ViewController: UIViewController {
     
     func didRequestAgency() {
         
+      if self.tempEditData != nil {
+         self.tempEditData = nil
+      }
+        
       let dict = ["CMD_CODE":"searchagency",
          "user_id":INFO()["id"],
          "page_size":500,
@@ -311,8 +373,6 @@ class VN_Picture_ViewController: UIViewController {
          "district_id":self.getID(type: 2),
          "region_id":self.getID(type: 0)]
         
-        print(self.dataList())
-
         LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
                                                    "header":["Authorization":Information.token == nil ? "" : Information.token!],
                                                    "Postparam":dict,
@@ -328,6 +388,13 @@ class VN_Picture_ViewController: UIViewController {
                 
                 return
             }
+            
+            if self.editData != nil {
+                self.fillInDealer(dealer: (self.editData)!)
+                
+                return
+            }
+            
             let result = response?.dictionize()["RESULT"]
 
             if (result as! NSArray).count == 0 {
@@ -465,10 +532,6 @@ class VN_Picture_ViewController: UIViewController {
         
         updateData.addEntries(from: header as! [AnyHashable : Any])
         
-//        updateData.addEntries(from: inputPicture as! [AnyHashable : Any])
-//
-//        updateData.addEntries(from: inputItem as! [AnyHashable : Any])
-
         updateData.addEntries(from: dict)
         
         print(updateData)
@@ -694,6 +757,8 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
         if data["ident"] as! String == "QL_Box_Cell" {
             let drop = (self.withView(cell, tag: 2) as! DropButton)
             
+            drop.isEnabled = self.editData == nil
+            
             let dropData = data["data"] as! NSDictionary
             
             drop.setTitle(dropData["title"] as? String, for: .normal)
@@ -719,6 +784,8 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
         if data["ident"] as! String == "QL_Code_Cell" {
             let code = (self.withView(cell, tag: 2) as! UIButton)
             
+            code.isEnabled = self.editData == nil
+
             let codeData = data["data"] as! String
             
             code.setTitle(codeData, for: .normal)

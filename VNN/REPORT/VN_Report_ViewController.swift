@@ -13,15 +13,23 @@ class VN_Report_ViewController: UIViewController {
     var dataList = NSMutableArray()
     
     var tempList = NSMutableArray()
-    
+        
     @IBOutlet var tableView: UITableView!
 
     var kb = KeyBoard.shareInstance()
     
+    var refreshHeader: UIRefreshControl!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         didRequestAgency()
+        
+        refreshHeader = UIRefreshControl.init()
+        
+        refreshHeader.addTarget(self, action: #selector(didRequestAgency), for: UIControlEvents.valueChanged)
+        
+        tableView.addSubview(refreshHeader)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -42,15 +50,19 @@ class VN_Report_ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func didRequestAgency() {
+    @objc func didRequestAgency() {
         LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
                                                    "header":["Authorization":Information.token == nil ? "" : Information.token!],
                                                    "Postparam":["CMD_CODE":"listagencyerror","user_id":INFO()["id"]],
                                                    "overrideAlert":1,
+                                                   "overrideLoading":1,
+                                                   "host":self,
                                                    "postFix":"processRequest"
             ], withCache: { (cache) in
                 
         }) { (response, errorCode, error, isValid) in
+            
+            self.refreshHeader.endRefreshing()
             
             if error != nil {
                 
@@ -141,5 +153,34 @@ extension VN_Report_ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let data = self.dataList[indexPath.row] as! NSDictionary
+        
+        let module = Int(data["module_id"] as! String)
+        
+        switch module {
+        case 1:
+            let picture = VN_Picture_ViewController()
+            
+            picture.editData = data
+            
+            picture.tempEditData = data
+
+            self.navigationController?.pushViewController(picture, animated: true)
+            break
+        case 2:
+            break
+        case 3:
+            let expand = VN_Expand_ViewController()
+            
+            expand.editData = data
+            
+            expand.tempEditData = data
+            
+            self.navigationController?.pushViewController(expand, animated: true)
+            break
+        default:
+            break
+        }
     }
 }

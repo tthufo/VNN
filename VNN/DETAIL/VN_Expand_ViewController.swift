@@ -23,6 +23,11 @@ class VN_Expand_ViewController: UIViewController {
     var dealerList = NSMutableArray()
     
     
+    var editData: NSDictionary!
+    
+    var tempEditData: NSDictionary!
+    
+    
     var ownList = NSMutableArray()
     
     var theirList = NSMutableArray()
@@ -125,6 +130,21 @@ class VN_Expand_ViewController: UIViewController {
             self.ownList.add(imageCell)
         }
         
+        let inputItems = aDealer!["vat_pham"] as! NSArray
+        
+        let items = NSMutableArray()
+        
+        for dict in inputItems {
+            for item in (Information.itemList as NSArray).withMutable() {
+                if (item as! NSDictionary)["title"] as? String ==  (dict as! NSDictionary)["title"] as? String {
+                    (item as! NSMutableDictionary)["active"] = "1"
+                    items.add(item)
+                    break
+                }
+            }
+        }
+        
+        
         (self.ownList[5] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("agency_code")
         
         (self.ownList[6] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("address")
@@ -132,6 +152,8 @@ class VN_Expand_ViewController: UIViewController {
         (self.ownList[7] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("agency_name")
         
         (self.ownList[8] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("phonenumber")
+        
+        (self.ownList[9] as! NSMutableDictionary)["data"] = items
         
         (self.ownList[10] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("ghi_chu")
         
@@ -215,6 +237,23 @@ class VN_Expand_ViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    func getDefault(array: NSArray, indexing: String) -> Int {
+        var index = 0
+        
+        if self.tempEditData == nil {
+            return index
+        }
+        
+        for dict in array {
+            if (dict as! NSDictionary).getValueFromKey("id") == indexing {
+                index = array.index(of: dict)
+                break
+            }
+        }
+        
+        return index
+    }
+    
     func didRequestRegion() {
         self.showSVHUD("Đang tải", andOption: 0)
         LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
@@ -238,14 +277,20 @@ class VN_Expand_ViewController: UIViewController {
             
             self.regionList.addObjects(from: result!["RESULT"] as! [Any])
             
-            (self.ownList[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
+            var indexing = 0
             
-            (self.theirList[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
+            if self.tempEditData != nil {
+                indexing = self.getDefault(array: self.regionList, indexing: self.editData.getValueFromKey("region_id"))
+            }
             
-            (self.expandList[0] as! NSMutableDictionary)["data"] = self.regionList.firstObject
+            (self.ownList[0] as! NSMutableDictionary)["data"] = self.regionList.object(at: indexing)
+            
+            (self.theirList[0] as! NSMutableDictionary)["data"] = self.regionList.object(at: indexing)
+            
+            (self.expandList[0] as! NSMutableDictionary)["data"] = self.regionList.object(at: indexing)
 
-            self.didRequestCity(region: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
-            
+            self.didRequestCity(region: (self.regionList.object(at: indexing) as! NSDictionary).getValueFromKey("id"))
+
             self.tableView.reloadData()
         }
     }
@@ -275,14 +320,20 @@ class VN_Expand_ViewController: UIViewController {
                 
                 self.cityList.addObjects(from: result!["RESULT"] as! [Any])
                 
-                (self.ownList[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
+                var indexing = 0
                 
-                (self.theirList[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
+                if self.tempEditData != nil {
+                    indexing = self.getDefault(array: self.cityList, indexing: self.editData.getValueFromKey("city_id"))
+                }
                 
-                (self.expandList[1] as! NSMutableDictionary)["data"] = self.cityList.firstObject
+                (self.ownList[1] as! NSMutableDictionary)["data"] = self.cityList.object(at: indexing)
+                
+                (self.theirList[1] as! NSMutableDictionary)["data"] = self.cityList.object(at: indexing)
+                
+                (self.expandList[1] as! NSMutableDictionary)["data"] = self.cityList.object(at: indexing)
 
-                self.didRequestDistrict(city: ((result!["RESULT"] as! [Any]).first as! NSDictionary)["id"] as! String)
-                
+                self.didRequestDistrict(city: (self.cityList.object(at: indexing) as! NSDictionary).getValueFromKey("id"))
+
             } else {
                 self.cityList.addObjects(from: [["title":"Danh sách trống", "id":-1]])
                 
@@ -329,11 +380,17 @@ class VN_Expand_ViewController: UIViewController {
             if (result!["RESULT"] as! [Any]).count != 0 {
                 self.districtList.addObjects(from: result!["RESULT"] as! [Any])
                 
-                (self.ownList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+                var indexing = 0
                 
-                (self.theirList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+                if self.tempEditData != nil {
+                    indexing = self.getDefault(array: self.districtList, indexing: self.editData.getValueFromKey("district_id"))
+                }
                 
-                (self.expandList[2] as! NSMutableDictionary)["data"] = self.districtList.firstObject
+                (self.ownList[2] as! NSMutableDictionary)["data"] = self.districtList.object(at: indexing)
+                
+                (self.theirList[2] as! NSMutableDictionary)["data"] = self.districtList.object(at: indexing)
+                
+                (self.expandList[2] as! NSMutableDictionary)["data"] = self.districtList.object(at: indexing)
                 
             } else {
                 self.districtList.removeAllObjects()
@@ -353,6 +410,10 @@ class VN_Expand_ViewController: UIViewController {
     }
     
     @objc func didRequestAgency() {
+        
+        if self.tempEditData != nil {
+            self.tempEditData = nil
+        }
         
         let dict = ["CMD_CODE":"searchagency",
                     "user_id":INFO()["id"],
@@ -378,6 +439,13 @@ class VN_Expand_ViewController: UIViewController {
                 
                 return
             }
+            
+            if self.editData != nil {
+                self.fillInDealer(dealer: (self.editData)!)
+                
+                return
+            }
+            
             let result = response?.dictionize()["RESULT"]
             
             if (result as! NSArray).count == 0 {
@@ -795,6 +863,8 @@ extension VN_Expand_ViewController: UITableViewDataSource, UITableViewDelegate {
             
             input.accessibilityValue = data.response(forKey: "timer") ? "timer" : ""
 
+            input.isEnabled = self.editData == nil && data.response(forKey: "timer")
+            
             input.delegate = self
             
             input.text = data.response(forKey: "timer") ? String(self.pageSize) : data["data"] as? String
@@ -853,6 +923,8 @@ extension VN_Expand_ViewController: UITableViewDataSource, UITableViewDelegate {
         if data["ident"] as! String == "QL_Box_Cell" {
             let drop = (self.withView(cell, tag: 2) as! DropButton)
             
+            drop.isEnabled = self.editData == nil
+
             let dropData = data["data"] as! NSDictionary
             
             drop.setTitle(dropData["title"] as? String, for: .normal)
@@ -880,6 +952,8 @@ extension VN_Expand_ViewController: UITableViewDataSource, UITableViewDelegate {
         if data["ident"] as! String == "QL_Code_Cell" {
             let code = (self.withView(cell, tag: 2) as! UIButton)
             
+            code.isEnabled = self.editData == nil
+
             let codeData = data["data"] as! String
             
             code.setTitle(codeData, for: .normal)

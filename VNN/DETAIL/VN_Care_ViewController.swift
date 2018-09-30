@@ -776,7 +776,7 @@ extension VN_Care_ViewController: UITableViewDataSource, UITableViewDelegate {
             group.action(forTouch: [:]) { (objc) in
                 self.view.endEditing(true)
                 TG_PopUp_View().initWithRemainItem(content: items, finished: { (result) in
-                    
+                                        
                     (self.dataList()[indexPath.row] as! NSMutableDictionary)["data"] = result
                     
                     (cell as! TG_Room_Cell_N).images = result
