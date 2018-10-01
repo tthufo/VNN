@@ -104,12 +104,13 @@ class VN_Picture_ViewController: UIViewController {
             for item in (Information.itemList as NSArray).withMutable() {
                 if (item as! NSDictionary)["title"] as? String ==  (dict as! NSDictionary)["title"] as? String {
                     (item as! NSMutableDictionary)["active"] = "1"
+                    (item as! NSMutableDictionary)["data"] = (dict as! NSDictionary)["type"] as! String
                     items.add(item)
                     break
                 }
             }
         }
-                
+                        
         (self.dataList()[4] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("agency_code")
 
         (self.dataList()[5] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("address")
@@ -125,11 +126,13 @@ class VN_Picture_ViewController: UIViewController {
         self.tableView.reloadData()
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         kb = KeyBoard.shareInstance()
+        
+        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+        self.tableView.estimatedSectionHeaderHeight = 69;
         
         self.tableView.withCell("QL_Code_Cell")
         self.tableView.withCell("TG_Room_Cell_N")
@@ -188,6 +191,10 @@ class VN_Picture_ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        tableView.beginUpdates()
+        
+        tableView.endUpdates()
         
         kb.keyboard { (height, isOn) in
             self.tableView.contentInset = UIEdgeInsetsMake(0, 0, isOn ? (height) : 0, 0)
@@ -559,8 +566,6 @@ class VN_Picture_ViewController: UIViewController {
 
                 self.showToast("Cập nhật đại lý thành công", andPos: 0)
             }
-            
-            print(response)
         }
     }
     
@@ -638,6 +643,12 @@ class VN_Picture_ViewController: UIViewController {
         
         self.tableView.reloadData()
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        self.tableView.updateHeaderViewHeight()
+    }
 }
 
 extension VN_Picture_ViewController: UITextFieldDelegate {
@@ -662,6 +673,26 @@ extension VN_Picture_ViewController: UITextFieldDelegate {
 }
 
 extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat
+    {
+        return CGFloat.leastNormalMagnitude
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return self.editData != nil ? UITableViewAutomaticDimension : CGFloat.leastNormalMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = Bundle.main.loadNibNamed("TG_Menu_View", owner: self, options: nil)![5]
+        
+        if self.editData != nil {
+            (self.withView(header, tag: 2) as! UILabel).text = self.editData["reject"] as? String
+        }
+        
+        return header as? UIView
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -840,6 +871,8 @@ extension VN_Picture_ViewController: UITableViewDataSource, UITableViewDelegate 
             let cam = (self.withView(cell, tag: 3) as! UIButton)
 
             cam.action(forTouch: [:]) { (objc) in
+                self.view.endEditing(true)
+                
                 self.didAskForCamera(indexing: "%i".format(parameters: indexPath.row))
             }
 

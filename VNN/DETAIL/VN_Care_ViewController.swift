@@ -799,6 +799,9 @@ extension VN_Care_ViewController: UITableViewDataSource, UITableViewDelegate {
             let cam = (self.withView(cell, tag: 3) as! UIButton)
 
             cam.action(forTouch: [:]) { (objc) in
+                
+                self.view.endEditing(true)
+
                 self.didAskForCamera(indexing: "%i".format(parameters: indexPath.row))
             }
 

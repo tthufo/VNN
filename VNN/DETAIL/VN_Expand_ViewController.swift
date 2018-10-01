@@ -168,6 +168,9 @@ class VN_Expand_ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+        self.tableView.estimatedSectionHeaderHeight = 69;
+        
         kb = KeyBoard.shareInstance()
         
         self.tableView.withCell("QL_Code_Cell")
@@ -227,6 +230,10 @@ class VN_Expand_ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        tableView.beginUpdates()
+        
+        tableView.endUpdates()
         
         kb.keyboard { (height, isOn) in
             self.tableView.contentInset = UIEdgeInsetsMake(0, 0, isOn ? (height) : 0, 0)
@@ -792,6 +799,11 @@ class VN_Expand_ViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector:#selector(didRequestAgency), userInfo: nil, repeats: false)
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        self.tableView.updateHeaderViewHeight()
+    }
 }
 
 extension VN_Expand_ViewController: UITextFieldDelegate {
@@ -825,6 +837,26 @@ extension VN_Expand_ViewController: UITextFieldDelegate {
 }
 
 extension VN_Expand_ViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat
+    {
+        return CGFloat.leastNormalMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return self.editData != nil ? UITableViewAutomaticDimension : CGFloat.leastNormalMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = Bundle.main.loadNibNamed("TG_Menu_View", owner: self, options: nil)![5]
+        
+        if self.editData != nil {
+            (self.withView(header, tag: 2) as! UILabel).text = self.editData["reject"] as? String
+        }
+        
+        return header as? UIView
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -1005,6 +1037,9 @@ extension VN_Expand_ViewController: UITableViewDataSource, UITableViewDelegate {
             let cam = (self.withView(cell, tag: 3) as! UIButton)
             
             cam.action(forTouch: [:]) { (objc) in
+                
+                self.view.endEditing(true)
+
                 self.didAskForCamera(indexing: "%i".format(parameters: indexPath.row))
             }
             

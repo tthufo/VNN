@@ -81,6 +81,8 @@ class VN_Report_ViewController: UIViewController {
             self.tempList.addObjects(from: result!["RESULT"] as! [Any])
             
             self.tableView.reloadData()
+            
+            print(response)
         }
     }
    
