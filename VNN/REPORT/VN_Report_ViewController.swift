@@ -22,8 +22,6 @@ class VN_Report_ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        didRequestAgency()
         
         refreshHeader = UIRefreshControl.init()
         
@@ -35,6 +33,8 @@ class VN_Report_ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        didRequestAgency()
+
         kb?.keyboard { (height, isOn) in
             self.tableView.contentInset = UIEdgeInsetsMake(0, 0, isOn ? (height) : 0, 0)
         }
@@ -81,9 +81,7 @@ class VN_Report_ViewController: UIViewController {
             self.tempList.addObjects(from: result!["RESULT"] as! [Any])
             
             self.tableView.reloadData()
-            
-            print(response)
-        }
+       }
     }
    
     @IBAction func didPressBack() {
@@ -158,11 +156,13 @@ extension VN_Report_ViewController: UITableViewDataSource, UITableViewDelegate {
         
         let data = self.dataList[indexPath.row] as! NSDictionary
         
-        let module = Int(data["module_id"] as! String)
+        let module = Int(data["agency_type"] as! String)
         
         switch module {
-        case 1:
+        case 1, 2, 3:
             let picture = VN_Picture_ViewController()
+            
+            picture.isEnemy = (module == 2 || module == 3)
             
             picture.editData = data
             
@@ -170,17 +170,15 @@ extension VN_Report_ViewController: UITableViewDataSource, UITableViewDelegate {
 
             self.navigationController?.pushViewController(picture, animated: true)
             break
-        case 2:
-            break
-        case 3:
-            let expand = VN_Expand_ViewController()
-            
-            expand.editData = data
-            
-            expand.tempEditData = data
-            
-            self.navigationController?.pushViewController(expand, animated: true)
-            break
+//        case 3:
+//            let expand = VN_Expand_ViewController()
+//
+//            expand.editData = data
+//
+//            expand.tempEditData = data
+//
+//            self.navigationController?.pushViewController(expand, animated: true)
+//            break
         default:
             break
         }

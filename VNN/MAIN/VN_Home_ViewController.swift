@@ -20,7 +20,7 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     var timer: Timer?
     
-    var images: NSMutableArray? = [["title":"Kiểm tra hình ảnh", "img":"ic_thuthap"],["title":"Chăm sóc đại lý", "img":"ic_suco"],["title":"Phát triển thị trường", "img":"ic_kiemtra"],["title":"Báo cáo chưa đạt", "img":"ic_kiemtra"]]
+    var images: NSMutableArray? = [["title":"Kiểm tra hình ảnh", "img":"picture"],["title":"Chăm sóc đại lý", "img":"dealer"],["title":"Phát triển thị trường", "img":"expand"],["title":"Báo cáo chưa đạt", "img":"error"]]
     
     let menuList: NSArray = [["title":"Đồng bộ danh mục", "ima":"ic_sync_home"], ["title":"Thay đổi địa chỉ máy chủ", "ima":"ic_change_server"], ["title":"Thay đổi mật khẩu", "ima":"ic_change_pass"], ["title":"Cài đặt", "ima":"ic_setting"], ["title":"Đăng xuất", "ima":"ic_logout"], ["title":"Thoát", "ima":"ic_exit"]]
     
@@ -31,10 +31,10 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         didRequestInfo()
         
-        let userT = "User: %@".format(parameters: Information.userInfo?["username"] as! CVarArg)
+        let userT = "User: %@".format(parameters: Information.userInfo?["name"] as! CVarArg)
         
         let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: userT)
-        attributedString.setColorForText(textForAttribute: Information.userInfo?["username"] as! String, withColor: UIColor.red)
+        attributedString.setColorForText(textForAttribute: Information.userInfo?["name"] as! String, withColor: UIColor.red)
         
         user.attributedText = attributedString
         
@@ -167,7 +167,7 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let image = (self.withView(cell, tag: 11) as! UIImageView)
         
-        image.withBorder(["Bwidth":"3", "Bcolor":UIColor.red])
+//        image.withBorder(["Bwidth":"3", "Bcolor":UIColor.red])
         
         image.image = UIImage.init(named: dict["img"] as! String)
         
@@ -177,19 +177,18 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         switch indexPath.item {
         case 0:
-            if INFO().getValueFromKey("type") == "4" {
+            if INFO().getValueFromKey("type") == "4" || INFO().getValueFromKey("type") == "3" {
                 self.showToast("Bạn không được quyền truy cập chức năng này", andPos: 0)
                 
                 return
             }
-            
             self.navigationController?.pushViewController(VN_Picture_ViewController(), animated: true)
             break
         case 1:
-            if INFO().getValueFromKey("type") == "2" {
+            if INFO().getValueFromKey("type") == "2" || INFO().getValueFromKey("type") == "3" {
                 self.showToast("Bạn không được quyền truy cập chức năng này", andPos: 0)
                 
                 return
@@ -197,7 +196,7 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
             self.navigationController?.pushViewController(VN_Care_ViewController(), animated: true)
             break
         case 2:
-            if INFO().getValueFromKey("type") == "2" {
+            if INFO().getValueFromKey("type") == "2" || INFO().getValueFromKey("type") == "3" {
                 self.showToast("Bạn không được quyền truy cập chức năng này", andPos: 0)
                 
                 return

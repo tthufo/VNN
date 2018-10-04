@@ -59,23 +59,28 @@
                             <constraint firstAttribute="height" constant="33" id="ery-zR-k8B"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HLl-sB-ygo" customClass="TTGTagCollectionView">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLl-sB-ygo" customClass="TTGTagCollectionView">
                         <rect key="frame" x="9" y="42" width="265" height="42"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="42" id="NOb-qd-K4l"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="L8K-RE-sMF" secondAttribute="bottom" id="0Pu-re-tKf"/>
                     <constraint firstAttribute="trailing" secondItem="UNh-2h-WYj" secondAttribute="trailing" constant="5" id="0cB-OG-n5k"/>
                     <constraint firstItem="DZx-Sf-dS4" firstAttribute="top" secondItem="z4k-pg-QqS" secondAttribute="bottom" constant="12" id="5fa-b2-Kql"/>
+                    <constraint firstItem="sHP-wV-g3U" firstAttribute="leading" secondItem="HLl-sB-ygo" secondAttribute="trailing" constant="4" id="9ye-MU-YIX"/>
                     <constraint firstItem="z4k-pg-QqS" firstAttribute="top" secondItem="Rpx-6z-Qvd" secondAttribute="top" constant="9" id="Bbh-Ob-xMo"/>
                     <constraint firstItem="L8K-RE-sMF" firstAttribute="top" secondItem="Rpx-6z-Qvd" secondAttribute="top" id="I1X-6L-wZS"/>
                     <constraint firstItem="L8K-RE-sMF" firstAttribute="leading" secondItem="Rpx-6z-Qvd" secondAttribute="leading" id="Mhn-29-JvM"/>
                     <constraint firstAttribute="trailing" secondItem="z4k-pg-QqS" secondAttribute="trailing" constant="5" id="MjQ-LQ-aCp"/>
+                    <constraint firstItem="HLl-sB-ygo" firstAttribute="leading" secondItem="Rpx-6z-Qvd" secondAttribute="leading" constant="9" id="NrA-le-iDK"/>
                     <constraint firstItem="UNh-2h-WYj" firstAttribute="leading" secondItem="Rpx-6z-Qvd" secondAttribute="leading" constant="5" id="PaI-ji-mlO"/>
                     <constraint firstAttribute="trailing" secondItem="L8K-RE-sMF" secondAttribute="trailing" id="PyN-kz-WfE"/>
                     <constraint firstItem="sHP-wV-g3U" firstAttribute="top" secondItem="z4k-pg-QqS" secondAttribute="bottom" constant="16" id="RZ2-Rg-bUw"/>
+                    <constraint firstItem="HLl-sB-ygo" firstAttribute="top" secondItem="z4k-pg-QqS" secondAttribute="bottom" constant="12" id="Y6c-l3-uTB"/>
                     <constraint firstAttribute="bottom" secondItem="DZx-Sf-dS4" secondAttribute="bottom" constant="12.5" id="Ypt-4k-dYE"/>
                     <constraint firstAttribute="trailing" secondItem="sHP-wV-g3U" secondAttribute="trailing" constant="9" id="hUr-Y3-mbd"/>
                     <constraint firstItem="DZx-Sf-dS4" firstAttribute="leading" secondItem="Rpx-6z-Qvd" secondAttribute="leading" constant="9" id="i31-EY-4o9"/>

@@ -25,9 +25,9 @@ class QL_LogIn_ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let appInfo = self.appInfor()! as NSDictionary
+//        let appInfo = self.appInfor()! as NSDictionary
         
-        app.text = "Phiên bản %@".format(parameters: appInfo.getValueFromKey("majorVersion"))
+//        app.text = "Phiên bản %@".format(parameters: appInfo.getValueFromKey("majorVersion"))
         
         changeHost.action(forTouch: [:]) { (obj) in
             self.navigationController?.pushViewController(TL_ChangeHost_ViewController(), animated: true)
@@ -121,22 +121,30 @@ class QL_LogIn_ViewController: UIViewController, UITextFieldDelegate {
                 
                 return
             }
-            
-            let result = response?.dictionize()
+                        
+            if let result = response?.dictionize() {
+                
+                if (result["RESULT"] as AnyObject).isKind(of: NSArray.self) {
+                    
+                    self.showToast(result["ERR_MSG"] as! String, andPos: 0)
 
-            self.addValue(result!["TOKEN"] as? String, andKey: "token")
-            
-            self.add(result!["RESULT"] as! [AnyHashable : Any], andKey: "info")
-            
-            self.addValue(self.uName.text, andKey: "name")
-            
-            self.addValue(self.pass.text, andKey: "pass")
+                    return
+                }
+                
+                self.add(result["RESULT"] as! [AnyHashable : Any], andKey: "info")
+                
+                self.addValue(result["TOKEN"] as? String, andKey: "token")
 
-            Information.saveToken()
-            
-            Information.saveInfo()
-            
-            self.navigationController?.pushViewController(VN_Home_ViewController(), animated: true)
+                self.addValue(self.uName.text, andKey: "name")
+                
+                self.addValue(self.pass.text, andKey: "pass")
+                
+                Information.saveToken()
+                
+                Information.saveInfo()
+                
+                self.navigationController?.pushViewController(VN_Home_ViewController(), animated: true)
+            }
         }
     }
     

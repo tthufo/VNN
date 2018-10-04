@@ -123,7 +123,7 @@ class TG_PopUp_View: CustomIOS7AlertView, UITextFieldDelegate, UITableViewDelega
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView.tag == 3 ? self.dataList.count : self.itemList.count
+        return tableView.tag == 3 ? self.dataList.count : self.checkList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -207,7 +207,23 @@ class TG_PopUp_View: CustomIOS7AlertView, UITextFieldDelegate, UITableViewDelega
     }
     
     
-    
+    func reState(content: NSArray) -> NSMutableArray {
+        
+        let array = NSMutableArray()
+        
+        for dict in (itemList as NSArray).withMutable() {
+            for item in content {
+                if (dict as! NSDictionary)["title"] as? String == (item as! NSDictionary)["title"] as? String {
+                    (dict as! NSMutableDictionary)["active"] = "1"
+                    (dict as! NSMutableDictionary)["data"] = (item as! NSDictionary)["type"] as! String
+                    array.add(item)
+                    break
+                }
+            }
+        }
+        
+        return array
+    }
     
     
     func initWithItem(content: NSArray, finished: @escaping (_ obj: NSMutableArray) -> Void) {
@@ -223,6 +239,7 @@ class TG_PopUp_View: CustomIOS7AlertView, UITextFieldDelegate, UITableViewDelega
             self.checkList.addObjects(from: content as! [Any])
         }
         
+        print(content)
         
         
         let tableView = self.withView(base, tag: 30) as! UITableView

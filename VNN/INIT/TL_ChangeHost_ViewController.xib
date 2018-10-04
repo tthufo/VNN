@@ -76,7 +76,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <textField opaque="NO" clipsSubviews="YES" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Số điện thoại" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZDH-ST-oDf">
+                <textField opaque="NO" clipsSubviews="YES" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tên người dùng" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZDH-ST-oDf">
                     <rect key="frame" x="24" y="242" width="272" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="thi-VY-S51"/>
@@ -108,6 +108,9 @@
                             <integer key="value" value="6"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="didPressSubmi" destination="-1" eventType="touchUpInside" id="sR1-DA-lAh"/>
+                    </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="gRD-Ut-Xpl">
                     <rect key="frame" x="55" y="107" width="210" height="110"/>

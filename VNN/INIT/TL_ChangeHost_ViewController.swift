@@ -26,12 +26,28 @@ class TL_ChangeHost_ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func didPressSubmi() {
         if host.text == "" {
-            self.showToast("Bạn chưa nhập địa chỉ máy chủ", andPos: 0)
+            self.showToast("Bạn chưa nhập địa chỉ email", andPos: 0)
             
             return
         }
         
-        self.addValue(host.text, andKey: "url")
+        didRequestChangePass()
+    }
+    
+    func didRequestChangePass() {
+        LTRequest.sharedInstance().didRequestInfo(["absoluteLink":"".urlGet(postFix: "processRequest"),
+                                                   "Postparam":["CMD_CODE":"resetpassword", "user_name": host.text],
+                                                   "overrideLoading":1,
+                                                   "overrideAlert":1,
+                                                   "host":self,
+                                                   "postFix":"processRequest"
+            ], withCache: { (cache) in
+                
+        }) { (response, errorCode, error, isValid) in
+            
+            print(response)
+            
+        }
     }
     
     @IBAction func didPressBack() {

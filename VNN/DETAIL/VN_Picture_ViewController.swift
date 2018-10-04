@@ -106,11 +106,16 @@ class VN_Picture_ViewController: UIViewController {
                     (item as! NSMutableDictionary)["active"] = "1"
                     (item as! NSMutableDictionary)["data"] = (dict as! NSDictionary)["type"] as! String
                     items.add(item)
-                    break
+                } else {
+                    items.add(item)
                 }
             }
         }
-                        
+        
+        if self.editData != nil {
+            (self.dataList()[3] as! NSMutableDictionary)["data"] = self.isEnemy ? ["title":"Đại lý đối thủ", "id":2] : ["title":"Đại lý có sẵn", "id":1]
+        }
+        
         (self.dataList()[4] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("agency_code")
 
         (self.dataList()[5] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("address")
@@ -500,7 +505,7 @@ class VN_Picture_ViewController: UIViewController {
         
         let agencyInfo = ["agencyinfo":["address":(self.dataList()[5] as! NSMutableDictionary)["data"],
                                         "agency_code": (self.dataList()[4] as! NSMutableDictionary)["data"],
-                                        "agency_id": "",
+                                        "agency_id": self.editData != nil ? self.editData.getValueFromKey("agency_id") : "" ,
                                         "agency_level": "",
                                         "agency_name": (self.dataList()[6] as! NSMutableDictionary)["data"],
                                         "agency_type": self.isEnemy ? 2 : 1,
@@ -511,7 +516,7 @@ class VN_Picture_ViewController: UIViewController {
                                         "doi_thu_lien_he": "",
                                         "ghi_chu": (self.dataList()[9] as! NSMutableDictionary)["data"],
                                         "hinh_thuc_cham_xoc": "",
-                                        "id": "",
+                                        "id": self.editData != nil ? self.editData.getValueFromKey("id") : "0",
                                         "location": self.coor(),
                                         "ly_do_mat_quang_cao": "",
                                         "module_id": 1,
@@ -521,7 +526,7 @@ class VN_Picture_ViewController: UIViewController {
                                         "status_code": "",
                                         "status_detail": "",
                                         "time_process": "",
-                                        "id_job": self.isEnemy ? 0 : self.tempData["id_job"]
+                                        "id_job": self.tempData != nil ? (self.isEnemy ? 0 : self.tempData["id_job"]) : 0
                                         ]]
                 
         let header = NSMutableDictionary()
@@ -535,7 +540,7 @@ class VN_Picture_ViewController: UIViewController {
         let dict = ["CMD_CODE":"updateagencyInfo",
                     "user_id":INFO()["id"],
                     "location": self.coor(),
-                    "id": 0]
+                    "id": self.editData != nil ? self.editData.getValueFromKey("id") : "0"]
         
         updateData.addEntries(from: header as! [AnyHashable : Any])
         

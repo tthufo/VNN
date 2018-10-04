@@ -472,7 +472,7 @@ class VN_Care_ViewController: UIViewController {
                                         "doi_thu_lien_he": ((self.dataList()[9] as! NSMutableDictionary)["data"] as! NSDictionary)["title"],
                                         "ghi_chu": (self.dataList()[11] as! NSMutableDictionary)["data"],
                                         "hinh_thuc_cham_xoc": ((self.dataList()[7] as! NSMutableDictionary)["data"] as! NSDictionary)["id"],
-                                        "id": "",
+                                        "id": "0",
                                         "location": self.coor(),
                                         "ly_do_mat_quang_cao": (self.dataList()[10] as! NSMutableDictionary)["data"],
                                         "module_id": 2,
@@ -482,7 +482,7 @@ class VN_Care_ViewController: UIViewController {
                                         "status_code": "",
                                         "status_detail": "",
                                         "time_process": "",
-                                        "id_job": self.isEnemy ? 0 : self.tempData["id_job"]
+                                        "id_job": self.tempData != nil ? (self.isEnemy ? 0 : self.tempData["id_job"]) : 0
             ]]
         
         let header = NSMutableDictionary()

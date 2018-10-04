@@ -139,7 +139,8 @@ class VN_Expand_ViewController: UIViewController {
                 if (item as! NSDictionary)["title"] as? String ==  (dict as! NSDictionary)["title"] as? String {
                     (item as! NSMutableDictionary)["active"] = "1"
                     items.add(item)
-                    break
+                } else {
+                    items.add(item)
                 }
             }
         }
@@ -546,7 +547,7 @@ class VN_Expand_ViewController: UIViewController {
         return ["vat_pham":items]
     }
     
-    func agencyInfo() -> NSDictionary {
+    func prepAgencyInfor() -> NSDictionary {
         let agencyInfo = ["agencyinfo":["address":(self.dataList()[6] as! NSMutableDictionary)["data"],
                                         "agency_code": (self.dataList()[5] as! NSMutableDictionary)["data"],
                                         "agency_id": "",
@@ -560,7 +561,7 @@ class VN_Expand_ViewController: UIViewController {
                                         "doi_thu_lien_he": "",
                                         "ghi_chu": (self.dataList()[10] as! NSMutableDictionary)["data"],
                                         "hinh_thuc_cham_xoc": "",
-                                        "id": "",
+                                        "id": self.editData != nil ? self.editData.getValueFromKey("id") : "0",
                                         "location": self.coor(),
                                         "ly_do_mat_quang_cao": "",
                                         "module_id": 1,
@@ -570,7 +571,7 @@ class VN_Expand_ViewController: UIViewController {
                                         "status_code": "",
                                         "status_detail": "",
                                         "time_process": "",
-                                        "id_job": self.tempData.response(forKey: "id_job") ? self.tempData["id_job"] : 0
+                                        "id_job": self.tempData != nil ? (self.tempData.response(forKey: "id_job") ? self.tempData["id_job"] : 0) : 0
             ]]
         
         let agencyInfo1 = ["agencyinfo":["address":(self.dataList()[5] as! NSMutableDictionary)["data"],
@@ -586,7 +587,7 @@ class VN_Expand_ViewController: UIViewController {
                                         "doi_thu_lien_he": "",
                                         "ghi_chu": (self.dataList()[9] as! NSMutableDictionary)["data"],
                                         "hinh_thuc_cham_xoc": "",
-                                        "id": "",
+                                        "id": self.editData != nil ? self.editData.getValueFromKey("id") : "0",
                                         "location": self.coor(),
                                         "ly_do_mat_quang_cao": "",
                                         "module_id": 1,
@@ -596,7 +597,7 @@ class VN_Expand_ViewController: UIViewController {
                                         "status_code": "",
                                         "status_detail": "",
                                         "time_process": "",
-                                        "id_job": 0
+                                        "id_job": self.tempData != nil ? (self.tempData.response(forKey: "id_job") ? self.tempData["id_job"] : 0) : 0
             ]]
         
         let agencyInfo2 = ["agencyinfo":["address":(self.dataList()[6] as! NSMutableDictionary)["data"],
@@ -612,7 +613,7 @@ class VN_Expand_ViewController: UIViewController {
                                         "doi_thu_lien_he": "",
                                         "ghi_chu": (self.dataList()[10] as! NSMutableDictionary)["data"],
                                         "hinh_thuc_cham_xoc": "",
-                                        "id": "",
+                                        "id": self.editData != nil ? self.editData.getValueFromKey("id") : "0",
                                         "location": self.coor(),
                                         "ly_do_mat_quang_cao": "",
                                         "module_id": 1,
@@ -622,10 +623,10 @@ class VN_Expand_ViewController: UIViewController {
                                         "status_code": "",
                                         "status_detail": "",
                                         "time_process": "",
-                                        "id_job": 0,
+                                        "id_job": self.tempData != nil ? (self.tempData.response(forKey: "id_job") ? self.tempData["id_job"] : 0) : 0,
                                         "phan cap dai ly":(self.dataList()[9] as! NSMutableDictionary)["data"]
             ]]
-        
+
         return (isEnemy == 1 ? agencyInfo : isEnemy == 2 ? agencyInfo1 : agencyInfo2) as NSDictionary
     }
     
@@ -642,35 +643,9 @@ class VN_Expand_ViewController: UIViewController {
         
         let updateData = NSMutableDictionary()
         
-//        let agencyInfo = ["agencyinfo":["address":(self.dataList()[5] as! NSMutableDictionary)["data"],
-//                                        "agency_code": (self.dataList()[4] as! NSMutableDictionary)["data"],
-//                                        "agency_id": "",
-//                                        "agency_level": "",
-//                                        "agency_name": (self.dataList()[6] as! NSMutableDictionary)["data"],
-//                                        "agency_type": self.isEnemy,
-//                                        "city_id":self.getID(type: 1),
-//                                        "city_name": self.getNAME(type: 1),
-//                                        "district_id": self.getID(type: 2),
-//                                        "district_name": self.getNAME(type: 2),
-//                                        "doi_thu_lien_he": "",
-//                                        "ghi_chu": (self.dataList()[9] as! NSMutableDictionary)["data"],
-//                                        "hinh_thuc_cham_xoc": "",
-//                                        "id": "",
-//                                        "location": "-1.0@-1.0",
-//                                        "ly_do_mat_quang_cao": "",
-//                                        "module_id": 1,
-//                                        "phonenumber": (self.dataList()[7] as! NSMutableDictionary)["data"],
-//                                        "region_id": self.getID(type: 0),
-//                                        "region_name": self.getNAME(type: 0),
-//                                        "status_code": "",
-//                                        "status_detail": "",
-//                                        "time_process": "",
-//                                        "id_job": self.tempData.response(forKey: "id_job") ? self.tempData["id_job"] : 0
-//            ]]
-        
         let header = NSMutableDictionary()
         
-        header.addEntries(from: self.agencyInfo().reFormat() as! [AnyHashable : Any])
+        header.addEntries(from: self.prepAgencyInfor().reFormat() as! [AnyHashable : Any])
         
         (header["agencyinfo"] as! NSMutableDictionary).addEntries(from: self.getPicture() as! [AnyHashable : Any])
         
@@ -679,7 +654,7 @@ class VN_Expand_ViewController: UIViewController {
         let dict = ["CMD_CODE":"updateagencyInfo",
                     "user_id":INFO()["id"],
                     "location": self.coor(),
-                    "id": 0]
+                    "id": self.tempData != nil ? (self.tempData.response(forKey: "id_job") ? self.tempData["id_job"] : 0) : 0]
         
         updateData.addEntries(from: header as! [AnyHashable : Any])
         
@@ -895,7 +870,13 @@ extension VN_Expand_ViewController: UITableViewDataSource, UITableViewDelegate {
             
             input.accessibilityValue = data.response(forKey: "timer") ? "timer" : ""
 
-            input.isEnabled = self.editData == nil && data.response(forKey: "timer")
+            input.isEnabled = self.editData == nil //&& data.response(forKey: "timer"))
+            
+            if self.editData != nil && data.response(forKey: "timer") {
+                input.isEnabled = false
+            } else {
+                input.isEnabled = true
+            }
             
             input.delegate = self
             
@@ -969,6 +950,7 @@ extension VN_Expand_ViewController: UITableViewDataSource, UITableViewDelegate {
                         
                         if !data.response(forKey: "enemy") {
                             self.isEnemy = (out as! NSDictionary)["id"] as! Int
+                            
                         }
                         
                         (self.dataList()[indexPath.row] as! NSMutableDictionary)["data"] = out
