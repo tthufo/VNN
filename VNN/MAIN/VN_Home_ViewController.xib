@@ -66,7 +66,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="1" green="0.33333333333333331" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.89411764705882346" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="cmW-DE-3WQ" firstAttribute="leading" secondItem="OVg-LB-r1H" secondAttribute="leading" constant="8" id="4lR-eX-mY4"/>
                         <constraint firstAttribute="bottom" secondItem="KTp-sw-gq6" secondAttribute="bottom" constant="11" id="82b-T8-7hF"/>
@@ -101,7 +101,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="cWS-FV-qPL"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
