@@ -132,18 +132,28 @@ class VN_Expand_ViewController: UIViewController {
         
         let inputItems = aDealer!["vat_pham"] as! NSArray
         
-        let items = NSMutableArray()
+        let items = NSMutableArray.init(array: (Information.itemList as NSArray).withMutable())
         
         for dict in inputItems {
-            for item in (Information.itemList as NSArray).withMutable() {
+            for item in items {
                 if (item as! NSDictionary)["title"] as? String ==  (dict as! NSDictionary)["title"] as? String {
                     (item as! NSMutableDictionary)["active"] = "1"
-                    items.add(item)
-                } else {
-                    items.add(item)
                 }
             }
         }
+        
+//        let items = NSMutableArray()
+//
+//        for dict in inputItems {
+//            for item in (Information.itemList as NSArray).withMutable() {
+//                if (item as! NSDictionary)["title"] as? String ==  (dict as! NSDictionary)["title"] as? String {
+//                    (item as! NSMutableDictionary)["active"] = "1"
+//                    items.add(item)
+//                } else {
+//                    items.add(item)
+//                }
+//            }
+//        }
         
         
         (self.ownList[5] as! NSMutableDictionary)["data"] = dealer.getValueFromKey("agency_code")

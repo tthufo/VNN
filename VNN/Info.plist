@@ -2,10 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>VNN cần sử dụng vị trí của bạn để phục vụ cho việc cập nhật và truy cập thông tin các địa lý chính xác.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>VNN 997</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -29,6 +29,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>VNN need</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>VNN cần sử dụng vị trí của bạn để phục vụ cho việc cập nhật và truy cập thông tin các địa lý chính xác.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>VNN cần sử dụng Micro của bạn</string>
 	<key>UILaunchStoryboardName</key>

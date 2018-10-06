@@ -31,7 +31,7 @@ class VN_Home_ViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         didRequestInfo()
         
-        let userT = "User: %@".format(parameters: Information.userInfo?["name"] as! CVarArg)
+        let userT = "Xin chào: %@".format(parameters: Information.userInfo?["name"] as! CVarArg)
         
         let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: userT)
         attributedString.setColorForText(textForAttribute: Information.userInfo?["name"] as! String, withColor: UIColor.red)

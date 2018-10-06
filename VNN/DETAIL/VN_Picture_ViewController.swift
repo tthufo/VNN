@@ -98,17 +98,18 @@ class VN_Picture_ViewController: UIViewController {
         
         let inputItems = aDealer!["vat_pham"] as! NSArray
 
-        let items = NSMutableArray()
-        
+        let items = NSMutableArray.init(array: (Information.itemList as NSArray).withMutable())
+                
         for dict in inputItems {
-            for item in (Information.itemList as NSArray).withMutable() {
+            for item in items {
                 if (item as! NSDictionary)["title"] as? String ==  (dict as! NSDictionary)["title"] as? String {
                     (item as! NSMutableDictionary)["active"] = "1"
                     (item as! NSMutableDictionary)["data"] = (dict as! NSDictionary)["type"] as! String
-                    items.add(item)
-                } else {
-                    items.add(item)
+//                    items.add(item)
                 }
+//                else {
+//                    //items.add(item)
+//                }
             }
         }
         
